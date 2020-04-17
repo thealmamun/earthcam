@@ -95,13 +95,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_vpn:
-    dependency: "direct main"
-    description:
-      name: flutter_vpn
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.8.0"
   font_awesome_flutter:
     dependency: "direct main"
     description:
@@ -221,4 +214,4 @@ packages:
     version: "3.6.1"
 sdks:
   dart: ">=2.7.0 <3.0.0"
-  flutter: ">=1.10.0 <2.0.0"
+  flutter: ">=0.1.4 <2.0.0"

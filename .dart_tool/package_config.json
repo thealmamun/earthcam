@@ -86,12 +86,6 @@
       "languageVersion": "2.2"
     },
     {
-      "name": "flutter_vpn",
-      "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_vpn-0.8.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.7"
-    },
-    {
       "name": "font_awesome_flutter",
       "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/font_awesome_flutter-8.8.1",
       "packageUri": "lib/",
@@ -200,7 +194,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-04-17T14:10:33.306672Z",
+  "generated": "2020-04-17T14:54:58.403988Z",
   "generator": "pub",
   "generatorVersion": "2.8.0-dev.20.0.flutter-05103dfe5a"
 }

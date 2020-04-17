@@ -1,5 +1,4 @@
 import 'package:earth_cam/splash/SplashScreen.dart';
-import 'package:earth_cam/testPage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MyApp2();
+    return SplashScreen();
   }
 }
 
