@@ -32,6 +32,8 @@ dependencies:
   font_awesome_flutter:
   flutter_spinkit:
   curved_navigation_bar:
+  http:
+  dotted_border:
 
 dev_dependencies:
   flutter_test:

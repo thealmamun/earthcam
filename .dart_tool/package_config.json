@@ -68,6 +68,12 @@
       "languageVersion": "2.0"
     },
     {
+      "name": "dotted_border",
+      "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/dotted_border-1.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
+    },
+    {
       "name": "flutter",
       "rootUri": "file:///Users/mamun/Developer/flutter/packages/flutter",
       "packageUri": "lib/",
@@ -92,6 +98,18 @@
       "languageVersion": "2.0"
     },
     {
+      "name": "http",
+      "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.12.0+4",
+      "packageUri": "lib/",
+      "languageVersion": "2.4"
+    },
+    {
+      "name": "http_parser",
+      "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-3.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.3"
+    },
+    {
       "name": "image",
       "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/image-2.1.12",
       "packageUri": "lib/",
@@ -114,6 +132,24 @@
       "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.6.4",
       "packageUri": "lib/",
       "languageVersion": "2.0"
+    },
+    {
+      "name": "path_drawing",
+      "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/path_drawing-0.4.1",
+      "packageUri": "lib/",
+      "languageVersion": "1.19"
+    },
+    {
+      "name": "path_parsing",
+      "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/path_parsing-0.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "1.19"
+    },
+    {
+      "name": "pedantic",
+      "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/pedantic-1.9.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
     },
     {
       "name": "petitparser",
@@ -194,7 +230,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-04-17T14:54:58.403988Z",
+  "generated": "2020-04-17T18:56:10.524300Z",
   "generator": "pub",
   "generatorVersion": "2.8.0-dev.20.0.flutter-05103dfe5a"
 }
