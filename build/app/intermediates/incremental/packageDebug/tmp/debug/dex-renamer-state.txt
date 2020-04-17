@@ -1,0 +1,4 @@
+#Thu Apr 16 19:50:28 BDT 2020
+base.0=/Users/mamun/Developer/githubProjects/Flutter/earthcam/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

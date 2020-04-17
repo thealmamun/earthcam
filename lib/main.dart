@@ -1,3 +1,4 @@
+import 'package:earth_cam/splash/SplashScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,11 +10,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Earth Cam',
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
       home: HomePage(),
     );
   }
@@ -22,7 +20,7 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return SplashScreen();
   }
 }
 
