@@ -122,6 +122,12 @@
       "languageVersion": "2.2"
     },
     {
+      "name": "flutter_plugin_android_lifecycle",
+      "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-1.0.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
       "name": "flutter_spinkit",
       "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_spinkit-4.1.2+1",
       "packageUri": "lib/",
@@ -142,6 +148,12 @@
     {
       "name": "font_awesome_flutter",
       "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/font_awesome_flutter-8.8.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "google_maps_flutter",
+      "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/google_maps_flutter-0.5.26",
       "packageUri": "lib/",
       "languageVersion": "2.0"
     },
@@ -290,7 +302,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-04-18T05:27:53.739481Z",
+  "generated": "2020-04-18T09:08:44.228968Z",
   "generator": "pub",
   "generatorVersion": "2.8.0-dev.20.0.flutter-05103dfe5a"
 }
