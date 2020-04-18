@@ -61,6 +61,7 @@ class LiveVideosState extends State<LiveVideos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF1B2D45),
       appBar: AppBar(
         centerTitle: true,
         title: Text('All Live Cams'),

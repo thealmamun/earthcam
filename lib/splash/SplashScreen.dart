@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:earth_cam/dashboard/DashBoard.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -18,11 +18,20 @@ class _SplashScreenState extends State<SplashScreen>
   AnimationController _controller;
   Timer _timer;
 
+  Future<void> _signInAnonymously() async {
+    try {
+      await FirebaseAuth.instance.signInAnonymously();
+    } catch (e) {
+      print(e); // TODO: show dialog with error
+    }
+  }
 
   @override
   void initState() {
+    _signInAnonymously();
     _timer = Timer(Duration(seconds: 10), () {
-     Navigator.push(context, MaterialPageRoute(builder: (context)=>DashBoard()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => DashBoard()));
     });
 
     _controller = AnimationController(
@@ -56,7 +65,9 @@ class _SplashScreenState extends State<SplashScreen>
                     colors: [Colors.blue, Color(0xFF083B53)])),
             child: Column(
               children: <Widget>[
-                SizedBox(height: 50,),
+                SizedBox(
+                  height: 50,
+                ),
                 AvatarGlow(
                   endRadius: 90,
                   duration: Duration(seconds: 2),
@@ -69,7 +80,11 @@ class _SplashScreenState extends State<SplashScreen>
                       shape: CircleBorder(),
                       child: CircleAvatar(
                         backgroundColor: Colors.white,
-                        child: Image.asset('assets/images/cctv7.png',height: 83,width: 83,),
+                        child: Image.asset(
+                          'assets/images/cctv7.png',
+                          height: 83,
+                          width: 83,
+                        ),
                         radius: 55.0,
                       )),
                 ),
@@ -120,8 +135,9 @@ class _SplashScreenState extends State<SplashScreen>
                   ),
                   delay: delayedAmount + 4000,
                 ),
-
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 DelayedAnimation(
                   child: GestureDetector(
                     onTapDown: _onTapDown,
@@ -138,12 +154,9 @@ class _SplashScreenState extends State<SplashScreen>
                 ),
               ],
             ),
-          )
-          ),
+          )),
     );
   }
-
-
 
   Widget get _animatedButtonUI => Container(
         height: 60,
@@ -155,8 +168,10 @@ class _SplashScreenState extends State<SplashScreen>
         child: Center(
           child: GestureDetector(
             onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => DashBoard()));
+              // ignore: unnecessary_statements
+              _signInAnonymously;
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => DashBoard()));
             },
             child: Text(
               'Live Cams',
@@ -232,5 +247,3 @@ class _DelayedAnimationState extends State<DelayedAnimation>
     );
   }
 }
-
-

@@ -10,9 +10,10 @@ class _FavoritesState extends State<Favorites> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF1B2D45),
         appBar: AppBar(
           centerTitle: true,
-          title: Text('Favorites'),
+          title: Text('Favorites',style: TextStyle(color: Colors.white),),
           actions: [
             IconButton(
                 icon: Icon(
@@ -55,6 +56,7 @@ Widget get container1 {
   return Padding(
     padding: const EdgeInsets.all(15.0),
     child: DottedBorder(
+      color: Colors.white,
       padding: EdgeInsets.all(4),
       dashPattern: [9, 5],
       child: Container(
@@ -68,7 +70,7 @@ Widget get container1 {
           children: <Widget>[
             Text(
               '0 Favorite Videos',
-              style: TextStyle(fontSize: 30),
+              style: TextStyle(fontSize: 30,color: Colors.white),
             ),
           ],
         ),
