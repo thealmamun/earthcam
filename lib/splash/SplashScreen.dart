@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:earth_cam/dashboard/DashBoard.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:earth_cam/services/FirebaseService.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -18,18 +18,12 @@ class _SplashScreenState extends State<SplashScreen>
   AnimationController _controller;
   Timer _timer;
 
-  Future<void> _signInAnonymously() async {
-    try {
-      await FirebaseAuth.instance.signInAnonymously();
-    } catch (e) {
-      print(e); // TODO: show dialog with error
-    }
-  }
+
 
 
   @override
   void initState() {
-    _signInAnonymously();
+    signInAnonymously();
     _timer = Timer(Duration(seconds: 10), () {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => DashBoard()));
@@ -170,7 +164,7 @@ class _SplashScreenState extends State<SplashScreen>
           child: GestureDetector(
             onTap: () {
               // ignore: unnecessary_statements
-              _signInAnonymously;
+              signInAnonymously;
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => DashBoard()));
             },
