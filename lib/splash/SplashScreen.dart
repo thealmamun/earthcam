@@ -26,6 +26,7 @@ class _SplashScreenState extends State<SplashScreen>
     }
   }
 
+
   @override
   void initState() {
     _signInAnonymously();
@@ -42,8 +43,8 @@ class _SplashScreenState extends State<SplashScreen>
       lowerBound: 0.0,
       upperBound: 0.1,
     )..addListener(() {
-        setState(() {});
-      });
+      setState(() {});
+    });
 
     super.initState();
   }
