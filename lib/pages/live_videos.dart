@@ -132,32 +132,75 @@ class AlbumCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: Colors.white,
-      child: Padding(
-        padding:
-        EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0, top: 10.0),
-        child: Container(
-          alignment: Alignment.center,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Flexible(
-                child: Image.network(
-                  album.thumbnailUrl,
-                  width: 150,
-                  height: 150,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Text(
-                  album.title,
-                  maxLines: 1,
-                  softWrap: true,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ],
+      child: Container(
+        constraints: new BoxConstraints.expand(
+          height: 200.0,
+        ),
+        decoration: new BoxDecoration(
+          image: new DecorationImage(
+            image: new NetworkImage(album.thumbnailUrl),
+            fit: BoxFit.cover,
           ),
+        ),
+//        alignment: Alignment.center,
+        child: Stack(
+          alignment: Alignment.center,
+          children: <Widget>[
+            Positioned(
+              child: FloatingActionButton(onPressed: null,
+                heroTag: 'unique1',
+                backgroundColor: Colors.transparent,
+                child: Icon(Icons.play_circle_filled,size: 30,color: Colors.white,),
+              ),
+            ),
+            new Positioned(
+              bottom: 0.0,
+              child: Card(
+                color: Colors.transparent,
+                child: Container(
+                  child: Row(
+                    children: [
+                      Column(
+                        children: [
+                          Text(album.title.split('').first,style: TextStyle(color: Colors.white),),
+                          Row(
+                            children: [
+                              Icon(Icons.home,color: Colors.white,),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text('Country Name',style: TextStyle(color: Colors.white),),
+                            ],
+                          )
+                        ],
+                      ),
+                      IconButton(icon: Icon(Icons.favorite,color: Colors.white,), onPressed: null)
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+
+
+
+
+//            Flexible(
+//              child: Image.network(
+//                album.thumbnailUrl,
+//              fit: BoxFit.cover,
+//              ),
+//            ),
+//            Padding(
+//              padding: EdgeInsets.all(10.0),
+//              child: Text(
+//                album.title,
+//                maxLines: 1,
+//                softWrap: true,
+//                textAlign: TextAlign.center,
+//              ),
+//            ),
+          ],
         ),
       ),
     );

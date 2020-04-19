@@ -1,221 +1,292 @@
-//import 'package:google_maps_flutter/google_maps_flutter.dart';
 //import 'dart:async';
+//import 'dart:convert';
 //import 'package:flutter/material.dart';
+//import 'package:http/http.dart' as http;
 //
-//class MapPage extends StatefulWidget {
+//class LiveVideos1 extends StatefulWidget {
+//  LiveVideos1() : super();
+//  final String title = "Photos";
+//
+//
 //  @override
-//  State<StatefulWidget> createState() => MapPageState();
+//  LiveVideos1State createState() => LiveVideos1State();
 //}
-//class MapPageState extends State<MapPage> {
 //
-//  BitmapDescriptor pinLocationIcon;
-//  Set<Marker> _markers = {};
-//  Completer<GoogleMapController> _controller = Completer();
+//class LiveVideos1State extends State<LiveVideos1> {
+//  //
+//  StreamController<int> streamController = new StreamController<int>();
 //
-//  @override
-//  void initState() {
-//    super.initState();
-//    setCustomMapPin();
+//  gridview(AsyncSnapshot<List<Album>> snapshot) {
+//    return Padding(
+//      padding: EdgeInsets.all(5.0),
+//      child: GridView.count(
+//        crossAxisCount: 2,
+//        childAspectRatio: 1.0,
+//        mainAxisSpacing: 4.0,
+//        crossAxisSpacing: 4.0,
+//        children: snapshot.data.map(
+//              (album) {
+//            return GestureDetector(
+//              child: GridTile(
+//                child: AlbumCell(context, album),
+//              ),
+//              onTap: () {
+//                goToDetailsPage(context, album);
+//              },
+//            );
+//          },
+//        ).toList(),
+//      ),
+//    );
 //  }
 //
-//  void setCustomMapPin() async {
-//    pinLocationIcon = await BitmapDescriptor.fromAssetImage(
-//        ImageConfiguration(devicePixelRatio: 16.6),
-//        'assets/images/logo.jpg',);
+//  goToDetailsPage(BuildContext context, Album album) {
+//    Navigator.push(
+//      context,
+//      MaterialPageRoute(
+//        fullscreenDialog: true,
+//        builder: (BuildContext context) => GridDetails(
+//          curAlbum: album,
+//        ),
+//      ),
+//    );
+//  }
+//
+//  circularProgress() {
+//    return Center(
+//      child: const CircularProgressIndicator(),
+//    );
 //  }
 //
 //  @override
 //  Widget build(BuildContext context) {
-//    LatLng pinPosition = LatLng(37.3797536, -122.1017334);
+//    return Scaffold(
+//      backgroundColor: Color(0xFF1B2D45),
+//      appBar: AppBar(
+//        centerTitle: true,
+//        title: Text('All Live Cams'),
+//        leading: IconButton(icon: Icon(Icons.arrow_back,color: Colors.white,), onPressed: null),
+//        actions: [
+//          IconButton(
+//              icon: Icon(
+//                Icons.search,
+//                color: Colors.white,
+//                size: 30,
+//              ),
+//              onPressed: null),
+//          IconButton(
+//              icon: Icon(
+//                Icons.do_not_disturb_off,
+//                color: Colors.white,
+//                size: 25,
+//              ),
+//              onPressed: null),
+//        ],
+//      ),
+//      body: Column(
+//        mainAxisAlignment: MainAxisAlignment.start,
+//        crossAxisAlignment: CrossAxisAlignment.start,
+//        mainAxisSize: MainAxisSize.min,
+//        children: <Widget>[
+//          Flexible(
+//            child: FutureBuilder<List<Album>>(
+//              future: Services.getPhotos(),
+//              builder: (context, snapshot) {
+//                // not setstate here
+//                //
+//                if (snapshot.hasError) {
+//                  return Text('Error ${snapshot.error}');
+//                }
+//                //
+//                if (snapshot.hasData) {
+//                  streamController.sink.add(snapshot.data.length);
+//                  // gridview
+//                  return gridview(snapshot);
+//                }
 //
-//    // these are the minimum required values to set
-//    // the camera position
-//    CameraPosition initialLocation = CameraPosition(
-//        zoom: 16,
-//        bearing: 30,
-//        target: pinPosition
+//                return circularProgress();
+//              },
+//            ),
+//          ),
+//        ],
+//      ),
 //    );
+//  }
 //
-//    return GoogleMap(
-//        myLocationEnabled: true,
-//        compassEnabled: true,
-//        markers: _markers,
-//        initialCameraPosition: initialLocation,
-//        onMapCreated: (GoogleMapController controller) {
-//          controller.setMapStyle(Utils.mapStyles);
-//          _controller.complete(controller);
-//          setState(() {
-//            _markers.add(
-//                Marker(
-//                    markerId: MarkerId('<MARKER_ID>'),
-//                    position: pinPosition,
-//                    icon: pinLocationIcon
-//                )
-//            );
-//          });
-//        });
+//  @override
+//  void dispose() {
+//    streamController.close();
+//    super.dispose();
 //  }
 //}
 //
-//class Utils {
-//  static String mapStyles = '''[
-//  {
-//    "elementType": "geometry",
-//    "stylers": [
-//      {
-//        "color": "#f5f5f5"
-//      }
-//    ]
-//  },
-//  {
-//    "elementType": "labels.icon",
-//    "stylers": [
-//      {
-//        "visibility": "off"
-//      }
-//    ]
-//  },
-//  {
-//    "elementType": "labels.text.fill",
-//    "stylers": [
-//      {
-//        "color": "#616161"
-//      }
-//    ]
-//  },
-//  {
-//    "elementType": "labels.text.stroke",
-//    "stylers": [
-//      {
-//        "color": "#f5f5f5"
-//      }
-//    ]
-//  },
-//  {
-//    "featureType": "administrative.land_parcel",
-//    "elementType": "labels.text.fill",
-//    "stylers": [
-//      {
-//        "color": "#bdbdbd"
-//      }
-//    ]
-//  },
-//  {
-//    "featureType": "poi",
-//    "elementType": "geometry",
-//    "stylers": [
-//      {
-//        "color": "#eeeeee"
-//      }
-//    ]
-//  },
-//  {
-//    "featureType": "poi",
-//    "elementType": "labels.text.fill",
-//    "stylers": [
-//      {
-//        "color": "#757575"
-//      }
-//    ]
-//  },
-//  {
-//    "featureType": "poi.park",
-//    "elementType": "geometry",
-//    "stylers": [
-//      {
-//        "color": "#e5e5e5"
-//      }
-//    ]
-//  },
-//  {
-//    "featureType": "poi.park",
-//    "elementType": "labels.text.fill",
-//    "stylers": [
-//      {
-//        "color": "#9e9e9e"
-//      }
-//    ]
-//  },
-//  {
-//    "featureType": "road",
-//    "elementType": "geometry",
-//    "stylers": [
-//      {
-//        "color": "#ffffff"
-//      }
-//    ]
-//  },
-//  {
-//    "featureType": "road.arterial",
-//    "elementType": "labels.text.fill",
-//    "stylers": [
-//      {
-//        "color": "#757575"
-//      }
-//    ]
-//  },
-//  {
-//    "featureType": "road.highway",
-//    "elementType": "geometry",
-//    "stylers": [
-//      {
-//        "color": "#dadada"
-//      }
-//    ]
-//  },
-//  {
-//    "featureType": "road.highway",
-//    "elementType": "labels.text.fill",
-//    "stylers": [
-//      {
-//        "color": "#616161"
-//      }
-//    ]
-//  },
-//  {
-//    "featureType": "road.local",
-//    "elementType": "labels.text.fill",
-//    "stylers": [
-//      {
-//        "color": "#9e9e9e"
-//      }
-//    ]
-//  },
-//  {
-//    "featureType": "transit.line",
-//    "elementType": "geometry",
-//    "stylers": [
-//      {
-//        "color": "#e5e5e5"
-//      }
-//    ]
-//  },
-//  {
-//    "featureType": "transit.station",
-//    "elementType": "geometry",
-//    "stylers": [
-//      {
-//        "color": "#eeeeee"
-//      }
-//    ]
-//  },
-//  {
-//    "featureType": "water",
-//    "elementType": "geometry",
-//    "stylers": [
-//      {
-//        "color": "#c9c9c9"
-//      }
-//    ]
-//  },
-//  {
-//    "featureType": "water",
-//    "elementType": "labels.text.fill",
-//    "stylers": [
-//      {
-//        "color": "#9e9e9e"
-//      }
-//    ]
+//
+//
+//class AlbumCell extends StatelessWidget {
+//  const AlbumCell(this.context, this.album);
+//  @required
+//  final Album album;
+//  final BuildContext context;
+//
+//  @override
+//  Widget build(BuildContext context) {
+//    return Card(
+//      color: Colors.white,
+//      child: Container(
+//        constraints: new BoxConstraints.expand(
+//          height: 200.0,
+//        ),
+//        decoration: new BoxDecoration(
+//          image: new DecorationImage(
+//            image: new NetworkImage(album.thumbnailUrl),
+//            fit: BoxFit.cover,
+//          ),
+//        ),
+////        alignment: Alignment.center,
+//        child: Stack(
+//          alignment: Alignment.center,
+//          children: <Widget>[
+//            Positioned(
+//              child: FloatingActionButton(onPressed: null,
+//                heroTag: 'unique1',
+//                backgroundColor: Colors.transparent,
+//                child: Icon(Icons.play_circle_filled,size: 30,color: Colors.white,),
+//              ),
+//            ),
+//            new Positioned(
+//              bottom: 0.0,
+//              child: Card(
+//                color: Colors.transparent,
+//                child: Container(
+//                  child: Row(
+//                    children: [
+//                      Column(
+//                        children: [
+//                          Text(album.title.split('').first,style: TextStyle(color: Colors.white),),
+//                          Row(
+//                            children: [
+//                              Icon(Icons.home,color: Colors.white,),
+//                              SizedBox(
+//                                width: 5,
+//                              ),
+//                              Text('Country Name',style: TextStyle(color: Colors.white),),
+//                            ],
+//                          )
+//                        ],
+//                      ),
+//                      IconButton(icon: Icon(Icons.favorite,color: Colors.white,), onPressed: null)
+//                    ],
+//                  ),
+//                ),
+//              ),
+//            ),
+//
+//
+//
+//
+//
+////            Flexible(
+////              child: Image.network(
+////                album.thumbnailUrl,
+////              fit: BoxFit.cover,
+////              ),
+////            ),
+////            Padding(
+////              padding: EdgeInsets.all(10.0),
+////              child: Text(
+////                album.title,
+////                maxLines: 1,
+////                softWrap: true,
+////                textAlign: TextAlign.center,
+////              ),
+////            ),
+//          ],
+//        ),
+//      ),
+//    );
 //  }
-//]''';
+//}
+//
+//class Services {
+//  static Future<List<Album>> getPhotos() async {
+//    try {
+//      final response =
+//      await http.get("https://jsonplaceholder.typicode.com/photos");
+//      if (response.statusCode == 200) {
+//        List<Album> list = parsePhotos(response.body);
+//        return list;
+//      } else {
+//        throw Exception("Error");
+//      }
+//    } catch (e) {
+//      throw Exception(e.toString());
+//    }
+//  }
+//
+//  // Parse the JSON response and return list of Album Objects //
+//  static List<Album> parsePhotos(String responseBody) {
+//    final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+//    return parsed.map<Album>((json) => Album.fromJson(json)).toList();
+//  }
+//}
+//
+//class Album {
+//  int albumId;
+//  int id;
+//  String title;
+//  String url;
+//  String thumbnailUrl;
+//
+//  Album({this.albumId, this.id, this.title, this.url, this.thumbnailUrl});
+//
+//  // Return object from JSON //
+//  factory Album.fromJson(Map<String, dynamic> json) {
+//    return Album(
+//        albumId: json['albumId'] as int,
+//        id: json['id'] as int,
+//        title: json['title'] as String,
+//        url: json['url'] as String,
+//        thumbnailUrl: json['thumbnailUrl'] as String);
+//  }
+//}
+//
+//class GridDetails extends StatefulWidget {
+//  final Album curAlbum;
+//  GridDetails({@required this.curAlbum});
+//
+//  @override
+//  GridDetailsState createState() => GridDetailsState();
+//}
+//
+//class GridDetailsState extends State<GridDetails> {
+//  //
+//  @override
+//  Widget build(BuildContext context) {
+//    return Scaffold(
+//      body: Container(
+//        alignment: Alignment.center,
+//        margin: EdgeInsets.all(30.0),
+//        child: Column(
+//          crossAxisAlignment: CrossAxisAlignment.center,
+//          mainAxisAlignment: MainAxisAlignment.center,
+//          children: <Widget>[
+//            Hero(
+//              tag: "image${widget.curAlbum.id}",
+//              child: FadeInImage.assetNetwork(
+//                placeholder: "assets/images/cctv5.png",
+//                image: widget.curAlbum.url,
+//              ),
+//            ),
+//            SizedBox(
+//              height: 30.0,
+//            ),
+//            OutlineButton(
+//              child: Icon(Icons.close),
+//              onPressed: () => Navigator.of(context).pop(),
+//            ),
+//          ],
+//        ),
+//      ),
+//    );
+//  }
 //}
