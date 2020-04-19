@@ -162,7 +162,7 @@ class AlbumCell extends StatelessWidget {
                     children: [
                       Column(
                         children: [
-                          Text(album.title.split('').first,style: TextStyle(color: Colors.white),),
+                          Text(album.title.split(" ").first,style: TextStyle(color: Colors.white),),
                           Row(
                             children: [
                               Icon(Icons.home,color: Colors.white,),
