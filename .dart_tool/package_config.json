@@ -326,10 +326,22 @@
       "languageVersion": "2.7"
     },
     {
+      "name": "webview_media",
+      "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/webview_media-0.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
+    },
+    {
       "name": "xml",
       "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/xml-3.6.1",
       "packageUri": "lib/",
       "languageVersion": "2.6"
+    },
+    {
+      "name": "youtube_player_flutter",
+      "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/youtube_player_flutter-6.1.0+7",
+      "packageUri": "lib/",
+      "languageVersion": "2.5"
     },
     {
       "name": "earth_cam",
@@ -338,7 +350,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-04-20T04:50:40.320497Z",
+  "generated": "2020-04-20T07:05:10.066115Z",
   "generator": "pub",
   "generatorVersion": "2.8.0-dev.20.0.flutter-05103dfe5a"
 }

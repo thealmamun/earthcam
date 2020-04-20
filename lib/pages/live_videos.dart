@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:earth_cam/pages/video_player.dart';
+import 'package:earth_cam/pages/server_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 

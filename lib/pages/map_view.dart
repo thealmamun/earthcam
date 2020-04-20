@@ -1,6 +1,7 @@
 
 import 'package:earth_cam/model/cams.dart';
-import 'package:earth_cam/pages/video_player.dart';
+import 'package:earth_cam/pages/server_video_player.dart';
+import 'package:earth_cam/pages/yt_video_player.dart';
 import 'package:earth_cam/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -150,7 +151,6 @@ class _MapViewState extends State<MapView> {
                                     color: Colors.redAccent,
                                   ),
                                 )
-
                               ])
                         ]))))
           ])),
@@ -233,6 +233,7 @@ class _MapViewState extends State<MapView> {
                   setState(() {
                     isClicked = false;
                   });
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>YtVideoPlayerPage()));
                 },
                 icon: Icon(
                   Icons.play_arrow,
@@ -260,6 +261,7 @@ class _MapViewState extends State<MapView> {
                   setState(() {
                     isClicked = true;
                   });
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ServerVideoPlayer()));
                 },
                 icon: Icon(
                   Icons.linked_camera,
