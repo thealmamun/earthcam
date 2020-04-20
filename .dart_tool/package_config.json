@@ -38,6 +38,12 @@
       "languageVersion": "2.0"
     },
     {
+      "name": "chewie",
+      "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/chewie-0.9.10",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "collection",
       "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.14.12",
       "packageUri": "lib/",
@@ -194,6 +200,12 @@
       "languageVersion": "1.12"
     },
     {
+      "name": "open_iconic_flutter",
+      "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/open_iconic_flutter-0.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "path",
       "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.6.4",
       "packageUri": "lib/",
@@ -290,6 +302,30 @@
       "languageVersion": "2.0"
     },
     {
+      "name": "video_player",
+      "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/video_player-0.10.8+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "video_player_platform_interface",
+      "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/video_player_platform_interface-1.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "video_player_web",
+      "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/video_player_web-0.1.2+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "wakelock",
+      "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/wakelock-0.1.4+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
       "name": "xml",
       "rootUri": "file:///Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/xml-3.6.1",
       "packageUri": "lib/",
@@ -302,7 +338,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-04-19T07:09:57.595279Z",
+  "generated": "2020-04-20T04:50:40.320497Z",
   "generator": "pub",
   "generatorVersion": "2.8.0-dev.20.0.flutter-05103dfe5a"
 }

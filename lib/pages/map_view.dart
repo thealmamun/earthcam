@@ -1,5 +1,6 @@
 
 import 'package:earth_cam/model/cams.dart';
+import 'package:earth_cam/pages/video_player.dart';
 import 'package:earth_cam/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -136,7 +137,7 @@ class _MapViewState extends State<MapView> {
                                          ),
                                     ),
                                     onPressed: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>SplashScreen()));
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>ServerVideoPlayer()));
                                     },
                                     icon: Icon(
                                       Icons.play_arrow,

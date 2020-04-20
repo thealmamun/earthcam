@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:earth_cam/pages/video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -45,8 +46,8 @@ class LiveVideosState extends State<LiveVideos> {
       context,
       MaterialPageRoute(
         fullscreenDialog: true,
-        builder: (BuildContext context) => GridDetails(
-          curAlbum: album,
+        builder: (BuildContext context) => ServerVideoPlayer(
+//          curAlbum: album,
         ),
       ),
     );
@@ -148,7 +149,7 @@ class AlbumCell extends StatelessWidget {
           children: <Widget>[
             Positioned(
               child: FloatingActionButton(onPressed: null,
-                heroTag: 'unique1',
+                heroTag: null,
                 backgroundColor: Colors.transparent,
                 child: Icon(Icons.play_circle_filled,size: 30,color: Colors.white,),
               ),
@@ -180,26 +181,6 @@ class AlbumCell extends StatelessWidget {
                 ),
               ),
             ),
-
-
-
-
-
-//            Flexible(
-//              child: Image.network(
-//                album.thumbnailUrl,
-//              fit: BoxFit.cover,
-//              ),
-//            ),
-//            Padding(
-//              padding: EdgeInsets.all(10.0),
-//              child: Text(
-//                album.title,
-//                maxLines: 1,
-//                softWrap: true,
-//                textAlign: TextAlign.center,
-//              ),
-//            ),
           ],
         ),
       ),

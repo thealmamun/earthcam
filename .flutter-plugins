@@ -5,3 +5,6 @@ firebase_core=/Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/
 firebase_core_web=/Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-0.1.1+2/
 flutter_plugin_android_lifecycle=/Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-1.0.6/
 google_maps_flutter=/Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/google_maps_flutter-0.5.26/
+video_player=/Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/video_player-0.10.8+1/
+video_player_web=/Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/video_player_web-0.1.2+1/
+wakelock=/Users/mamun/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/wakelock-0.1.4+1/

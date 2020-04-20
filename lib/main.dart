@@ -1,4 +1,6 @@
 import 'package:earth_cam/TestPage.dart';
+import 'package:earth_cam/TestPage2.dart';
+import 'package:earth_cam/pages/video_player.dart';
 import 'package:earth_cam/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 
