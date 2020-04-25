@@ -8,6 +8,8 @@ import 'package:video_player/video_player.dart';
 
 
 class ServerVideoPlayer extends StatefulWidget {
+  ServerVideoPlayer({this.url});
+  final String url;
 
 
   @override
@@ -20,14 +22,14 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
   VideoPlayerController _videoPlayerController1;
   VideoPlayerController _videoPlayerController2;
   ChewieController _chewieController;
-
+  VideoPlayerController _controller;
   @override
   void initState() {
     super.initState();
     _videoPlayerController1 = VideoPlayerController.network(
         'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4');
     _videoPlayerController2 = VideoPlayerController.network(
-        'https://www.radiantmediaplayer.com/media/bbb-360p.mp4');
+        widget.url);
     _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController2,
       aspectRatio: 3 / 2,
@@ -38,6 +40,12 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
       showControls: true,
       autoInitialize: true,
     );
+//    _controller = VideoPlayerController.network(
+//        'http://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_20mb.mp4')
+//      ..initialize().then((_) {
+//        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+//        setState(() {});
+//      });
   }
 
   @override
@@ -76,6 +84,12 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
         children: <Widget>[
           Stack(
             children: [
+//              _controller.value.initialized
+//                  ? AspectRatio(
+//                aspectRatio: _controller.value.aspectRatio,
+//                child: VideoPlayer(_controller),
+//              )
+//                  : Container(),
               Chewie(
                 controller: _chewieController,
               ),

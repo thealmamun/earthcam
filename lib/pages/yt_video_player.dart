@@ -1,4 +1,4 @@
-//import 'package:earth_cam/pages/live_videos.dart';
+//import 'package:earth_cam/pages/live_videos-o.dart';
 //import 'package:flutter/cupertino.dart';
 //import 'package:flutter/material.dart';
 //import 'package:flutter/rendering.dart';
@@ -423,6 +423,8 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class YtVideoPlayerPage extends StatefulWidget {
+  YtVideoPlayerPage({this.url});
+  final String url;
   @override
   _YtVideoPlayerPageState createState() => _YtVideoPlayerPageState();
 }
