@@ -16,7 +16,6 @@
 //  runApp(YoutubePlayerDemoApp());
 //}
 //
-import 'package:earth_cam/model/cams.dart';
 import 'package:earth_cam/pages/server_video_player.dart';
 
 ///// Creates [YoutubePlayerDemoApp] widget.
@@ -430,14 +429,14 @@ class YtVideoPlayerPage extends StatefulWidget {
 }
 
 class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
-  String videoURL = "https://www.youtube.com/watch?v=wuY8FY_bZ58";
+//  String videoURL = "https://www.youtube.com/watch?v=wuY8FY_bZ58";
 
   YoutubePlayerController _controller;
 
   @override
   void initState() {
     _controller = YoutubePlayerController(
-      initialVideoId: YoutubePlayer.convertUrlToId(videoURL),
+      initialVideoId: YoutubePlayer.convertUrlToId(widget.url),
       flags: YoutubePlayerFlags(
 //        mute: false,
         autoPlay: true,
@@ -455,6 +454,13 @@ class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _controller.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -468,7 +474,9 @@ class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
               Icons.arrow_back,
               color: Colors.white,
             ),
-            onPressed: null),
+            onPressed: (){
+              Navigator.pop(context);
+            }),
         actions: [
           IconButton(
               icon: Icon(

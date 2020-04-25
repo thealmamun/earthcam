@@ -1,10 +1,5 @@
-import 'package:earth_cam/TestPage.dart';
-import 'package:earth_cam/TestPage2.dart';
-import 'package:earth_cam/pages/server_video_player.dart';
-import 'package:earth_cam/pages/yt_video_player.dart';
 import 'package:earth_cam/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

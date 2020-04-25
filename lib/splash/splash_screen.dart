@@ -16,14 +16,14 @@ class _SplashScreenState extends State<SplashScreen>
   final int delayedAmount = 500;
   double _scale;
   AnimationController _controller;
-  Timer _timer;
+  Timer timer;
 
 
 
   @override
   void initState() {
     signInAnonymously();
-    _timer = Timer(Duration(seconds: 3), () {
+    timer = Timer(Duration(seconds: 3), () {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => HomePage()));
     });

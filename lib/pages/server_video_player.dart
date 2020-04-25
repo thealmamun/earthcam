@@ -1,6 +1,5 @@
 
 import 'package:chewie/chewie.dart';
-import 'package:chewie/src/chewie_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
@@ -22,7 +21,7 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
   VideoPlayerController _videoPlayerController1;
   VideoPlayerController _videoPlayerController2;
   ChewieController _chewieController;
-  VideoPlayerController _controller;
+//  VideoPlayerController _controller;
   @override
   void initState() {
     super.initState();

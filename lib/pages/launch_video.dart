@@ -64,9 +64,7 @@ class _LaunchVideoState extends State<LaunchVideo> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _getwebview(context),
-    );
+    return _getwebview(context);
   }
 
   Widget _getwebview(context) {
@@ -81,49 +79,49 @@ class _LaunchVideoState extends State<LaunchVideo> {
         // if you want the user zoom-in and zoom-out
         hidden: true,
         // put it true if you want to show CircularProgressIndicator while waiting for the page to load
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              InkWell(
-                onTap: (){
-                  flutterWebviewPlugin.close();
-                  Navigator.pop(context);
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(Icons.arrow_back_ios,color: Colors.black,),
-                    Center(child: Text('Back',style: TextStyle(color: Colors.black),)),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Center(child: Text('Live Stream',style: TextStyle(color: Colors.black),)),
-              ),
-              InkWell(
-                child: Icon(Icons.refresh),
-                onTap: () {
-                  flutterWebviewPlugin.reload();
-                  // flutterWebviewPlugin.reloadUrl(); // if you want to reloade another url
-                },
-              ),
-            ],
-          ),
-          centerTitle: true,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: <Color>[Color(0XFF67B39E), Color(0XFFAAF3EF)],
-              ),
-            ),
-          ),
-        ),
+//        appBar: AppBar(
+//          automaticallyImplyLeading: false,
+//          title: Row(
+//            mainAxisAlignment: MainAxisAlignment.start,
+//            crossAxisAlignment: CrossAxisAlignment.center,
+//            children: <Widget>[
+//              InkWell(
+//                onTap: (){
+//                  flutterWebviewPlugin.close();
+//                  Navigator.pop(context);
+//                },
+//                child: Row(
+//                  mainAxisAlignment: MainAxisAlignment.start,
+//                  crossAxisAlignment: CrossAxisAlignment.center,
+//                  children: <Widget>[
+//                    Icon(Icons.arrow_back_ios,color: Colors.black,),
+//                    Center(child: Text('Back',style: TextStyle(color: Colors.black),)),
+//                  ],
+//                ),
+//              ),
+//              Expanded(
+//                child: Center(child: Text('Live Stream',style: TextStyle(color: Colors.black),)),
+//              ),
+//              InkWell(
+//                child: Icon(Icons.refresh),
+//                onTap: () {
+//                  flutterWebviewPlugin.reload();
+//                  // flutterWebviewPlugin.reloadUrl(); // if you want to reloade another url
+//                },
+//              ),
+//            ],
+//          ),
+//          centerTitle: true,
+//          flexibleSpace: Container(
+//            decoration: BoxDecoration(
+//              gradient: LinearGradient(
+//                begin: Alignment.topLeft,
+//                end: Alignment.bottomRight,
+//                colors: <Color>[Color(0XFF67B39E), Color(0XFFAAF3EF)],
+//              ),
+//            ),
+//          ),
+//        ),
         initialChild: Center(
           // but if you want to add your own waiting widget just add InitialChild
           child: spinkit,

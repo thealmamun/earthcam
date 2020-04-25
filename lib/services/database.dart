@@ -29,3 +29,11 @@ Stream<List<Cams>> get mapData {
   return mapCollection.snapshots()
       .map(mapDataFromSnapshot);
 }
+
+searchByName(String searchField) {
+  return Firestore.instance
+      .collection('maps')
+      .where('searchKey',
+      isEqualTo: searchField.substring(0, 1).toUpperCase())
+      .getDocuments();
+}

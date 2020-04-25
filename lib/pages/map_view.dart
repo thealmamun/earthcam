@@ -1,17 +1,10 @@
 import 'dart:async';
-import 'dart:math';
-import 'dart:typed_data';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:earth_cam/model/cams.dart';
-import 'package:earth_cam/pages/server_video_player.dart';
-import 'package:earth_cam/pages/yt_video_player.dart';
 import 'package:earth_cam/services/database.dart';
 import 'package:earth_cam/widgets/map_pin_pill.dart';
-import 'package:earth_cam/widgets/marker_generator.dart';
 import 'package:flutter/material.dart';
-import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapView extends StatefulWidget {
@@ -43,7 +36,8 @@ class _MapViewState extends State<MapView> {
       camTitle: '',
       geoPoint: GeoPoint(0.0,0.0),
       imageUrl: '',
-      streamUrl: ''
+      streamUrl: '',
+      category: '',
   );
   Cams camInfo;
   @override
@@ -366,6 +360,7 @@ class _MapViewState extends State<MapView> {
                   geoPoint: GeoPoint(element[i].geoPoint.latitude, element[i].geoPoint.longitude),
                   imageUrl: element[i].imageUrl,
                   streamUrl: element[i].streamUrl,
+                  category: element[i].category,
                 );
                 pinPillPosition = 0;
               });

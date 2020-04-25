@@ -1,6 +1,10 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:earth_cam/model/cams.dart';
+import 'package:earth_cam/pages/launch_video.dart';
+import 'package:earth_cam/pages/search_cams.dart';
+import 'package:earth_cam/pages/yt_video_player.dart';
 import 'package:flutter/material.dart';
 
 class LiveVideos extends StatefulWidget {
@@ -11,75 +15,104 @@ class LiveVideos extends StatefulWidget {
 class _LiveVideosState extends State<LiveVideos> {
   Widget _mapList(DocumentSnapshot snapshot) {
     return GridTile(
-      child: Card(
-        color: Colors.transparent,
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: CachedNetworkImageProvider(
-                snapshot.data['imageUrl'],
-              ),
-            ),
-          ),
-          child: Stack(
-            alignment: Alignment.center,
-            children: <Widget>[
-//              CachedNetworkImage(
-//                fit: BoxFit.cover,
-//                imageUrl: snapshot.data['imageUrl'],
-//                placeholder: (context, url) => CircularProgressIndicator(),
-//                errorWidget: (context, url, error) => Icon(Icons.error),
-//              ),
-              Positioned(
-                child: FloatingActionButton(
-                  onPressed: null,
-                  heroTag: null,
-                  backgroundColor: Colors.transparent,
-                  child: Icon(
-                    Icons.play_circle_filled,
-                    size: 30,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Text(
-                          snapshot.data['camTitle'],
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              snapshot.data['address'],
-                              style: TextStyle(color: Colors.black),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Material(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          elevation: 10.0,
+          child: Container(
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+              child: Container(
+                child: Stack(
+                  children: <Widget>[
+                      Positioned.fill(
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(
+                            sigmaX: 5,
+                            sigmaY: 5,
+                          ),
+                          child: Container(
+                            color: Colors.black.withOpacity(0),
+                            child: CachedNetworkImage(
+                              fit: BoxFit.cover,
+                              imageUrl: snapshot.data['imageUrl'],
+                              placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                              errorWidget: (context, url, error) => Icon(Icons.error),
                             ),
                           ),
                         ),
-                        IconButton(
+                      ),
+                    Positioned.fill(
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(
+                          sigmaX: 1,
+                          sigmaY: 1,
+                        ),
+                        child: Container(
+                          color: Colors.black.withOpacity(0.4),
+                          child: IconButton(
+                            color: Colors.white,
                             icon: Icon(
-                              Icons.favorite_border,
+                              Icons.play_circle_filled,
+                              size: 50,
                               color: Colors.white,
                             ),
-                            onPressed: null),
-                      ],
-                    )
+                            onPressed: (){
+                            print('tapped');
+                            if(snapshot.data['category'] == 'Youtube'){
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>YtVideoPlayerPage(url: snapshot.data['streamUrl'],)));
+                            }else{
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>LaunchVideo(url: snapshot.data['streamUrl'],)));
+                            }
+                          },
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned.fill(
+                      child: Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Text(
+                                      snapshot.data['camTitle'],
+                                      style: TextStyle(color: Colors.white,fontSize: 15.0,fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+//                              Expanded(
+//                                child: Padding(
+//                                  padding: const EdgeInsets.all(8.0),
+//                                  child: Text(
+//                                    snapshot.data['address'].toString(),
+//                                    style: TextStyle(color: Colors.white,),
+//                                  ),
+//                                ),
+//                              ),
+                                IconButton(
+                                    icon: Icon(
+                                      Icons.favorite_border,
+                                      color: Colors.white,
+                                    ),
+                                    onPressed: null),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
-            ],
+            ),
           ),
         ),
       ),
@@ -89,7 +122,17 @@ class _LiveVideosState extends State<LiveVideos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => SearchCams()));
+            },
+          )
+        ],
+      ),
       body: StreamBuilder<QuerySnapshot>(
           stream: Firestore.instance.collection('maps').snapshots(),
           builder: (context, snapshot) {

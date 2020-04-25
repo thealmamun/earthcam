@@ -1,6 +1,5 @@
 import 'package:earth_cam/model/cams.dart';
 import 'package:earth_cam/pages/launch_video.dart';
-import 'package:earth_cam/pages/server_video_player.dart';
 import 'package:earth_cam/pages/yt_video_player.dart';
 import 'package:flutter/material.dart';
 
@@ -68,15 +67,27 @@ class MapPinPillComponentState extends State<MapPinPillComponent> {
                           onPressed: (){
                             print(widget.currentlySelectedPin.streamUrl);
                             //CHEWIE PLAYER
-                            Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ServerVideoPlayer(url: widget.currentlySelectedPin.streamUrl,)));
+//                            Navigator.push(
+//                            context,
+//                            MaterialPageRoute(
+//                                builder: (context) => ServerVideoPlayer(url: widget.currentlySelectedPin.streamUrl,)));
                           //WEBVIEW
 //                            Navigator.push(
 //                                context,
 //                                MaterialPageRoute(
 //                                    builder: (context) => LaunchVideo(url: widget.currentlySelectedPin.streamUrl,)));
+                            if(widget.currentlySelectedPin.category == 'Youtube'){
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => YtVideoPlayerPage(url: widget.currentlySelectedPin.streamUrl,)));
+                            }
+                            else{
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LaunchVideo(url: widget.currentlySelectedPin.streamUrl,)));
+                            }
                           },
                           icon: Icon(Icons.play_arrow),
                           label: Text('Play'))
