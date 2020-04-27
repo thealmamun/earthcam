@@ -44,6 +44,7 @@ dependencies:
   path_provider:
   geoflutterfire: ^2.1.0
   flutter_webview_plugin: ^0.3.11
+  google_fonts: ^1.0.0
 
 
 

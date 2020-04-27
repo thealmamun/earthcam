@@ -6,6 +6,7 @@ import 'package:earth_cam/pages/launch_video.dart';
 import 'package:earth_cam/pages/search_cams.dart';
 import 'package:earth_cam/pages/yt_video_player.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LiveVideos extends StatefulWidget {
   @override
@@ -26,23 +27,25 @@ class _LiveVideosState extends State<LiveVideos> {
               child: Container(
                 child: Stack(
                   children: <Widget>[
-                      Positioned.fill(
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(
-                            sigmaX: 5,
-                            sigmaY: 5,
-                          ),
-                          child: Container(
-                            color: Colors.black.withOpacity(0),
-                            child: CachedNetworkImage(
-                              fit: BoxFit.cover,
-                              imageUrl: snapshot.data['imageUrl'],
-                              placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-                              errorWidget: (context, url, error) => Icon(Icons.error),
-                            ),
+                    Positioned.fill(
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(
+                          sigmaX: 5,
+                          sigmaY: 5,
+                        ),
+                        child: Container(
+                          color: Colors.black.withOpacity(0),
+                          child: CachedNetworkImage(
+                            fit: BoxFit.cover,
+                            imageUrl: snapshot.data['imageUrl'],
+                            placeholder: (context, url) =>
+                                Center(child: CircularProgressIndicator()),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
                           ),
                         ),
                       ),
+                    ),
                     Positioned.fill(
                       child: BackdropFilter(
                         filter: ImageFilter.blur(
@@ -58,14 +61,24 @@ class _LiveVideosState extends State<LiveVideos> {
                               size: 50,
                               color: Colors.white,
                             ),
-                            onPressed: (){
-                            print('tapped');
-                            if(snapshot.data['category'] == 'Youtube'){
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>YtVideoPlayerPage(url: snapshot.data['streamUrl'],)));
-                            }else{
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>LaunchVideo(url: snapshot.data['streamUrl'],)));
-                            }
-                          },
+                            onPressed: () {
+                              print('tapped');
+                              if (snapshot.data['camType'] == 'Youtube') {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => YtVideoPlayerPage(
+                                              url: snapshot.data['streamUrl'],
+                                            )));
+                              } else {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LaunchVideo(
+                                              url: snapshot.data['streamUrl'],
+                                            )));
+                              }
+                            },
                           ),
                         ),
                       ),
@@ -84,19 +97,13 @@ class _LiveVideosState extends State<LiveVideos> {
                                     padding: const EdgeInsets.all(12.0),
                                     child: Text(
                                       snapshot.data['camTitle'],
-                                      style: TextStyle(color: Colors.white,fontSize: 15.0,fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 15.0,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                 ),
-//                              Expanded(
-//                                child: Padding(
-//                                  padding: const EdgeInsets.all(8.0),
-//                                  child: Text(
-//                                    snapshot.data['address'].toString(),
-//                                    style: TextStyle(color: Colors.white,),
-//                                  ),
-//                                ),
-//                              ),
                                 IconButton(
                                     icon: Icon(
                                       Icons.favorite_border,
@@ -122,33 +129,91 @@ class _LiveVideosState extends State<LiveVideos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => SearchCams()));
-            },
-          )
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            centerTitle: true,
+            flexibleSpace: FlexibleSpaceBar(
+              centerTitle: true,
+              background: Image.asset(
+                'assets/images/dart.png',
+                fit: BoxFit.cover,
+              ),
+            ),
+            title: Text(
+              'Camera World',
+              style: GoogleFonts.robotoSlab(fontSize: 30, color: Colors.white),
+            ),
+            pinned: true,
+            expandedHeight: 70.0,
+            actions: [
+              IconButton(
+                icon: Icon(
+                  Icons.search,
+                  size: 30,
+                ),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SearchCams()));
+                },
+              ),
+              IconButton(
+                  icon: Icon(
+                    Icons.do_not_disturb_off,
+                    color: Colors.white,
+                    size: 25,
+                  ),
+                  onPressed: null),
+            ],
+          ),
+          SliverFillRemaining(
+            child: StreamBuilder<QuerySnapshot>(
+                stream: Firestore.instance.collection('maps').snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return GridView.count(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1.0,
+                      mainAxisSpacing: 4.0,
+                      crossAxisSpacing: 4.0,
+                      children: snapshot.data.documents
+                          .map((doc) => _mapList(doc))
+                          .toList(),
+                    );
+                  } else
+                    return Center(child: CircularProgressIndicator());
+                }),
+          ),
         ],
       ),
-      body: StreamBuilder<QuerySnapshot>(
-          stream: Firestore.instance.collection('maps').snapshots(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return GridView.count(
-                crossAxisCount: 2,
-                childAspectRatio: 1.0,
-                mainAxisSpacing: 4.0,
-                crossAxisSpacing: 4.0,
-                children: snapshot.data.documents
-                    .map((doc) => _mapList(doc))
-                    .toList(),
-              );
-            } else
-              return Center(child: CircularProgressIndicator());
-          }),
+      drawer: Drawer(
+        child: ListView(
+        // Important: Remove any padding from the ListView.
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+            child: Text('Drawer Header'),
+            decoration: BoxDecoration(
+              color: Colors.blue,
+            ),
+          ),
+          ListTile(
+            title: Text('Item 1'),
+            onTap: () {
+              // Update the state of the app.
+              // ...
+            },
+          ),
+          ListTile(
+            title: Text('Item 2'),
+            onTap: () {
+              // Update the state of the app.
+              // ...
+            },
+          ),
+        ],
+      ),
+      ),
     );
   }
 }

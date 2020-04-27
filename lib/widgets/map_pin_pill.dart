@@ -50,50 +50,68 @@ class MapPinPillComponentState extends State<MapPinPillComponent> {
               ),
               Expanded(
                 child: Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            widget.currentlySelectedPin.address,
-                            textAlign: TextAlign.start,
-                          ),
+                  child: InkWell(
+                    onTap: () {
+                      setState(() {
+                        widget.pinPillPosition = -200;
+                      });
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  widget.currentlySelectedPin.address,
+                                  textAlign: TextAlign.start,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    widget.pinPillPosition = -200;
+                                  });
+                                },
+                                child: Icon(Icons.cancel),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      FlatButton.icon(
-                          onPressed: (){
-                            print(widget.currentlySelectedPin.streamUrl);
-                            //CHEWIE PLAYER
-//                            Navigator.push(
-//                            context,
-//                            MaterialPageRoute(
-//                                builder: (context) => ServerVideoPlayer(url: widget.currentlySelectedPin.streamUrl,)));
-                          //WEBVIEW
-//                            Navigator.push(
-//                                context,
-//                                MaterialPageRoute(
-//                                    builder: (context) => LaunchVideo(url: widget.currentlySelectedPin.streamUrl,)));
-                            if(widget.currentlySelectedPin.category == 'Youtube'){
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => YtVideoPlayerPage(url: widget.currentlySelectedPin.streamUrl,)));
-                            }
-                            else{
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LaunchVideo(url: widget.currentlySelectedPin.streamUrl,)));
-                            }
-                          },
-                          icon: Icon(Icons.play_arrow),
-                          label: Text('Play'))
-//                      Text('Latitude: ${widget.currentlySelectedPin.geoPoint.latitude.toString()}', style: TextStyle(fontSize: 12, color: Colors.grey)),
-//                      Text('Longitude: ${widget.currentlySelectedPin.geoPoint.longitude.toString()}', style: TextStyle(fontSize: 12, color: Colors.grey)),
-                    ],
+                        FlatButton.icon(
+                            onPressed: () {
+                              print(widget.currentlySelectedPin.streamUrl);
+                              if (widget.currentlySelectedPin.category ==
+                                  'Youtube') {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => YtVideoPlayerPage(
+                                              url: widget.currentlySelectedPin
+                                                  .streamUrl,
+                                            )));
+                              } else {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LaunchVideo(
+                                              url: widget.currentlySelectedPin
+                                                  .streamUrl,
+                                            )));
+                              }
+                            },
+                            icon: Icon(Icons.play_arrow),
+                            label: Text('Play'))
+                      ],
+                    ),
                   ),
                 ),
               ),

@@ -1,5 +1,4 @@
-import 'package:earth_cam/pages/categories.dart';
-import 'package:earth_cam/pages/category_cams.dart';
+import 'package:earth_cam/pages/category_list.dart';
 import 'package:earth_cam/pages/favorites.dart';
 import 'package:earth_cam/pages/live_videos.dart';
 import 'package:earth_cam/pages/map_view.dart';
@@ -32,7 +31,7 @@ class _HomePageState extends State<HomePage> {
       iconData: Icons.list,
       size: 30,
       color: Colors.indigo,
-      page: CategoryCams(),
+      page: CategoryList(),
     ),
     MyRoute(
       iconData: Icons.favorite_border,

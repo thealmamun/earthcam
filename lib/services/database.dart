@@ -3,6 +3,11 @@ import 'package:earth_cam/model/cams.dart';
 
 // collection reference
 final CollectionReference mapCollection = Firestore.instance.collection('maps');
+final Query youtubeMap = Firestore.instance.collection('maps')
+    .where('camType',isEqualTo: 'Youtube');
+
+final Query ipCamMap = Firestore.instance.collection('maps')
+    .where('camType',isEqualTo: 'IP Cams');
 
 // map data from snapshots
 List<Cams> mapDataFromSnapshot(QuerySnapshot snapshot) {
@@ -15,7 +20,7 @@ List<Cams> mapDataFromSnapshot(QuerySnapshot snapshot) {
       createdAt: doc.data['createdAt'],
       category: doc.data['category'],
       streamUrl: doc.data['streamUrl'],
-      subCategory: doc.data['subCategory'],
+      camType: doc.data['camType'],
       updatedAt: doc.data['updatedAt'],
       position: doc.data['position'],
       geoPoint: doc.data['position']['geopoint'],
@@ -27,6 +32,15 @@ List<Cams> mapDataFromSnapshot(QuerySnapshot snapshot) {
 // get map doc stream
 Stream<List<Cams>> get mapData {
   return mapCollection.snapshots()
+      .map(mapDataFromSnapshot);
+}
+
+Stream<List<Cams>> get ytMap {
+  return youtubeMap.snapshots()
+      .map(mapDataFromSnapshot);
+}
+Stream<List<Cams>> get ipCam {
+  return ipCamMap.snapshots()
       .map(mapDataFromSnapshot);
 }
 

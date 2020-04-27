@@ -6,6 +6,7 @@ import 'package:earth_cam/pages/launch_video.dart';
 import 'package:earth_cam/pages/yt_video_player.dart';
 import 'package:earth_cam/services/database.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SearchCams extends StatefulWidget {
   @override
@@ -25,8 +26,8 @@ class _SearchCamsState extends State<SearchCams> {
       });
     }
 
-    var capitalizedValue =
-        value.substring(0, 1).toUpperCase() + value.substring(1);
+//    var capitalizedValue =
+//        value.substring(0, 1).toUpperCase() + value.substring(1);
 
     if (queryResultSet.length == 0 && value.length == 1) {
       searchByName(value).then((QuerySnapshot docs) {
@@ -57,41 +58,81 @@ class _SearchCamsState extends State<SearchCams> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(automaticallyImplyLeading: false,),
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: TextField(
-              onChanged: (val) {
-                initiateSearch(val);
-              },
-              decoration: InputDecoration(
-                  prefixIcon: IconButton(
-                    color: Colors.black,
-                    icon: Icon(Icons.arrow_back),
-                    iconSize: 20.0,
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            centerTitle: true,
+            flexibleSpace: FlexibleSpaceBar(
+              centerTitle: true,
+              background: Image.asset(
+                'assets/images/dart.png',
+                fit: BoxFit.cover,
+              ),
+            ),
+            title: Text(
+              'Search',
+              style: GoogleFonts.robotoSlab(fontSize: 30, color: Colors.white),
+            ),
+            pinned: true,
+            expandedHeight: 70.0,
+            actions: [
+              IconButton(
+                icon: Icon(
+                  Icons.search,
+                  size: 30,
+                ),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SearchCams()));
+                },
+              ),
+              IconButton(
+                  icon: Icon(
+                    Icons.do_not_disturb_off,
+                    color: Colors.white,
+                    size: 25,
                   ),
-                  contentPadding: EdgeInsets.only(left: 25.0),
-                  hintText: 'Search by name',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(4.0))),
+                  onPressed: null),
+            ],
+          ),
+          SliverFillRemaining(
+            child: ListView(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextField(
+                    onChanged: (val) {
+                      initiateSearch(val);
+                    },
+                    decoration: InputDecoration(
+                        prefixIcon: IconButton(
+                          color: Colors.black,
+                          icon: Icon(Icons.arrow_back),
+                          iconSize: 20.0,
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        contentPadding: EdgeInsets.only(left: 25.0),
+                        hintText: 'Search by name',
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(4.0))),
+                  ),
+                ),
+                SizedBox(height: 10,),
+                GridView.count(
+                    padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 4.0,
+                    mainAxisSpacing: 4.0,
+                    primary: false,
+                    shrinkWrap: true,
+                    children: tempSearchStore.map((element) {
+                      return buildResultCard(element);
+                    }).toList()),
+              ],
             ),
           ),
-          SizedBox(height: 10,),
-          GridView.count(
-              padding: EdgeInsets.only(left: 10.0, right: 10.0),
-              crossAxisCount: 2,
-              crossAxisSpacing: 4.0,
-              mainAxisSpacing: 4.0,
-              primary: false,
-              shrinkWrap: true,
-              children: tempSearchStore.map((element) {
-                return buildResultCard(element);
-              }).toList()),
         ],
       ),
     );

@@ -23,14 +23,7 @@ class _MapViewState extends State<MapView> {
   Stream dataList;
   bool liveCamMaps;
   BitmapDescriptor markerIcon;
-  double pinPillPosition = -100;
-//  PinInformation currentlySelectedPin = PinInformation(
-//      pinPath: ‘’,
-//      avatarPath: ‘’,
-//      location: LatLng(0, 0),
-//      locationName: ‘’,
-//      labelColor: Colors.grey);
-//  PinInformation sourcePinInfo;
+  double pinPillPosition = -200;
   Cams currentlySelectedPin = Cams(
       address: '',
       camTitle: '',
@@ -47,9 +40,9 @@ class _MapViewState extends State<MapView> {
     liveCamMaps = false;
 //    print(cams.camTitle);
 //    screenMarker();
-    dataList = Firestore.instance.collection('maps')
-        .where('category', isEqualTo: 'Live Cams').orderBy('createdAt')
-        .snapshots();
+//    dataList = Firestore.instance.collection('maps')
+//        .where('camType', isEqualTo: 'Youtube')
+//        .snapshots();
     setSourceAndDestinationIcons();
     _pageController = PageController(initialPage: 1, viewportFraction: 0.8,keepPage: false)
       ..addListener(_onScroll);
@@ -91,117 +84,12 @@ class _MapViewState extends State<MapView> {
     }
   }
 
-//  Widget _mapsList(index, DocumentSnapshot documentSnapshot) {
-//    return AnimatedBuilder(
-//      animation: _pageController,
-//      builder: (BuildContext context, Widget widget) {
-//        double value = 1;
-//        if (_pageController.position.haveDimensions) {
-//          value = _pageController.page - index;
-//          value = (1 - (value.abs() * 0.3) + 0.06).clamp(0.0, 1.0);
-//        }
-//        return Center(
-//          child: SizedBox(
-////            height: Curves.easeInOut.transform(value) * 125.0,
-////            width: Curves.easeInOut.transform(value) * 350.0,
-//            height: 120.0,
-//            width: 300.0,
-//            child: widget,
-//          ),
-//        );
-//      },
-//      child: InkWell(
-//        onTap: () {
-//          moveCamera(documentSnapshot.data['position']['geopoint']);
-//        },
-//        child: Stack(
-//          children: [
-//            Container(
-//              margin: EdgeInsets.symmetric(
-//                horizontal: 10.0,
-//                vertical: 20.0,
-//              ),
-//              decoration: BoxDecoration(
-//                  borderRadius: BorderRadius.circular(10.0),
-//                  color: Colors.white,
-//                  boxShadow: [
-//                    BoxShadow(
-//                      color: Colors.black54,
-//                      offset: Offset(0.0, 4.0),
-//                      blurRadius: 10.0,
-//                    ),
-//                  ]),
-//              child: Row(
-//                children: [
-//                  CachedNetworkImage(
-//                    fit: BoxFit.fill,
-//                    imageUrl: documentSnapshot.data['imageUrl'],
-//                    placeholder: (context, url) => CircularProgressIndicator(),
-//                    errorWidget: (context, url, error) => Icon(Icons.error),
-//                  ),
-//                  SizedBox(width: 5.0),
-//                  Expanded(
-//                    child: Column(
-//                      crossAxisAlignment: CrossAxisAlignment.start,
-//                      children: [
-//                        Expanded(
-//                          child: Text(
-//                            documentSnapshot.data['camTitle'],
-//                            style: TextStyle(
-//                                fontSize: 12.5, fontWeight: FontWeight.bold),
-//                          ),
-//                        ),
-//                        Expanded(
-//                          child: Text(
-//                            documentSnapshot.data['address'],
-//                            style: TextStyle(
-//                                fontSize: 12.0, fontWeight: FontWeight.w600),
-//                          ),
-//                        ),
-//                        Expanded(
-//                          child: Container(
-//                            width: 100,
-//                            child: RaisedButton.icon(
-//                              elevation: 12,
-//                              shape: RoundedRectangleBorder(
-//                                borderRadius: new BorderRadius.circular(15),
-//                              ),
-//                              onPressed: () {
-//                                Navigator.push(
-//                                    context,
-//                                    MaterialPageRoute(
-//                                        builder: (context) =>
-//                                            ServerVideoPlayer()));
-//                              },
-//                              icon: Icon(
-//                                Icons.play_arrow,
-//                                color: Colors.white,
-//                              ),
-//                              label: Text(
-//                                'Play',
-//                                style: TextStyle(color: Colors.white),
-//                              ),
-//                              color: Colors.redAccent,
-//                            ),
-//                          ),
-//                        ),
-//                      ],
-//                    ),
-//                  ),
-//                ],
-//              ),
-//            ),
-//          ],
-//        ),
-//      ),
-//    );
-//  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xFF1B2D45),
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           centerTitle: true,
           title: Text('All Live Cams'),
           leading: IconButton(
@@ -282,14 +170,35 @@ class _MapViewState extends State<MapView> {
                         print('YT cam Clicked');
                         setState(() {
                           isClicked = false;
-                          dataList =  Firestore.instance.collection('maps')
-                              .where('category', isEqualTo: 'YouTube').orderBy('createdAt')
-                              .snapshots();
+                          _markers.clear();
+                          ytMap.forEach((element) {
+                            for (var i = 0; i < element.length; i++) {
+                              _markers.add(
+                                Marker(
+                                  onTap: () {
+                                    setState(() {
+                                      currentlySelectedPin = Cams(
+                                        address: element[i].address,
+                                        camTitle: element[i].camTitle,
+                                        geoPoint: GeoPoint(element[i].geoPoint.latitude, element[i].geoPoint.longitude),
+                                        imageUrl: element[i].imageUrl,
+                                        streamUrl: element[i].streamUrl,
+                                        category: element[i].category,
+                                      );
+                                      pinPillPosition = 0;
+                                    });
+                                  },
+                                  markerId: MarkerId(element[i].geoPoint.latitude.toString()),
+                                  position: LatLng(
+                                      element[i].geoPoint.latitude, element[i].geoPoint.longitude),
+                                ),
+                              );
+                            }
+                            setState(() {
+
+                            });
+                          });
                         });
-//                        Navigator.push(
-//                            context,
-//                            MaterialPageRoute(
-//                                builder: (context) => YtVideoPlayerPage()));
                       },
                       icon: Icon(
                         Icons.play_arrow,
@@ -316,9 +225,35 @@ class _MapViewState extends State<MapView> {
                         print('IP cam Clicked');
                         setState(() {
                           isClicked = true;
-                          dataList =  Firestore.instance.collection('maps')
-                              .where('category', isEqualTo: 'Live Cams').orderBy('createdAt')
-                              .snapshots();
+                          _markers.clear();
+                        });
+                        print(_markers);
+                        ipCam.forEach((element) {
+                          for (var i = 0; i < element.length; i++) {
+                            _markers.add(
+                              Marker(
+                                onTap: () {
+                                  setState(() {
+                                    currentlySelectedPin = Cams(
+                                      address: element[i].address,
+                                      camTitle: element[i].camTitle,
+                                      geoPoint: GeoPoint(element[i].geoPoint.latitude, element[i].geoPoint.longitude),
+                                      imageUrl: element[i].imageUrl,
+                                      streamUrl: element[i].streamUrl,
+                                      category: element[i].category,
+                                    );
+                                    pinPillPosition = 0;
+                                  });
+                                },
+                                markerId: MarkerId(element[i].geoPoint.latitude.toString()),
+                                position: LatLng(
+                                    element[i].geoPoint.latitude, element[i].geoPoint.longitude),
+                              ),
+                            );
+                            setState(() {
+
+                            });
+                          }
                         });
 //                        Navigator.push(
 //                            context,
