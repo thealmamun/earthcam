@@ -2,19 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fa396a8-1ebb-48be-9b75-2797648a9b5c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/pages/category_list.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/map_style.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/utils/constants.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/navBarWidget/curve_nav_bar_widget.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/navBarWidget/curve_nav_button.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/navBarWidget/curved_nav_custom_painter.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/home/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/home/home_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/model/cams.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/cams.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/categories.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/pages/category_cams.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/category_cams.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/category_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/category_list.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/pages/live_videos.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/live_videos.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/pages/map_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/map_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/search_cams.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/search_cams.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/services/database.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/database.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/splash/splash_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/splash/splash_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/widgets/map_pin_pill.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/map_pin_pill.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
@@ -51,6 +54,9 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/widgets/navBarWidget" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/android/app" />
       <recent name="$PROJECT_DIR$/lib/pages" />

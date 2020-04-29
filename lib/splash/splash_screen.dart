@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:avatar_glow/avatar_glow.dart';
+import 'package:earth_cam/home/home2.dart';
 import 'package:earth_cam/home/home_page.dart';
 import 'package:earth_cam/services/firebase_service.dart';
 import 'package:flutter/material.dart';
@@ -22,10 +23,10 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   void initState() {
-    signInAnonymously();
+//    signInAnonymously();
     timer = Timer(Duration(seconds: 3), () {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomePage()));
+          context, MaterialPageRoute(builder: (context) => Home2()));
     });
 
     _controller = AnimationController(
@@ -56,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen>
                 gradient: LinearGradient(
                     begin: Alignment.topRight,
                     end: Alignment.bottomLeft,
-                    colors: [Colors.blue, Color(0xFF083B53)])),
+                    colors: [Color(0xff28292b), Color(0xFF083B53)])),
             child: Column(
               children: <Widget>[
                 SizedBox(

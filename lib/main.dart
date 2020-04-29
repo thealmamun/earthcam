@@ -1,3 +1,4 @@
+import 'package:earth_cam/home/home2.dart';
 import 'package:earth_cam/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Earth Cam',
-      home: HomePage(),
+      home: SplashScreen(),
     );
   }
 }
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SplashScreen();
+    return Home2();
   }
 }
 

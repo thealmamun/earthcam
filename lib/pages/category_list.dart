@@ -3,172 +3,169 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:earth_cam/pages/category_cams.dart';
+import 'package:earth_cam/pages/search_cams.dart';
+import 'package:earth_cam/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:neumorphic/neumorphic.dart';
 
 class CategoryList extends StatefulWidget {
   @override
   _CategoryListState createState() => _CategoryListState();
 }
 
-class _CategoryListState extends State<CategoryList> {
+class _CategoryListState extends State<CategoryList> with TickerProviderStateMixin{
   Stream categoryList;
 
   Widget _categoryList(DocumentSnapshot doc) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(12.0),
       child: InkWell(
         onTap: () {
           Navigator.push(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (context,animation,secondaryAnimation){
-                  return CategoryCams(
-                    selectedCategory: doc.data['categoryTitle'],
-                    selectedCategoryTitle:doc.data['categoryTitle'],
-                    selectedCategoryImage: doc.data['categoryImage'],
-                  );
-                },
-                transitionsBuilder: (context,animation,secondaryAnimation,child){
-                  return ScaleTransition(
-                    scale: animation,
-                    child: child,
-                  );
-                }
-              ));
+            context,
+            PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) {
+                return CategoryCams(
+                  selectedCategory: doc.data['categoryTitle'],
+                  selectedCategoryTitle: doc.data['categoryTitle'],
+                  selectedCategoryImage: doc.data['categoryImage'],
+                  selectedCategoryIcon: doc.data['categoryIcon'],
+                );
+              },
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: animation,
+                  child: child,
+                );
+              },
+            ),
+          );
         },
-        child: Material(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-          elevation: 10.0,
-          child: Container(
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-              child: Container(
-                height: 150,
-                child: Stack(
-                  children: <Widget>[
-                    Positioned.fill(
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(
-                          sigmaX: 1,
-                          sigmaY: 1,
-                        ),
-                        child: Container(
-                          color: Colors.black.withOpacity(0),
-                          child: CachedNetworkImage(
-                            fit: BoxFit.cover,
-                            imageUrl: doc.data['categoryImage'],
-                            placeholder: (context, url) =>
-                                Center(child: CircularProgressIndicator()),
-                            errorWidget: (context, url, error) =>
-                                Icon(Icons.error),
-                          ),
-                        ),
+        child: NeuCard(
+          curveType: CurveType.convex,
+          bevel: 10,
+          decoration: NeumorphicDecoration(
+              color: Color(0xff212121),
+              borderRadius: BorderRadius.circular(20)),
+          child: ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            child: Container(
+              height: 150,
+              child: Stack(
+                children: <Widget>[
+                  Positioned.fill(
+                    child: Container(
+                      color: Colors.black.withOpacity(0),
+                      child: CachedNetworkImage(
+                        fit: BoxFit.cover,
+                        imageUrl: doc.data['categoryImage'],
+                        placeholder: (context, url) =>
+                            Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) =>
+                            Icon(Icons.error),
                       ),
                     ),
-                    Positioned.fill(
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(
-                          sigmaX: 1,
-                          sigmaY: 1,
-                        ),
-                        child: Container(
-                          color: Colors.black.withOpacity(0.4),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(doc.data['categoryIcon'],
-                              style: GoogleFonts.robotoSlab(
-                                fontSize: 40, color: Colors.white,
-                                letterSpacing: 3.0,
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.topRight,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(12.0),
-                                  child: Text(doc.data['videosCount'].toString()+' Cams',
-                                    style: GoogleFonts.robotoSlab(
-                                      fontSize: 18, color: Colors.white,
-                                      letterSpacing: 3.0,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-//                            Expanded(
-//                              child: Container(
-//                                alignment: Alignment.topRight,
-//                                child: Padding(
-//                                  padding: const EdgeInsets.all(12.0),
-//                                  child: Container(
-//                                    height: 50.0,
-//                                    alignment: Alignment.topRight,
-//                                    child: RaisedButton(
-//                                      onPressed: () {},
-//                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-//                                      padding: EdgeInsets.all(0.0),
-//                                      child: Ink(
-//                                        decoration: BoxDecoration(
-//                                            gradient: LinearGradient(colors: [Color(0xff374ABE), Color(0xff64B6FF)],
-//                                              begin: Alignment.centerLeft,
-//                                              end: Alignment.centerRight,
-//                                            ),
-//                                            borderRadius: BorderRadius.circular(30.0)
-//                                        ),
-//                                        child: Container(
-//                                          constraints: BoxConstraints(maxWidth: 100.0, minHeight: 50.0),
-//                                          alignment: Alignment.center,
-//                                          child: Text(
-//                                            "View",
-//                                            textAlign: TextAlign.center,
-//                                            style: TextStyle(
-//                                                color: Colors.white
-//                                            ),
-//                                          ),
-//                                        ),
-//                                      ),
-//                                    ),
+                  ),
+//                    Positioned(
+//                      child: Padding(
+//                        padding: const EdgeInsets.only(left:0.0),
+//                        child: Row(
+//                          mainAxisAlignment: MainAxisAlignment.center,
+//                          crossAxisAlignment: CrossAxisAlignment.end,
+//                          children: [
+//                            Container(
+//                              decoration: BoxDecoration(
+//                                borderRadius: BorderRadius.only(
+//                                    topRight: Radius.circular(20),
+//                                ),
+//                                color: Color(0xff3d3e40),
+//                              ),
+//                              child: Padding(
+////                                padding: const EdgeInsets.fromLTRB(10.0,10,10,100),
+//                                padding: const EdgeInsets.all(10),
+//                                child: Text(
+//                                  doc.data['categoryIcon'],
+//                                  style: GoogleFonts.roboto(
+//                                    fontSize: 30,
+//                                    color: Colors.white,
+//                                    letterSpacing: 3.0,
 //                                  ),
 //                                ),
 //                              ),
 //                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Positioned(
+////                            Text(
+////                              doc.data['categoryIcon'],
+////                              style: GoogleFonts.roboto(
+////                                fontSize: 30,
+////                                color: Colors.white,
+////                                letterSpacing: 3.0,
+////                              ),
+////                            ),
+//                          ],
+//                        ),
+//                      ),
+//                    ),
+                  Positioned.fill(
+                    child: Container(
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: Container(
-                              alignment: Alignment.bottomLeft,
-                              child: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Text(doc.data['categoryTitle'],
-                                  style: GoogleFonts.robotoSlab(
-                                    fontSize: 20, color: Colors.white,
-                                    letterSpacing: 2.0,
+                          Container(
+                            height: 50,
+                            color: Color(0xff3d3e40),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      doc.data['categoryIcon'],
+                                      style: GoogleFonts.roboto(
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                        letterSpacing: 3.0,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
+                                Text(
+                                  doc.data['categoryTitle'],
+                                  style: GoogleFonts.roboto(
+                                    fontSize: 15,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 1.0,
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    alignment: Alignment.centerRight,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        doc.data['videosCount'].toString() +
+                                            ' Cams',
+                                        style: GoogleFonts.roboto(
+                                          fontSize: 10,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          letterSpacing: 1.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -187,80 +184,84 @@ class _CategoryListState extends State<CategoryList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder<QuerySnapshot>(
-          stream: categoryList,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              List<Tab> tabs = new List<Tab>();
-              for (int i = 0; i < snapshot.data.documents.length; i++) {
-                tabs.add(Tab(
-                  child: Container(
-                    child: Text(
-                      snapshot.data.documents[i]['categoryTitle'],
-                      style: GoogleFonts.robotoSlab(
-                          fontSize: 20, color: Colors.white),
-                    ),
-                  ),
-                ));
-              }
-              List<Container> tabItem = new List<Container>();
-              for (int i = 0; i < snapshot.data.documents.length; i++) {
-                tabItem.add(Container(
-                  child: StreamBuilder<QuerySnapshot>(
-                    stream: Firestore.instance
-                        .collection('categories')
-                        .snapshots(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return ListView(
-                          children: snapshot.data.documents
-                              .map((doc) => _categoryList(doc))
-                              .toList(),
-                        );
-                      } else {
-                        return Center(child: CircularProgressIndicator());
-                      }
-                    },
-                  ),
-                ));
-              }
-              return DefaultTabController(
-                length: snapshot.data.documents.length,
-                child: CustomScrollView(
-                  slivers: <Widget>[
-                    SliverAppBar(
-                      automaticallyImplyLeading: false,
-                      centerTitle: true,
-                      flexibleSpace: FlexibleSpaceBar(
-                        centerTitle: true,
-                        background: Image.asset(
-                          'assets/images/dart.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      title: Text(
-                        'Category',
-                        style: GoogleFonts.robotoSlab(
-                            fontSize: 30, color: Colors.white),
-                      ),
-                      pinned: true,
-                      expandedHeight: 60.0,
-//                      bottom: TabBar(
-//                        isScrollable: true,
-//                        tabs: tabs,
-//                      ),
-                    ),
-                    SliverFillRemaining(
-                      child: TabBarView(
-                        children: tabItem,
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: AppColor.kThemeColor),
+        centerTitle: true,
+        title: Text(
+          'Categories',
+          style:
+              GoogleFonts.righteous(fontSize: 30, color: AppColor.kThemeColor),
+        ),
+        backgroundColor: Color(0xff28292b),
+        actions: [
+          IconButton(
+            icon: Icon(
+              FontAwesomeIcons.searchLocation,
+              size: 25,
+            ),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SearchCams()));
+            },
+          ),
+          IconButton(
+              icon: Icon(
+                Icons.do_not_disturb_off,
+                color: AppColor.kThemeColor,
+                size: 25,
+              ),
+              onPressed: null),
+        ],
+      ),
+      body: Center(
+        child: Container(
+          color: AppColor.kBackgroundColor,
+          child: StreamBuilder<QuerySnapshot>(
+              stream: categoryList,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Center(
+                    child: Container(
+                      child: ListView(
+                        children: snapshot.data.documents
+                            .map((doc) => _categoryList(doc))
+                            .toList(),
                       ),
                     ),
-                  ],
-                ),
-              );
-            } else
-              return Center(child: CircularProgressIndicator());
-          }),
+                  );
+                } else
+                  return Center(child: CircularProgressIndicator());
+              }),
+        ),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('Drawer Header'),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            ),
+            ListTile(
+              title: Text('Item 1'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              title: Text('Item 2'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -1,9 +1,9 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:earth_cam/pages/category_list.dart';
 import 'package:earth_cam/pages/favorites.dart';
 import 'package:earth_cam/pages/live_videos.dart';
 import 'package:earth_cam/pages/map_view.dart';
 import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -18,25 +18,25 @@ class _HomePageState extends State<HomePage> {
     MyRoute(
       iconData: Icons.videocam,
       size: 30.0,
-      color: Colors.indigo,
+      color: Colors.white,
       page: LiveVideos(),
     ),
     MyRoute(
       iconData: Icons.my_location,
       size: 30,
-      color: Colors.indigo,
+      color: Colors.white,
       page: MapView(),
     ),
     MyRoute(
       iconData: Icons.list,
       size: 30,
-      color: Colors.indigo,
+      color: Colors.white,
       page: CategoryList(),
     ),
     MyRoute(
       iconData: Icons.favorite_border,
       size: 30,
-      color: Colors.indigo,
+      color: Colors.white,
       page: Favorites(),
     ),
   ];
@@ -52,11 +52,12 @@ class _HomePageState extends State<HomePage> {
             .map((p) => Icon(
                   p.iconData,
                   size: 30,
+                  color: Color(0xff64cf94),
                 ))
             .toList(),
-        color: Colors.white,
-        buttonBackgroundColor: Colors.white,
-        backgroundColor: Colors.blueAccent,
+        color: Color(0xff28292b),
+        buttonBackgroundColor: Color(0xff28292b),
+        backgroundColor: Color(0xff8d9691),
         animationCurve: Curves.easeInOut,
         animationDuration: Duration(milliseconds: 600),
         onTap: (index) {
@@ -65,7 +66,7 @@ class _HomePageState extends State<HomePage> {
           });
         },
       ),
-      backgroundColor: Colors.blueAccent,
+//      backgroundColor: Colors.blueAccent,
       body: pages[_pageIndex].page,
     );
   }

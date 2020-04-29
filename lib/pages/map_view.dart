@@ -2,9 +2,14 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:earth_cam/model/cams.dart';
+import 'package:earth_cam/pages/search_cams.dart';
 import 'package:earth_cam/services/database.dart';
+import 'package:earth_cam/utils/constants.dart';
 import 'package:earth_cam/widgets/map_pin_pill.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapView extends StatefulWidget {
@@ -21,7 +26,6 @@ class _MapViewState extends State<MapView> {
   bool isClicked = false;
   List<Cams> cams = List<Cams>();
   Stream dataList;
-  bool liveCamMaps;
   BitmapDescriptor markerIcon;
   double pinPillPosition = -200;
   Cams currentlySelectedPin = Cams(
@@ -33,19 +37,17 @@ class _MapViewState extends State<MapView> {
       category: '',
   );
   Cams camInfo;
+  String _mapStyle;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    liveCamMaps = false;
-//    print(cams.camTitle);
-//    screenMarker();
-//    dataList = Firestore.instance.collection('maps')
-//        .where('camType', isEqualTo: 'Youtube')
-//        .snapshots();
     setSourceAndDestinationIcons();
-    _pageController = PageController(initialPage: 1, viewportFraction: 0.8,keepPage: false)
-      ..addListener(_onScroll);
+//    _pageController = PageController(initialPage: 1, viewportFraction: 0.8,keepPage: false)
+//      ..addListener(_onScroll);
+    rootBundle.loadString('assets/map_style.txt').then((string) {
+      _mapStyle = string;
+    });
   }
 
 //  void screenMarker() async{
@@ -89,20 +91,28 @@ class _MapViewState extends State<MapView> {
     return Scaffold(
         backgroundColor: Color(0xFF1B2D45),
         appBar: AppBar(
-          automaticallyImplyLeading: false,
+          elevation: 10,
+          iconTheme: IconThemeData(
+              color: AppColor.kThemeColor
+          ),
           centerTitle: true,
-          title: Text('All Live Cams'),
-          leading: IconButton(
-              icon: Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-              ),
-              onPressed: null),
+          title: Text('Camera World',style: GoogleFonts.righteous(fontSize: 30,color: AppColor.kThemeColor),),
+          backgroundColor: AppColor.kAppBarBackgroundColor,
           actions: [
+            IconButton(
+              icon: Icon(
+                FontAwesomeIcons.searchLocation,
+                size: 25,
+              ),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SearchCams()));
+              },
+            ),
             IconButton(
                 icon: Icon(
                   Icons.do_not_disturb_off,
-                  color: Colors.white,
+                  color: AppColor.kThemeColor,
                   size: 25,
                 ),
                 onPressed: null),
@@ -114,15 +124,22 @@ class _MapViewState extends State<MapView> {
               height: MediaQuery.of(context).size.height - 50.0,
               width: MediaQuery.of(context).size.width,
               child: GoogleMap(
-                mapType: MapType.hybrid,
+                zoomGesturesEnabled: true,
                 compassEnabled: true,
-                mapToolbarEnabled: false,
+                mapToolbarEnabled: true,
                 zoomControlsEnabled: false,
                 myLocationEnabled: true,
+                myLocationButtonEnabled: true,
                 initialCameraPosition: CameraPosition(
                     target: LatLng(40.7128, -74.0060), zoom: 12.0),
                 markers: _markers,
-                onMapCreated: mapCreated,
+                onMapCreated: (GoogleMapController controller) {
+                  _controller = controller;
+                  _controller.setMapStyle(_mapStyle);
+                  setState(() {
+                    setMapPins();
+                  });
+                },
                 padding: EdgeInsets.only(top: 40.0,),
               ),
             ),
@@ -130,31 +147,6 @@ class _MapViewState extends State<MapView> {
                 pinPillPosition: pinPillPosition,
                 currentlySelectedPin: currentlySelectedPin
             ),
-//            Positioned(
-//              bottom: 0.0,
-//              child: Container(
-//                  height: 200.0,
-//                  width: MediaQuery.of(context).size.width,
-//                  child: StreamBuilder<QuerySnapshot>(
-//                    stream: dataList,
-//                    builder: (context, snapshot) {
-//                      if (snapshot.hasData) {
-//                        return ListView.builder(
-//                          controller: _pageController,
-//                          scrollDirection: Axis.horizontal,
-//                          itemBuilder: (BuildContext context, int index) {
-//                            return Row(
-//                              children: snapshot.data.documents
-//                                  .map((doc) => _mapsList(index, doc))
-//                                  .toList(),
-//                            );
-//                          },
-//                        );
-//                      } else
-//                        return Center(child: CircularProgressIndicator());
-//                    },ß
-//                  )),
-//            ),
             isClicked
                 ? Container(
                     padding: EdgeInsets.only(top: 30),
@@ -195,7 +187,7 @@ class _MapViewState extends State<MapView> {
                               );
                             }
                             setState(() {
-
+                              pinPillPosition = -200;
                             });
                           });
                         });
@@ -251,7 +243,7 @@ class _MapViewState extends State<MapView> {
                               ),
                             );
                             setState(() {
-
+                              pinPillPosition = -200;
                             });
                           }
                         });
@@ -272,15 +264,44 @@ class _MapViewState extends State<MapView> {
                     ),
                   )
           ],
-        ));
+        ),
+        drawer: Drawer(
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('Drawer Header'),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            ),
+            ListTile(
+              title: Text('Item 1'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              title: Text('Item 2'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
-  void mapCreated(controller) {
-    setState(() {
-      _controller = controller;
-      setMapPins();
-    });
-  }
+//  void mapCreated(controller) {
+//    setState(() {
+//      _controller = controller;
+//      setMapPins();
+//    });
+//  }
 
   setMapPins(){
     mapData.forEach((element) {
