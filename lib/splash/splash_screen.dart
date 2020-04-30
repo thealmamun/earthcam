@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen>
 //    signInAnonymously();
     timer = Timer(Duration(seconds: 3), () {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Home2()));
+          context, MaterialPageRoute(builder: (context) => HomePage()));
     });
 
     _controller = AnimationController(

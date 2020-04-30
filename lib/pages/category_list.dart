@@ -194,23 +194,43 @@ class _CategoryListState extends State<CategoryList> with TickerProviderStateMix
         ),
         backgroundColor: Color(0xff28292b),
         actions: [
-          IconButton(
-            icon: Icon(
-              FontAwesomeIcons.searchLocation,
-              size: 25,
-            ),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SearchCams()));
-            },
-          ),
-          IconButton(
-              icon: Icon(
-                Icons.do_not_disturb_off,
-                color: AppColor.kThemeColor,
+          GestureDetector(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(
+                FontAwesomeIcons.searchLocation,
                 size: 25,
               ),
-              onPressed: null),
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) {
+                    return SearchCams();
+                  },
+                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                    return FadeTransition(
+                      opacity: animation,
+                      child: child,
+                    );
+                  },
+                ),
+              );
+//              Navigator.push(context,
+//                  MaterialPageRoute(builder: (context) => SearchCams()));
+            },
+          ),
+          GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(
+                  Icons.do_not_disturb_off,
+                  color: AppColor.kThemeColor,
+                  size: 25,
+                ),
+              ),
+              onTap: null),
         ],
       ),
       body: Center(

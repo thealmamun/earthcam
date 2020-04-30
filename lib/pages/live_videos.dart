@@ -2,14 +2,21 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:earth_cam/model/cams.dart';
 import 'package:earth_cam/pages/launch_video.dart';
 import 'package:earth_cam/pages/search_cams.dart';
 import 'package:earth_cam/pages/yt_video_player.dart';
+import 'package:earth_cam/services/local_db.dart';
 import 'package:earth_cam/utils/constants.dart';
+import 'package:earth_cam/widgets/cams_grid_tile.dart';
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:neumorphic/neumorphic.dart';
+
+GlobalKey<ScaffoldState> scaffoldKey =
+    GlobalKey<ScaffoldState>(debugLabel: '_homeScreenkey');
 
 class LiveVideos extends StatefulWidget {
   @override
@@ -17,197 +24,195 @@ class LiveVideos extends StatefulWidget {
 }
 
 class _LiveVideosState extends State<LiveVideos> {
+  Future<List<Cams>> cams;
+  var dbHelper;
+  bool liked = false;
+
   Widget _mapList(DocumentSnapshot snapshot) {
-    return GridTile(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: NeuCard(
-          curveType: CurveType.convex,
-          bevel: 10,
-          decoration: NeumorphicDecoration(
-              color: Color(0xff212121),
-              borderRadius: BorderRadius.circular(20)
-          ),
-          child: Stack(
-            children: <Widget>[
-              Positioned.fill(
-                child: Container(
-                  color: Colors.black.withOpacity(0),
-                  child: CachedNetworkImage(
-                    fit: BoxFit.cover,
-                    imageUrl: snapshot.data['imageUrl'],
-                    placeholder: (context, url) =>
-                        Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) =>
-                        Icon(Icons.error),
-                  ),
-                ),
-              ),
-              Positioned.fill(
-                bottom: 40,
-                child: Container(
-                  color: Colors.black.withOpacity(0.4),
-                  child: IconButton(
-                    color: Colors.grey,
-                    icon: Icon(
-                      Icons.play_circle_filled,
-                      size: 35,
-                      color: AppColor.kThemeColor,
-                    ),
-                    onPressed: () {
-                      print('tapped');
-                      if (snapshot.data['camType'] == 'Youtube') {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => YtVideoPlayerPage(
-                                      url: snapshot.data['streamUrl'],
-                                    )));
-                      } else {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LaunchVideo(
-                                      url: snapshot.data['streamUrl'],
-                                    )));
-                      }
-                    },
-                  ),
-                ),
-              ),
-              Positioned.fill(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 60,
-                      color: Color(0xff3d3e40),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Text(
-                                snapshot.data['camTitle'],
-                                style: GoogleFonts.roboto(
-                                  fontSize: 14, color: AppColor.kTextColor,
-                                  fontWeight: FontWeight.bold
-                                ),
-                              ),
-                            ),
-                          ),
-                          IconButton(
-                              icon: Icon(
-                                Icons.favorite_border,
-                                color: AppColor.kThemeColor,
-                              ),
-                              onPressed: null),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+    return CamsGridTile(
+      context: context,
+      camTitle: snapshot.data['camTitle'],
+      imageUrl: snapshot.data['imageUrl'],
+      onPressed: () {
+        print('tapped');
+        if (snapshot.data['camType'] == 'Youtube') {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => YtVideoPlayerPage(
+                        url: snapshot.data['streamUrl'],
+                      )));
+        } else {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => LaunchVideo(
+                        url: snapshot.data['streamUrl'],
+                      )));
+        }
+      },
+      onPressedFavourite: () {
+        Cams c = Cams(
+          camId: snapshot.data['camId'],
+          camTitle: snapshot.data['camTitle'],
+          camType: snapshot.data['camType'],
+          imageUrl: snapshot.data['imageUrl'],
+          streamUrl: snapshot.data['streamUrl'],
+        );
+        dbHelper.save(c, context);
+        refreshList();
+        setState(() {
+          liked = true;
+        });
+        Future.delayed(const Duration(milliseconds: 3000), () {
+          setState(() {
+            liked = false;
+          });
+        });
+      },
     );
+  }
+
+  refreshList() {
+    setState(() {
+      cams = dbHelper.getCams();
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    dbHelper = DBHelper();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         elevation: 10,
-        iconTheme: IconThemeData(
-          color: AppColor.kThemeColor
-        ),
+        iconTheme: IconThemeData(color: AppColor.kThemeColor),
         centerTitle: true,
-        title: Text('Camera World',style: GoogleFonts.righteous(fontSize: 30,color: AppColor.kThemeColor),),
+        title: Text(
+          'Camera World',
+          style:
+              GoogleFonts.righteous(fontSize: 30, color: AppColor.kThemeColor),
+        ),
         backgroundColor: AppColor.kAppBarBackgroundColor,
         actions: [
-          IconButton(
-            icon: Icon(
-              FontAwesomeIcons.searchLocation,
-              size: 25,
-            ),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SearchCams()));
-            },
-          ),
-          IconButton(
-              icon: Icon(
-                Icons.do_not_disturb_off,
-                color: AppColor.kThemeColor,
+          GestureDetector(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(
+                FontAwesomeIcons.searchLocation,
                 size: 25,
               ),
-              onPressed: null),
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) {
+                    return SearchCams();
+                  },
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    return FadeTransition(
+                      opacity: animation,
+                      child: child,
+                    );
+                  },
+                ),
+              );
+//              Navigator.push(context,
+//                  MaterialPageRoute(builder: (context) => SearchCams()));
+            },
+          ),
+          GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(
+                  Icons.do_not_disturb_off,
+                  color: AppColor.kThemeColor,
+                  size: 25,
+                ),
+              ),
+              onTap: null),
         ],
       ),
       body: Center(
         child: Container(
-//          color: Color(0xff28292b),
           color: AppColor.kBackgroundColor,
-          child: StreamBuilder<QuerySnapshot>(
-              stream: Firestore.instance.collection('maps').snapshots(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Center(
-                    child: Container(
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: GridView.count(
-                              crossAxisCount: 2,
-                              childAspectRatio: 1.0,
-                              mainAxisSpacing: 4.0,
-                              crossAxisSpacing: 4.0,
-                              children: snapshot.data.documents
-                                  .map((doc) => _mapList(doc))
-                                  .toList(),
-                            ),
+          child: liked == false
+              ? StreamBuilder<QuerySnapshot>(
+                  stream: Firestore.instance
+                      .collection('maps')
+                      .orderBy('updatedAt', descending: true)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return Center(
+                        child: Container(
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: GridView.count(
+                                  crossAxisCount: 2,
+                                  childAspectRatio: 1.0,
+                                  mainAxisSpacing: 4.0,
+                                  crossAxisSpacing: 4.0,
+                                  children: snapshot.data.documents
+                                      .map((doc) => _mapList(doc))
+                                      .toList(),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ),
-                  );
-                } else
-                  return Center(child: CircularProgressIndicator());
-              }),
+                        ),
+                      );
+                    } else
+                      return Center(child: CircularProgressIndicator());
+                  })
+              : Center(
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    child: FlareActor("assets/flare/Favorite.flr",
+                        shouldClip: false,
+                        animation: "Favorite" //_animationName
+                        ),
+                  ),
+                ),
         ),
       ),
       drawer: Drawer(
         child: ListView(
-        // Important: Remove any padding from the ListView.
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          DrawerHeader(
-            child: Text('Drawer Header'),
-            decoration: BoxDecoration(
-              color: Colors.blue,
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('Drawer Header'),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
             ),
-          ),
-          ListTile(
-            title: Text('Item 1'),
-            onTap: () {
-              // Update the state of the app.
-              // ...
-            },
-          ),
-          ListTile(
-            title: Text('Item 2'),
-            onTap: () {
-              // Update the state of the app.
-              // ...
-            },
-          ),
-        ],
-      ),
+            ListTile(
+              title: Text('Item 1'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              title: Text('Item 2'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

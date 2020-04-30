@@ -5,7 +5,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:earth_cam/pages/launch_video.dart';
 import 'package:earth_cam/pages/yt_video_player.dart';
 import 'package:earth_cam/services/database.dart';
+import 'package:earth_cam/utils/constants.dart';
+import 'package:earth_cam/widgets/cams_grid_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SearchCams extends StatefulWidget {
@@ -14,7 +17,6 @@ class SearchCams extends StatefulWidget {
 }
 
 class _SearchCamsState extends State<SearchCams> {
-
   var queryResultSet = [];
   var tempSearchStore = [];
 
@@ -42,8 +44,10 @@ class _SearchCamsState extends State<SearchCams> {
       tempSearchStore = [];
       print(tempSearchStore);
       queryResultSet.forEach((element) {
-        if (element['camTitle'].toLowerCase().contains(value.toLowerCase()) ==  true) {
-          if (element['camTitle'].toLowerCase().indexOf(value.toLowerCase()) ==0) {
+        if (element['camTitle'].toLowerCase().contains(value.toLowerCase()) ==
+            true) {
+          if (element['camTitle'].toLowerCase().indexOf(value.toLowerCase()) ==
+              0) {
             setState(() {
               tempSearchStore.add(element);
             });
@@ -55,183 +59,112 @@ class _SearchCamsState extends State<SearchCams> {
       setState(() {});
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            centerTitle: true,
-            flexibleSpace: FlexibleSpaceBar(
-              centerTitle: true,
-              background: Image.asset(
-                'assets/images/dart.png',
-                fit: BoxFit.cover,
-              ),
-            ),
-            title: Text(
-              'Search',
-              style: GoogleFonts.robotoSlab(fontSize: 30, color: Colors.white),
-            ),
-            pinned: true,
-            expandedHeight: 70.0,
-            actions: [
-              IconButton(
-                icon: Icon(
-                  Icons.search,
-                  size: 30,
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: AppColor.kThemeColor),
+        centerTitle: true,
+        title: Text(
+          'Search',
+          style:
+              GoogleFonts.righteous(fontSize: 30, color: AppColor.kThemeColor),
+        ),
+        backgroundColor: Color(0xff28292b),
+        actions: [
+          GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(
+                  Icons.do_not_disturb_off,
+                  color: AppColor.kThemeColor,
+                  size: 25,
                 ),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SearchCams()));
-                },
               ),
-              IconButton(
-                  icon: Icon(
-                    Icons.do_not_disturb_off,
-                    color: Colors.white,
-                    size: 25,
+              onTap: null),
+        ],
+      ),
+      body: Center(
+        child: Container(
+          color: AppColor.kBackgroundColor,
+          child: ListView(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Theme(
+                  data: ThemeData(
+                      hintColor: AppColor.kThemeColor,
+                      primarySwatch: Colors.grey,
                   ),
-                  onPressed: null),
-            ],
-          ),
-          SliverFillRemaining(
-            child: ListView(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
                   child: TextField(
+                    style: new TextStyle(color: Colors.white70),
                     onChanged: (val) {
                       initiateSearch(val);
                     },
-                    decoration: InputDecoration(
-                        prefixIcon: IconButton(
-                          color: Colors.black,
-                          icon: Icon(Icons.arrow_back),
-                          iconSize: 20.0,
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                        contentPadding: EdgeInsets.only(left: 25.0),
-                        hintText: 'Search by name',
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(4.0))),
+                    decoration: new InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(4)),
+                        borderSide: BorderSide(width: 1,color: AppColor.kThemeColor),
+                      ),
+                        focusColor: AppColor.kThemeColor,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderSide: BorderSide(width: 1,color: Colors.yellowAccent)
+                      ),
+//                        border: new OutlineInputBorder(),
+                        helperText: 'Search by name..',
+                        labelText: 'Search',
+                        prefixIcon: const Icon(Icons.search, color: AppColor.kThemeColor,),
+                        prefixText: ' ',
+                        suffixStyle: const TextStyle(color: Colors.green),
+                    ),
                   ),
                 ),
-                SizedBox(height: 10,),
-                GridView.count(
-                    padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 4.0,
-                    mainAxisSpacing: 4.0,
-                    primary: false,
-                    shrinkWrap: true,
-                    children: tempSearchStore.map((element) {
-                      return buildResultCard(element);
-                    }).toList()),
-              ],
-            ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              GridView.count(
+                  padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 4.0,
+                  mainAxisSpacing: 4.0,
+                  primary: false,
+                  shrinkWrap: true,
+                  children: tempSearchStore.map((element) {
+                    return buildResultCard(element);
+                  }).toList()),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
 
-  Widget buildResultCard(data){
-    return GridTile(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Material(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-          elevation: 10.0,
-          child: Container(
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-              child: Container(
-                child: Stack(
-                  children: <Widget>[
-                    Positioned.fill(
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(
-                          sigmaX: 5,
-                          sigmaY: 5,
-                        ),
-                        child: Container(
-                          color: Colors.black.withOpacity(0),
-                          child: CachedNetworkImage(
-                            fit: BoxFit.cover,
-                            imageUrl: data['imageUrl'],
-                            placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-                            errorWidget: (context, url, error) => Icon(Icons.error),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned.fill(
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(
-                          sigmaX: 1,
-                          sigmaY: 1,
-                        ),
-                        child: Container(
-                          color: Colors.black.withOpacity(0.4),
-                          child: IconButton(
-                            color: Colors.white,
-                            icon: Icon(
-                              Icons.play_circle_filled,
-                              size: 50,
-                              color: Colors.white,
-                            ),
-                            onPressed: (){
-                              print('tapped');
-                              if(data['category'] == 'Youtube'){
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>YtVideoPlayerPage(url: data['streamUrl'],)));
-                              }else{
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>LaunchVideo(url: data['streamUrl'],)));
-                              }
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned.fill(
-                      child: Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: Text(
-                                      data['camTitle'],
-                                      style: TextStyle(color: Colors.white,fontSize: 15.0,fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ),
-                                IconButton(
-                                    icon: Icon(
-                                      Icons.favorite_border,
-                                      color: Colors.white,
-                                    ),
-                                    onPressed: null),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
+  Widget buildResultCard(data) {
+    return CamsGridTile(
+      context: context,
+      camTitle: data['camTitle'],
+      imageUrl: data['imageUrl'],
+      onPressed: () {
+        print('tapped');
+        if (data['camType'] == 'Youtube') {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => YtVideoPlayerPage(
+                    url: data['streamUrl'],
+                  )));
+        } else {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => LaunchVideo(
+                    url: data['streamUrl'],
+                  )));
+        }
+      },
     );
   }
 }

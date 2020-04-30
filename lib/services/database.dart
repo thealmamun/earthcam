@@ -13,15 +13,16 @@ final Query ipCamMap = Firestore.instance.collection('maps')
 List<Cams> mapDataFromSnapshot(QuerySnapshot snapshot) {
   return snapshot.documents.map((doc){
     return Cams(
+      camId: doc.data['camId'],
       camTitle: doc.data['camTitle'],
+      camType: doc.data['camType'],
       address: doc.data['address'],
       description: doc.data['description'],
       imageUrl: doc.data['imageUrl'],
-      createdAt: doc.data['createdAt'],
+      createdAt: doc.data['createdAt'].toString(),
       category: doc.data['category'],
       streamUrl: doc.data['streamUrl'],
-      camType: doc.data['camType'],
-      updatedAt: doc.data['updatedAt'],
+      updatedAt: doc.data['updatedAt'].toString(),
       position: doc.data['position'],
       geoPoint: doc.data['position']['geopoint'],
       latLng: doc.data['position']['geopoing']

@@ -1,4 +1,3 @@
-import 'package:earth_cam/home/custom_widget.dart';
 import 'package:earth_cam/pages/category_list.dart';
 import 'package:earth_cam/pages/favorites.dart';
 import 'package:earth_cam/pages/live_videos.dart';
@@ -15,7 +14,8 @@ class Home2 extends StatefulWidget {
   _Home2State createState() => _Home2State();
 }
 
-class _Home2State extends State<Home2> {
+class _Home2State extends State<Home2>{
+
   PersistentTabController _controller;
 
   @override
@@ -69,6 +69,9 @@ class _Home2State extends State<Home2> {
       onItemSelected: (index){
         setState(() {
           _controller.index = index;
+        });
+        setState(() {
+
         });
       },
       selectedIndex: _controller.index,

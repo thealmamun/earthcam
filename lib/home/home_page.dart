@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
       page: CategoryList(),
     ),
     MyRoute(
-      iconData: Icons.favorite_border,
+      iconData: Icons.favorite,
       size: 30,
       color: Colors.white,
       page: Favorites(),
