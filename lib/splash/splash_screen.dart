@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:avatar_glow/avatar_glow.dart';
-import 'package:earth_cam/home/home2.dart';
 import 'package:earth_cam/home/home_page.dart';
 import 'package:earth_cam/services/firebase_service.dart';
 import 'package:flutter/material.dart';

@@ -1,4 +1,3 @@
-import 'package:earth_cam/home/home2.dart';
 import 'package:earth_cam/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 

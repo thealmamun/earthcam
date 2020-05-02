@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:io' as io;
 import 'package:earth_cam/model/cams.dart';
-import 'package:earth_cam/pages/live_videos.dart';
+import 'package:earth_cam/utils/constants.dart';
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
@@ -37,35 +39,96 @@ class DBHelper {
   }
 
   _onCreate(Database db, int version) async {
-    await db
-        .execute("CREATE TABLE $TABLE ($CAM_ID TEXT PRIMARY KEY, $CAM_TITLE TEXT, $CAM_TYPE TEXT,$IMAGE_URL TEXT,$STREAM_URL TEXT)");
+    await db.execute(
+        "CREATE TABLE $TABLE ($CAM_ID TEXT PRIMARY KEY, $CAM_TITLE TEXT, $CAM_TYPE TEXT,$IMAGE_URL TEXT,$STREAM_URL TEXT)");
   }
 
-  Future<Cams> save(Cams cams,BuildContext context) async {
-    try{
+  Future<Cams> save(Cams cams, BuildContext context) async {
+    try {
       var dbClient = await db;
       cams.id = await dbClient.insert(TABLE, cams.toMap());
-      SnackBar snackBar = SnackBar(
-          content: Text('Added to Favourites'));
-      WidgetsBinding.instance.addPostFrameCallback((_) => scaffoldKey.currentState.showSnackBar(snackBar));
-    }catch(e){
-      SnackBar snackBar = SnackBar(
-          content: Text('Already Added'));
-      WidgetsBinding.instance.addPostFrameCallback((_) => scaffoldKey.currentState.showSnackBar(snackBar));
+      this.successSave(context);
+    } catch (e) {
+      this.errorCatch(context);
     }
     return cams;
+  }
 
-    /*
-    await dbClient.transaction((txn) async {
-      var query = "INSERT INTO $TABLE ($NAME) VALUES ('" + employee.name + "')";
-      return await txn.rawInsert(query);
-    });
-    */
+  successSave(BuildContext context){
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (BuildContext context) {
+          Future.delayed(Duration(seconds: 3), () {
+            Navigator.of(context).pop();
+          });
+          return Theme(
+            data: Theme.of(context)
+                .copyWith(dialogBackgroundColor: Colors.transparent),
+            child: AlertDialog(
+              content: Container(
+                width: 100,
+                height: 100,
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: FlareActor(
+                        "assets/flare/Favorite.flr",
+                        shouldClip: false,
+                        animation: "Favorite", //_animationName
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Expanded(
+                      child: ClipRect(
+                        clipBehavior: Clip.antiAlias,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: AppColor.kBackgroundColor,
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                          ),
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Added to favourites",
+                            style: GoogleFonts.roboto(
+                                fontSize: 20, color: AppColor.kThemeColor),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
+  }
+
+  errorCatch(BuildContext context) {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (BuildContext context) {
+          Future.delayed(Duration(seconds: 3), () {
+            Navigator.of(context).pop();
+          });
+          return Theme(
+            data: Theme.of(context).copyWith(
+                dialogBackgroundColor: AppColor.kAppBarBackgroundColor),
+            child: AlertDialog(
+              content: Text(
+                "Already Added to favourites.",
+                style: TextStyle(color: AppColor.kThemeColor),
+              ),
+            ),
+          );
+        });
   }
 
   Future<List<Cams>> getCams() async {
     var dbClient = await db;
-//    List<Map> maps = await dbClient.query(TABLE, columns: [ID, CAM_ID,CAM_TITLE,CAM_TYPE,IMAGE_URL,STREAM_URL]);
     List<Map> maps = await dbClient.rawQuery("SELECT DISTINCT * FROM $TABLE");
     List<Cams> cams = [];
     if (maps.length > 0) {
@@ -78,17 +141,11 @@ class DBHelper {
 
   Future<int> delete(String camId) async {
     var dbClient = await db;
-    return await dbClient.delete(TABLE, where: '$CAM_ID = ?', whereArgs: [camId]);
+    return await dbClient
+        .delete(TABLE, where: '$CAM_ID = ?', whereArgs: [camId]);
   }
-//
-//  Future<int> update(Employee employee) async {
-//    var dbClient = await db;
-//    return await dbClient.update(TABLE, employee.toMap(),
-//        where: '$ID = ?', whereArgs: [employee.id]);
-//  }
-//
-//  Future close() async {
-//    var dbClient = await db;
-//    dbClient.close();
-//  }
+  Future close() async {
+    var dbClient = await db;
+    dbClient.close();
+  }
 }

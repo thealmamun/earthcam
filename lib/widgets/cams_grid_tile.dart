@@ -1,15 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:earth_cam/model/cams.dart';
-import 'package:earth_cam/services/database.dart';
 import 'package:earth_cam/utils/constants.dart';
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:localstorage/localstorage.dart';
 import 'package:neumorphic/neumorphic.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
 
 class CamsGridTile extends StatefulWidget {
   CamsGridTile(

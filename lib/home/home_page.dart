@@ -1,8 +1,8 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:earth_cam/pages/category_list.dart';
 import 'package:earth_cam/pages/favorites.dart';
 import 'package:earth_cam/pages/live_videos.dart';
 import 'package:earth_cam/pages/map_view.dart';
+import 'package:earth_cam/widgets/navBarWidget/curve_nav_bar_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CurvedNavigationBar(
+      bottomNavigationBar: CurvedNavigationBarWidget(
         key: _bottomNavigationKey,
         index: 0,
         height: 50.0,
@@ -58,8 +58,8 @@ class _HomePageState extends State<HomePage> {
         color: Color(0xff28292b),
         buttonBackgroundColor: Color(0xff28292b),
         backgroundColor: Color(0xff8d9691),
-        animationCurve: Curves.easeInOut,
-        animationDuration: Duration(milliseconds: 600),
+        animationCurve: Curves.easeIn,
+        animationDuration: Duration(milliseconds: 400),
         onTap: (index) {
           setState(() {
             _pageIndex = index;

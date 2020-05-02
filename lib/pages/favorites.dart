@@ -1,4 +1,3 @@
-import 'package:dotted_border/dotted_border.dart';
 import 'package:earth_cam/model/cams.dart';
 import 'package:earth_cam/pages/launch_video.dart';
 import 'package:earth_cam/pages/search_cams.dart';
@@ -6,13 +5,10 @@ import 'package:earth_cam/pages/yt_video_player.dart';
 import 'package:earth_cam/services/local_db.dart';
 import 'package:earth_cam/utils/constants.dart';
 import 'package:earth_cam/widgets/cams_grid_tile.dart';
-import 'package:flare_flutter/flare_actor.dart';
+import 'package:earth_cam/widgets/no_data_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:localstorage/localstorage.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
 
 class Favorites extends StatefulWidget {
   @override
@@ -20,19 +16,20 @@ class Favorites extends StatefulWidget {
 }
 
 class _FavoritesState extends State<Favorites> {
-
-  var dbHelper;
+  var dbHelper = DBHelper();
   Future<List<Cams>> cams;
+  List<Cams> cam = [];
   bool favPress = false;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    dbHelper = DBHelper();
-    DBHelper().getCams();
-    cams = dbHelper.getCams();
-    print('inisstate');
-  }
+
+//  @override
+//  void initState() {
+//    // TODO: implement initState
+//    super.initState();
+////    dbHelper = DBHelper();
+////    DBHelper().getCams();
+////    cams = dbHelper.getCams();
+//    print('inisstate');
+//  }
 
   refreshList() {
     setState(() {
@@ -49,34 +46,36 @@ class _FavoritesState extends State<Favorites> {
             childAspectRatio: 1.0,
             mainAxisSpacing: 4.0,
             crossAxisSpacing: 4.0,
-            children: cams.map((e) => CamsGridTile(
-              context: context,
-              camTitle: e.camTitle,
-              imageUrl: e.imageUrl,
-              onPressed: () {
-                print('tapped');
-                if (e.camType == 'Youtube') {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => YtVideoPlayerPage(
-                            url: e.streamUrl,
-                          )));
-                } else {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => LaunchVideo(
-                            url: e.streamUrl,
-                          )));
-                }
-              },
-              onPressedFavourite: (){
-                dbHelper.delete(e.camId);
-                refreshList();
-                print('remoded');
-              },
-            )).toList(),
+            children: cams
+                .map((e) => CamsGridTile(
+                      context: context,
+                      camTitle: e.camTitle,
+                      imageUrl: e.imageUrl,
+                      onPressed: () {
+                        print('tapped');
+                        if (e.camType == 'Youtube') {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => YtVideoPlayerPage(
+                                        url: e.streamUrl,
+                                      )));
+                        } else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LaunchVideo(
+                                        url: e.streamUrl,
+                                      )));
+                        }
+                      },
+                      onPressedFavourite: () {
+                        dbHelper.delete(e.camId);
+                        refreshList();
+                        print('removed');
+                      },
+                    ))
+                .toList(),
           ),
         ),
       ],
@@ -137,28 +136,23 @@ class _FavoritesState extends State<Favorites> {
               onTap: null),
         ],
       ),
-      body: Center(
-        child: Container(
+      body: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          alignment: Alignment.center,
           color: AppColor.kBackgroundColor,
-          child: Container(
-            child: FutureBuilder(
-                future: cams,
-                    builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return _mapList(snapshot.data,context);
-                    }
-
-                    if (null == snapshot.data || snapshot.data.length == 0) {
-                      return Container(child: Text("No Data Found",style: TextStyle(color: Colors.white70),));
-                    }
-
-                    return CircularProgressIndicator();
+          child: FutureBuilder(
+            future: dbHelper.getCams(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                if(snapshot.data.length == 0) {
+                  return NoDataWidget(text:'No Favourite Cams');
+                }
+                return _mapList(snapshot.data, context);
+              }
+              return CircularProgressIndicator();
             },
-
-            ),
-          )
-        ),
-      ),
+          )),
       drawer: Drawer(
         child: ListView(
           // Important: Remove any padding from the ListView.
@@ -189,31 +183,9 @@ class _FavoritesState extends State<Favorites> {
       ),
     );
   }
+
 }
 
-Widget get container1 {
-  return Padding(
-    padding: const EdgeInsets.all(15.0),
-    child: DottedBorder(
-      color: Colors.white,
-      padding: EdgeInsets.all(4),
-      dashPattern: [9, 5],
-      child: Container(
-        height: 100,
-        width: double.maxFinite,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(15.0)),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              '0 Favorite Videos',
-              style: TextStyle(fontSize: 30, color: Colors.white),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-}
+
+
+

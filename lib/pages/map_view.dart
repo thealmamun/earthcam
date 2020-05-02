@@ -21,7 +21,7 @@ class _MapViewState extends State<MapView> {
   GoogleMapController _controller;
 //  Completer<GoogleMapController> _controller = Completer();
   Set<Marker> _markers = {};
-  PageController _pageController;
+//  PageController _pageController;
   int prevPage;
   bool isClicked = false;
   List<Cams> cams = List<Cams>();
@@ -79,12 +79,12 @@ class _MapViewState extends State<MapView> {
     print('here');
   }
 
-  void _onScroll() {
-    if (_pageController.page.toInt() != prevPage) {
-      prevPage = _pageController.page.toInt();
-//      moveCamera();
-    }
-  }
+//  void _onScroll() {
+//    if (_pageController.page.toInt() != prevPage) {
+//      prevPage = _pageController.page.toInt();
+////      moveCamera();
+//    }
+//  }
 
   @override
   Widget build(BuildContext context) {

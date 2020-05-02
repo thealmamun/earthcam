@@ -138,7 +138,7 @@ class CurvedNavigationBarWidgetState extends State<CurvedNavigationBarWidget>
             right: 0,
             bottom: 0 - (75.0 - widget.height),
             child: SizedBox(
-                height: 100.0,
+                height: 110.0,
                 child: Row(
                     children: widget.items.map((item) {
                       return CurvedNavButton(
