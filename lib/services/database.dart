@@ -25,7 +25,7 @@ List<Cams> mapDataFromSnapshot(QuerySnapshot snapshot) {
       updatedAt: doc.data['updatedAt'].toString(),
       position: doc.data['position'],
       geoPoint: doc.data['position']['geopoint'],
-      latLng: doc.data['position']['geopoing']
+//      latLng: doc.data['position']['geopoing']
     );
   }).toList();
 }

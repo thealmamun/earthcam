@@ -1,10 +1,10 @@
 import 'dart:ui';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:earth_cam/pages/category_cams.dart';
 import 'package:earth_cam/pages/search_cams.dart';
 import 'package:earth_cam/utils/constants.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -58,14 +58,19 @@ class _CategoryListState extends State<CategoryList> with TickerProviderStateMix
                   Positioned.fill(
                     child: Container(
                       color: Colors.black.withOpacity(0),
-                      child: CachedNetworkImage(
-                        fit: BoxFit.cover,
-                        imageUrl: doc.data['categoryImage'],
-                        placeholder: (context, url) =>
-                            Center(child: CircularProgressIndicator()),
-                        errorWidget: (context, url, error) =>
-                            Icon(Icons.error),
-                      ),
+                        child: FancyShimmerImage(
+                          boxFit: BoxFit.fill,
+                          imageUrl: doc.data['categoryImage'],
+                          errorWidget: Icon(Icons.error),
+                        ),
+//                      child: CachedNetworkImage(
+//                        fit: BoxFit.cover,
+//                        imageUrl: doc.data['categoryImage'],
+//                        placeholder: (context, url) =>
+//                            Center(child: CircularProgressIndicator()),
+//                        errorWidget: (context, url, error) =>
+//                            Icon(Icons.error),
+//                      ),
                     ),
                   ),
 //                    Positioned(
@@ -195,33 +200,6 @@ class _CategoryListState extends State<CategoryList> with TickerProviderStateMix
         backgroundColor: Color(0xff28292b),
         actions: [
           GestureDetector(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Icon(
-                FontAwesomeIcons.searchLocation,
-                size: 25,
-              ),
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                PageRouteBuilder(
-                  pageBuilder: (context, animation, secondaryAnimation) {
-                    return SearchCams();
-                  },
-                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(
-                      opacity: animation,
-                      child: child,
-                    );
-                  },
-                ),
-              );
-//              Navigator.push(context,
-//                  MaterialPageRoute(builder: (context) => SearchCams()));
-            },
-          ),
-          GestureDetector(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Icon(
@@ -232,6 +210,33 @@ class _CategoryListState extends State<CategoryList> with TickerProviderStateMix
               ),
               onTap: null),
         ],
+        leading: GestureDetector(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(
+              FontAwesomeIcons.searchLocation,
+              size: 25,
+            ),
+          ),
+          onTap: () {
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (context, animation, secondaryAnimation) {
+                  return SearchCams();
+                },
+                transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  );
+                },
+              ),
+            );
+//              Navigator.push(context,
+//                  MaterialPageRoute(builder: (context) => SearchCams()));
+          },
+        ),
       ),
       body: Center(
         child: Container(
@@ -252,34 +257,6 @@ class _CategoryListState extends State<CategoryList> with TickerProviderStateMix
                 } else
                   return Center(child: CircularProgressIndicator());
               }),
-        ),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              child: Text('Drawer Header'),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-            ),
-            ListTile(
-              title: Text('Item 1'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              title: Text('Item 2'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-          ],
         ),
       ),
     );

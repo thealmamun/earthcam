@@ -1,9 +1,11 @@
 import 'package:earth_cam/pages/category_list.dart';
 import 'package:earth_cam/pages/favorites.dart';
 import 'package:earth_cam/pages/live_videos.dart';
-import 'package:earth_cam/pages/map_view.dart';
+//import 'package:earth_cam/pages/map_view.dart';
+import 'package:earth_cam/pages/map_view_new.dart';
 import 'package:earth_cam/widgets/navBarWidget/curve_nav_bar_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -16,6 +18,12 @@ class _HomePageState extends State<HomePage> {
 
   List pages = [
     MyRoute(
+      iconData: FontAwesomeIcons.globe,
+      size: 30,
+      color: Colors.white,
+      page: CategoryList(),
+    ),
+    MyRoute(
       iconData: Icons.videocam,
       size: 30.0,
       color: Colors.white,
@@ -25,14 +33,9 @@ class _HomePageState extends State<HomePage> {
       iconData: Icons.my_location,
       size: 30,
       color: Colors.white,
-      page: MapView(),
+      page: MapViewNew(),
     ),
-    MyRoute(
-      iconData: Icons.list,
-      size: 30,
-      color: Colors.white,
-      page: CategoryList(),
-    ),
+
     MyRoute(
       iconData: Icons.favorite,
       size: 30,

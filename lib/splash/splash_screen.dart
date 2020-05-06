@@ -51,102 +51,105 @@ class _SplashScreenState extends State<SplashScreen>
       home: Scaffold(
           backgroundColor: Colors.transparent,
           body: Container(
-            alignment: Alignment.center,
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
                 gradient: LinearGradient(
                     begin: Alignment.topRight,
                     end: Alignment.bottomLeft,
                     colors: [Color(0xff28292b), Color(0xFF083B53)])),
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 50,
-                ),
-                AvatarGlow(
-                  endRadius: 90,
-                  duration: Duration(seconds: 2),
-                  glowColor: Colors.white,
-                  repeat: true,
-                  repeatPauseDuration: Duration(seconds: 2),
-                  startDelay: Duration(seconds: 1),
-                  child: Material(
-                      elevation: 8.0,
-                      shape: CircleBorder(),
-                      child: CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: Image.asset(
-                          'assets/images/cctv7.png',
-                          height: 83,
-                          width: 83,
-                        ),
-                        radius: 55.0,
-                      )),
-                ),
-                DelayedAnimation(
-                  child: Text(
-                    "Hi There",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 35.0,
-                        color: color),
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 50,
                   ),
-                  delay: delayedAmount + 1000,
-                ),
-                DelayedAnimation(
-                  child: Text(
-                    "I'm Earth Cam",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 35.0,
-                        color: color),
+                  AvatarGlow(
+                    endRadius: 90,
+                    duration: Duration(seconds: 2),
+                    glowColor: Colors.white,
+                    repeat: true,
+                    repeatPauseDuration: Duration(seconds: 2),
+                    startDelay: Duration(seconds: 1),
+                    child: Material(
+                        elevation: 8.0,
+                        shape: CircleBorder(),
+                        child: CircleAvatar(
+                          backgroundColor: Colors.white,
+                          child: Image.asset(
+                            'assets/images/cctv7.png',
+                            height: 83,
+                            width: 83,
+                          ),
+                          radius: 55.0,
+                        )),
                   ),
-                  delay: delayedAmount + 2000,
-                ),
-                SizedBox(
-                  height: 30.0,
-                ),
-                DelayedAnimation(
-                  child: Text(
-                    "Let's Discover The World!",
-                    style: TextStyle(
-                        fontSize: 20.0,
-                        color: color,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  delay: delayedAmount + 3000,
-                ),
-                SizedBox(
-                  height: 80.0,
-                ),
-                DelayedAnimation(
-                  child: GestureDetector(
-                    onTapDown: _onTapDown,
-                    onTapUp: _onTapUp,
-                    child: Transform.scale(
-                      scale: _scale,
-                      child: _animatedButtonUI,
+                  DelayedAnimation(
+                    child: Text(
+                      "Hi There",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 35.0,
+                          color: color),
                     ),
+                    delay: delayedAmount + 1000,
                   ),
-                  delay: delayedAmount + 4000,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                DelayedAnimation(
-                  child: GestureDetector(
-                    onTapDown: _onTapDown,
-                    onTapUp: _onTapUp,
-                    child: Transform.scale(
-                      scale: _scale,
-                      child: SpinKitThreeBounce(
-                        color: Colors.white,
-                        size: 20.0,
+                  DelayedAnimation(
+                    child: Text(
+                      "I'm Earth Cam",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 35.0,
+                          color: color),
+                    ),
+                    delay: delayedAmount + 2000,
+                  ),
+                  SizedBox(
+                    height: 30.0,
+                  ),
+                  DelayedAnimation(
+                    child: Text(
+                      "Let's Discover The World!",
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          color: color,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    delay: delayedAmount + 3000,
+                  ),
+                  SizedBox(
+                    height: 80.0,
+                  ),
+                  DelayedAnimation(
+                    child: GestureDetector(
+                      onTapDown: _onTapDown,
+                      onTapUp: _onTapUp,
+                      child: Transform.scale(
+                        scale: _scale,
+                        child: _animatedButtonUI,
                       ),
                     ),
+                    delay: delayedAmount + 4000,
                   ),
-                  delay: delayedAmount + 4000,
-                ),
-              ],
+                  SizedBox(
+                    height: 20,
+                  ),
+                  DelayedAnimation(
+                    child: GestureDetector(
+                      onTapDown: _onTapDown,
+                      onTapUp: _onTapUp,
+                      child: Transform.scale(
+                        scale: _scale,
+                        child: SpinKitThreeBounce(
+                          color: Colors.white,
+                          size: 20.0,
+                        ),
+                      ),
+                    ),
+                    delay: delayedAmount + 4000,
+                  ),
+                ],
+              ),
             ),
           )),
     );

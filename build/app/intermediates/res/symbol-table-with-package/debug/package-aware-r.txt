@@ -64,10 +64,10 @@ attr alertDialogTheme
 attr allowStacking
 attr alpha
 attr alphabeticModifiers
-attr ambientEnabled
 attr arrowHeadLength
 attr arrowShaftLength
 attr autoCompleteTextViewStyle
+attr autoPlay
 attr autoSizeMaxTextSize
 attr autoSizeMinTextSize
 attr autoSizePresetSizes
@@ -94,13 +94,6 @@ attr buttonStyle
 attr buttonStyleSmall
 attr buttonTint
 attr buttonTintMode
-attr cameraBearing
-attr cameraMaxZoomPreference
-attr cameraMinZoomPreference
-attr cameraTargetLat
-attr cameraTargetLng
-attr cameraTilt
-attr cameraZoom
 attr checkboxStyle
 attr checkedTextViewStyle
 attr circleCrop
@@ -129,6 +122,7 @@ attr contentInsetRight
 attr contentInsetStart
 attr contentInsetStartWithNavigation
 attr controlBackground
+attr coordinatorLayoutStyle
 attr customNavigationLayout
 attr defaultQueryHint
 attr dialogCornerRadius
@@ -155,7 +149,14 @@ attr editTextBackground
 attr editTextColor
 attr editTextStyle
 attr elevation
+attr enableAutomaticInitialization
+attr enableLiveVideoUi
 attr expandActivityOverflowButtonDrawable
+attr fastScrollEnabled
+attr fastScrollHorizontalThumbDrawable
+attr fastScrollHorizontalTrackDrawable
+attr fastScrollVerticalThumbDrawable
+attr fastScrollVerticalTrackDrawable
 attr firstBaselineToTopHeight
 attr font
 attr fontFamily
@@ -165,11 +166,13 @@ attr fontProviderFetchStrategy
 attr fontProviderFetchTimeout
 attr fontProviderPackage
 attr fontProviderQuery
+attr fontSize
 attr fontStyle
 attr fontVariationSettings
 attr fontWeight
 attr gapBetweenBars
 attr goIcon
+attr handleNetworkEvents
 attr height
 attr hideOnContentScroll
 attr homeAsUpIndicator
@@ -185,12 +188,16 @@ attr indeterminateProgressStyle
 attr initialActivityCount
 attr isLightTheme
 attr itemPadding
+attr keylines
 attr lastBaselineToBottomHeight
-attr latLngBoundsNorthEastLatitude
-attr latLngBoundsNorthEastLongitude
-attr latLngBoundsSouthWestLatitude
-attr latLngBoundsSouthWestLongitude
 attr layout
+attr layoutManager
+attr layout_anchor
+attr layout_anchorGravity
+attr layout_behavior
+attr layout_dodgeInsetEdges
+attr layout_insetEdge
+attr layout_keyline
 attr lineHeight
 attr listChoiceBackgroundIndicator
 attr listChoiceIndicatorMultipleAnimated
@@ -207,10 +214,8 @@ attr listPreferredItemPaddingEnd
 attr listPreferredItemPaddingLeft
 attr listPreferredItemPaddingRight
 attr listPreferredItemPaddingStart
-attr liteMode
 attr logo
 attr logoDescription
-attr mapType
 attr maxButtonHeight
 attr measureWithLargestChild
 attr menu
@@ -239,6 +244,7 @@ attr radioButtonStyle
 attr ratingBarStyle
 attr ratingBarStyleIndicator
 attr ratingBarStyleSmall
+attr reverseLayout
 attr scopeUris
 attr searchHintIcon
 attr searchIcon
@@ -248,15 +254,23 @@ attr selectableItemBackground
 attr selectableItemBackgroundBorderless
 attr showAsAction
 attr showDividers
+attr showFullScreenButton
+attr showSeekBar
 attr showText
 attr showTitle
+attr showVideoCurrentTime
+attr showVideoDuration
+attr showYouTubeButton
 attr singleChoiceItemLayout
+attr spanCount
 attr spinBars
 attr spinnerDropDownItemStyle
 attr spinnerStyle
 attr splitTrack
 attr srcCompat
+attr stackFromEnd
 attr state_above_anchor
+attr statusBarBackground
 attr subMenuArrow
 attr submitBackground
 attr subtitle
@@ -309,15 +323,8 @@ attr track
 attr trackTint
 attr trackTintMode
 attr ttcIndex
-attr uiCompass
-attr uiMapToolbar
-attr uiRotateGestures
-attr uiScrollGestures
-attr uiScrollGesturesDuringRotateOrZoom
-attr uiTiltGestures
-attr uiZoomControls
-attr uiZoomGestures
-attr useViewLifecycle
+attr useWebUi
+attr videoId
 attr viewInflaterClass
 attr voiceIcon
 attr windowActionBar
@@ -330,7 +337,6 @@ attr windowFixedWidthMinor
 attr windowMinWidthMajor
 attr windowMinWidthMinor
 attr windowNoTitle
-attr zOrderOnTop
 bool abc_action_bar_embed_tabs
 bool abc_allow_stacked_button_bar
 bool abc_config_actionMenuItemAllCaps
@@ -360,6 +366,11 @@ color abc_tint_spinner
 color abc_tint_switch_track
 color accent_material_dark
 color accent_material_light
+color ayp_drop_shadow
+color ayp_item_selected
+color ayp_menu_icons
+color ayp_menu_text
+color ayp_red
 color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
@@ -507,6 +518,11 @@ dimen abc_text_size_subhead_material
 dimen abc_text_size_subtitle_material_toolbar
 dimen abc_text_size_title_material
 dimen abc_text_size_title_material_toolbar
+dimen ayp_12sp
+dimen ayp_8dp
+dimen ayp_menu_dialog_container_margin
+dimen ayp_menu_item_padding
+dimen ayp_menu_item_text_size
 dimen compat_button_inset_horizontal_material
 dimen compat_button_inset_vertical_material
 dimen compat_button_padding_horizontal_material
@@ -516,6 +532,9 @@ dimen compat_notification_large_icon_max_height
 dimen compat_notification_large_icon_max_width
 dimen disabled_alpha_material_dark
 dimen disabled_alpha_material_light
+dimen fastscroll_default_thickness
+dimen fastscroll_margin
+dimen fastscroll_minimum_range
 dimen highlight_alpha_material_colored
 dimen highlight_alpha_material_dark
 dimen highlight_alpha_material_light
@@ -523,6 +542,9 @@ dimen hint_alpha_material_dark
 dimen hint_alpha_material_light
 dimen hint_pressed_alpha_material_dark
 dimen hint_pressed_alpha_material_light
+dimen item_touch_helper_max_drag_scroll_per_frame
+dimen item_touch_helper_swipe_escape_max_velocity
+dimen item_touch_helper_swipe_escape_velocity
 dimen notification_action_icon_size
 dimen notification_action_text_size
 dimen notification_big_circle_margin
@@ -632,6 +654,16 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable ayp_background_item_selected
+drawable ayp_drop_shadow_bottom
+drawable ayp_drop_shadow_top
+drawable ayp_ic_fullscreen_24dp
+drawable ayp_ic_fullscreen_exit_24dp
+drawable ayp_ic_menu_24dp
+drawable ayp_ic_pause_36dp
+drawable ayp_ic_play_36dp
+drawable ayp_ic_youtube_24dp
+drawable ayp_shape_rounded_corners
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -738,6 +770,7 @@ id add
 id adjust_height
 id adjust_width
 id alertTitle
+id all
 id always
 id async
 id auto
@@ -745,29 +778,42 @@ id beginning
 id blocking
 id bottom
 id buttonPanel
+id center
+id center_horizontal
 id center_vertical
 id checkbox
 id checked
 id chronometer
+id clip_horizontal
+id clip_vertical
 id collapseActionView
 id content
 id contentPanel
+id controls_container
 id custom
 id customPanel
+id custom_action_left_button
+id custom_action_right_button
 id dark
 id decor_content_parent
 id default_activity_button
 id dialog_button
 id disableHome
+id drop_shadow_bottom
+id drop_shadow_top
 id edit_query
 id end
 id expand_activities_button
 id expanded_menu
+id extra_views_container
+id fill
+id fill_horizontal
+id fill_vertical
 id forever
+id fullscreen_button
 id group_divider
 id home
 id homeAsUp
-id hybrid
 id icon
 id icon_group
 id icon_only
@@ -775,11 +821,16 @@ id ifRoom
 id image
 id info
 id italic
+id item_touch_helper_previous_elevation
+id left
 id light
 id line1
 id line3
 id listMode
 id list_item
+id live_video_indicator
+id menu_button
+id menu_root
 id message
 id middle
 id multiply
@@ -791,13 +842,17 @@ id notification_main_column
 id notification_main_column_container
 id off
 id on
+id panel
 id parentPanel
+id play_pause_button
+id progress
 id progress_circular
 id progress_horizontal
 id radio
+id recycler_view
+id right
 id right_icon
 id right_side
-id satellite
 id screen
 id scrollIndicatorDown
 id scrollIndicatorUp
@@ -823,6 +878,7 @@ id src_atop
 id src_in
 id src_over
 id standard
+id start
 id submenuarrow
 id submit_area
 id tabMode
@@ -834,7 +890,6 @@ id tag_screen_reader_focusable
 id tag_transition_group
 id tag_unhandled_key_event_manager
 id tag_unhandled_key_listeners
-id terrain
 id text
 id text2
 id textSpacerNoButtons
@@ -849,9 +904,12 @@ id unchecked
 id uniform
 id up
 id useLogo
+id video_title
 id wide
 id withText
 id wrap_content
+id youtube_button
+id youtube_player_seekbar
 integer abc_config_activityDefaultDur
 integer abc_config_activityShortDur
 integer cancel_button_image_alpha
@@ -893,6 +951,10 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout ayp_default_player_ui
+layout ayp_empty_layout
+layout ayp_menu_item
+layout ayp_player_menu
 layout custom_dialog
 layout notification_action
 layout notification_action_tombstone
@@ -905,6 +967,7 @@ layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 mipmap ic_launcher
+raw ayp_youtube_player
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -932,6 +995,13 @@ string abc_searchview_description_voice
 string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
+string ayp_custom_action_left
+string ayp_custom_action_right
+string ayp_full_screen_button
+string ayp_live
+string ayp_null_time
+string ayp_open_video_in_youtube
+string ayp_play_button
 string common_google_play_services_enable_button
 string common_google_play_services_enable_text
 string common_google_play_services_enable_title
@@ -1311,6 +1381,7 @@ style Widget_AppCompat_Toolbar
 style Widget_AppCompat_Toolbar_Button_Navigation
 style Widget_Compat_NotificationActionContainer
 style Widget_Compat_NotificationActionText
+style Widget_Support_CoordinatorLayout
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity
 styleable ActionMenuItemView android_minWidth
@@ -1329,6 +1400,8 @@ styleable AppCompatTheme android_windowIsFloating android_windowAnimationStyle a
 styleable ButtonBarLayout allowStacking
 styleable ColorStateListItem android_color android_alpha alpha
 styleable CompoundButton android_button buttonCompat buttonTint buttonTintMode
+styleable CoordinatorLayout keylines statusBarBackground
+styleable CoordinatorLayout_Layout android_layout_gravity layout_anchor layout_anchorGravity layout_behavior layout_dodgeInsetEdges layout_insetEdge layout_keyline
 styleable DrawerArrowToggle arrowHeadLength arrowShaftLength barLength color drawableSize gapBetweenBars spinBars thickness
 styleable FontFamily fontProviderAuthority fontProviderCerts fontProviderFetchStrategy fontProviderFetchTimeout fontProviderPackage fontProviderQuery
 styleable FontFamilyFont android_font android_fontWeight android_fontStyle android_ttcIndex android_fontVariationSettings font fontStyle fontVariationSettings fontWeight ttcIndex
@@ -1338,13 +1411,13 @@ styleable LinearLayoutCompat android_gravity android_orientation android_baselin
 styleable LinearLayoutCompat_Layout android_layout_gravity android_layout_width android_layout_height android_layout_weight
 styleable ListPopupWindow android_dropDownHorizontalOffset android_dropDownVerticalOffset
 styleable LoadingImageView circleCrop imageAspectRatio imageAspectRatioAdjust
-styleable MapAttrs ambientEnabled cameraBearing cameraMaxZoomPreference cameraMinZoomPreference cameraTargetLat cameraTargetLng cameraTilt cameraZoom latLngBoundsNorthEastLatitude latLngBoundsNorthEastLongitude latLngBoundsSouthWestLatitude latLngBoundsSouthWestLongitude liteMode mapType uiCompass uiMapToolbar uiRotateGestures uiScrollGestures uiScrollGesturesDuringRotateOrZoom uiTiltGestures uiZoomControls uiZoomGestures useViewLifecycle zOrderOnTop
 styleable MenuGroup android_enabled android_id android_visible android_menuCategory android_orderInCategory android_checkableBehavior
 styleable MenuItem android_icon android_enabled android_id android_checked android_visible android_menuCategory android_orderInCategory android_title android_titleCondensed android_alphabeticShortcut android_numericShortcut android_checkable android_onClick actionLayout actionProviderClass actionViewClass alphabeticModifiers contentDescription iconTint iconTintMode numericModifiers showAsAction tooltipText
 styleable MenuView android_windowAnimationStyle android_itemTextAppearance android_horizontalDivider android_verticalDivider android_headerBackground android_itemBackground android_itemIconDisabledAlpha preserveIconSpacing subMenuArrow
 styleable PopupWindow android_popupBackground android_popupAnimationStyle overlapAnchor
 styleable PopupWindowBackgroundState state_above_anchor
 styleable RecycleListView paddingBottomNoButtons paddingTopNoTitle
+styleable RecyclerView android_orientation android_descendantFocusability fastScrollEnabled fastScrollHorizontalThumbDrawable fastScrollHorizontalTrackDrawable fastScrollVerticalThumbDrawable fastScrollVerticalTrackDrawable layoutManager reverseLayout spanCount stackFromEnd
 styleable SearchView android_focusable android_maxWidth android_inputType android_imeOptions closeIcon commitIcon defaultQueryHint goIcon iconifiedByDefault layout queryBackground queryHint searchHintIcon searchIcon submitBackground suggestionRowLayout voiceIcon
 styleable SignInButton buttonSize colorScheme scopeUris
 styleable Spinner android_entries android_popupBackground android_prompt android_dropDownWidth popupTheme
@@ -1356,4 +1429,7 @@ styleable Toolbar android_gravity android_minHeight buttonGravity collapseConten
 styleable View android_theme android_focusable paddingEnd paddingStart theme
 styleable ViewBackgroundHelper android_background backgroundTint backgroundTintMode
 styleable ViewStubCompat android_id android_layout android_inflatedId
+styleable YouTubePlayerSeekBar color fontSize
+styleable YouTubePlayerView autoPlay enableAutomaticInitialization enableLiveVideoUi handleNetworkEvents showFullScreenButton showSeekBar showVideoCurrentTime showVideoDuration showYouTubeButton useWebUi videoId
 xml filepaths
+xml network_security_config

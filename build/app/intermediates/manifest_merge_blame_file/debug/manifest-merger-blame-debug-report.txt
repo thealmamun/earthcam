@@ -5,8 +5,8 @@
 5    android:versionName="1.0.0" >
 6
 7    <uses-sdk
-8        android:minSdkVersion="16"
-9        android:targetSdkVersion="28" />
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="29" />
 10    <!--
 11         Flutter needs it to communicate with the running application
 12         to allow setting breakpoints, to provide hot reload, etc.
@@ -14,204 +14,201 @@
 14    <uses-permission android:name="android.permission.INTERNET" />
 14-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:8:5-66
 14-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:8:22-64
-15    <!-- Include required permissions for Google Maps API to run. -->
-16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-16-->[com.google.android.gms:play-services-maps:17.0.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/6f4e6eb26f6c204062e462fe30c558b2/play-services-maps-17.0.0/AndroidManifest.xml:23:5-79
-16-->[com.google.android.gms:play-services-maps:17.0.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/6f4e6eb26f6c204062e462fe30c558b2/play-services-maps-17.0.0/AndroidManifest.xml:23:22-76
-17
-18    <uses-feature
-18-->[com.google.android.gms:play-services-maps:17.0.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/6f4e6eb26f6c204062e462fe30c558b2/play-services-maps-17.0.0/AndroidManifest.xml:26:5-28:35
-19        android:glEsVersion="0x00020000"
-19-->[com.google.android.gms:play-services-maps:17.0.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/6f4e6eb26f6c204062e462fe30c558b2/play-services-maps-17.0.0/AndroidManifest.xml:27:9-41
-20        android:required="true" />
-20-->[com.google.android.gms:play-services-maps:17.0.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/6f4e6eb26f6c204062e462fe30c558b2/play-services-maps-17.0.0/AndroidManifest.xml:28:9-32
-21
-22    <application
-22-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:9:5-52:19
-23        android:name="io.flutter.app.FlutterApplication"
-23-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:10:9-57
-24        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-24-->[androidx.core:core:1.1.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/3aaf6e5219b7f981ec263df919098c6f/core-1.1.0/AndroidManifest.xml:24:18-86
-25        android:debuggable="true"
-26        android:icon="@mipmap/ic_launcher"
-26-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:12:9-43
-27        android:label="earth_cam" >
-27-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:11:9-34
-28        <meta-data
-28-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:14:9-15:70
-29            android:name="com.google.android.geo.API_KEY"
-29-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:14:20-65
-30            android:value="AIzaSyB_ABRvlOKF7_HYfUgZDF3EpfcrWRdN2-I" />
-30-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:15:13-68
-31
-32        <activity
-32-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:18:9-46:20
-33            android:name="com.cameraworldapp.earth_cam.MainActivity"
-33-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:19:13-41
-34            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-34-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:22:13-163
-35            android:hardwareAccelerated="true"
-35-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:23:13-47
-36            android:launchMode="singleTop"
-36-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:20:13-43
-37            android:theme="@style/LaunchTheme"
-37-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:21:13-47
-38            android:windowSoftInputMode="adjustResize" >
-38-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:24:13-55
-39
-40            <!--
-41                 Specifies an Android theme to apply to this Activity as soon as
-42                 the Android process has started. This theme is visible to the user
-43                 while the Flutter UI initializes. After that, this theme continues
-44                 to determine the Window background behind the Flutter UI.
-45            -->
-46            <meta-data
-46-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:29:13-32:17
-47                android:name="io.flutter.embedding.android.NormalTheme"
-47-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:30:15-70
-48                android:resource="@style/NormalTheme" />
-48-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:31:15-52
-49            <!--
-50                 Displays an Android View that continues showing the launch screen
-51                 Drawable until Flutter paints its first frame, then this splash
-52                 screen fades out. A splash screen is useful to avoid any visual
-53                 gap between the end of Android's launch screen and the painting of
-54                 Flutter's first frame.
-55            -->
-56            <meta-data
-56-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:38:13-41:17
-57                android:name="io.flutter.embedding.android.SplashScreenDrawable"
-57-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:39:15-79
-58                android:resource="@drawable/launch_background" />
-58-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:40:15-61
-59
-60            <intent-filter>
-60-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:42:13-45:29
-61                <action android:name="android.intent.action.MAIN" />
-61-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:43:17-68
-61-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:43:25-66
-62
-63                <category android:name="android.intent.category.LAUNCHER" />
-63-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:44:17-76
-63-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:44:27-74
-64            </intent-filter>
-65        </activity>
-66        <!--
-67             Don't delete the meta-data below.
-68             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
-69        -->
-70        <meta-data
-70-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:49:9-51:33
-71            android:name="flutterEmbedding"
-71-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:50:13-44
-72            android:value="2" />
-72-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:51:13-30
-73
-74        <service
-74-->[:firebase_auth] /Users/emran/Documents/GitHub/earthcam/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-12:19
-75            android:name="com.google.firebase.components.ComponentDiscoveryService"
-75-->[:firebase_auth] /Users/emran/Documents/GitHub/earthcam/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:8:18-89
-76            android:directBootAware="true"
-76-->[com.google.firebase:firebase-common:19.3.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/379ba7a5e62cc8a0e82b1f7d0b21ad5a/jetified-firebase-common-19.3.0/AndroidManifest.xml:34:13-43
-77            android:exported="false" >
-77-->[com.google.firebase:firebase-auth:19.2.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/a83bb62cb43b672cf00b874e0ee6110c/firebase-auth-19.2.0/AndroidManifest.xml:35:13-37
-78            <meta-data
-78-->[:firebase_auth] /Users/emran/Documents/GitHub/earthcam/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
-79                android:name="com.google.firebase.components:io.flutter.plugins.firebaseauth.FlutterFirebaseAppRegistrar"
-79-->[:firebase_auth] /Users/emran/Documents/GitHub/earthcam/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-122
-80                android:value="com.google.firebase.components.ComponentRegistrar" />
-80-->[:firebase_auth] /Users/emran/Documents/GitHub/earthcam/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
-81            <meta-data
-81-->[:cloud_firestore] /Users/emran/Documents/GitHub/earthcam/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
-82                android:name="com.google.firebase.components:io.flutter.plugins.firebase.cloudfirestore.FlutterFirebaseAppRegistrar"
-82-->[:cloud_firestore] /Users/emran/Documents/GitHub/earthcam/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-133
-83                android:value="com.google.firebase.components.ComponentRegistrar" />
-83-->[:cloud_firestore] /Users/emran/Documents/GitHub/earthcam/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
-84            <meta-data
-84-->[:firebase_core] /Users/emran/Documents/GitHub/earthcam/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
-85                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseAppRegistrar"
-85-->[:firebase_core] /Users/emran/Documents/GitHub/earthcam/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-123
-86                android:value="com.google.firebase.components.ComponentRegistrar" />
-86-->[:firebase_core] /Users/emran/Documents/GitHub/earthcam/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
-87            <meta-data
-87-->[com.google.firebase:firebase-auth:19.2.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/a83bb62cb43b672cf00b874e0ee6110c/firebase-auth-19.2.0/AndroidManifest.xml:36:13-38:85
-88                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
-88-->[com.google.firebase:firebase-auth:19.2.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/a83bb62cb43b672cf00b874e0ee6110c/firebase-auth-19.2.0/AndroidManifest.xml:37:17-109
-89                android:value="com.google.firebase.components.ComponentRegistrar" />
-89-->[com.google.firebase:firebase-auth:19.2.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/a83bb62cb43b672cf00b874e0ee6110c/firebase-auth-19.2.0/AndroidManifest.xml:38:17-82
-90            <meta-data
-90-->[com.google.firebase:firebase-firestore:21.3.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/6729850caee0ab4bdc2f622b9f8cce6f/jetified-firebase-firestore-21.3.0/AndroidManifest.xml:20:13-22:85
-91                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
-91-->[com.google.firebase:firebase-firestore:21.3.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/6729850caee0ab4bdc2f622b9f8cce6f/jetified-firebase-firestore-21.3.0/AndroidManifest.xml:21:17-111
-92                android:value="com.google.firebase.components.ComponentRegistrar" />
-92-->[com.google.firebase:firebase-firestore:21.3.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/6729850caee0ab4bdc2f622b9f8cce6f/jetified-firebase-firestore-21.3.0/AndroidManifest.xml:22:17-82
-93        </service>
-94
-95        <provider
-95-->[:flutter_webview_plugin] /Users/emran/Documents/GitHub/earthcam/build/flutter_webview_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:9:9-18:20
-96            android:name="androidx.core.content.FileProvider"
-96-->[:flutter_webview_plugin] /Users/emran/Documents/GitHub/earthcam/build/flutter_webview_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:10:13-62
-97            android:authorities="com.cameraworldapp.earth_cam.fileprovider"
-97-->[:flutter_webview_plugin] /Users/emran/Documents/GitHub/earthcam/build/flutter_webview_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-64
-98            android:exported="false"
-98-->[:flutter_webview_plugin] /Users/emran/Documents/GitHub/earthcam/build/flutter_webview_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:12:13-37
-99            android:grantUriPermissions="true" >
-99-->[:flutter_webview_plugin] /Users/emran/Documents/GitHub/earthcam/build/flutter_webview_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-47
-100            <meta-data
-100-->[:flutter_webview_plugin] /Users/emran/Documents/GitHub/earthcam/build/flutter_webview_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-17:53
-101                android:name="android.support.FILE_PROVIDER_PATHS"
-101-->[:flutter_webview_plugin] /Users/emran/Documents/GitHub/earthcam/build/flutter_webview_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:16:17-67
-102                android:resource="@xml/filepaths" />
-102-->[:flutter_webview_plugin] /Users/emran/Documents/GitHub/earthcam/build/flutter_webview_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:17:17-50
-103        </provider> <!-- Needs to be explicitly declared on P+ -->
-104        <uses-library
-104-->[com.google.android.gms:play-services-maps:17.0.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/6f4e6eb26f6c204062e462fe30c558b2/play-services-maps-17.0.0/AndroidManifest.xml:33:9-35:40
-105            android:name="org.apache.http.legacy"
-105-->[com.google.android.gms:play-services-maps:17.0.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/6f4e6eb26f6c204062e462fe30c558b2/play-services-maps-17.0.0/AndroidManifest.xml:34:13-50
-106            android:required="false" />
-106-->[com.google.android.gms:play-services-maps:17.0.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/6f4e6eb26f6c204062e462fe30c558b2/play-services-maps-17.0.0/AndroidManifest.xml:35:13-37
-107
-108        <activity
-108-->[com.google.firebase:firebase-auth:19.2.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/a83bb62cb43b672cf00b874e0ee6110c/firebase-auth-19.2.0/AndroidManifest.xml:24:9-31:50
-109            android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
-109-->[com.google.firebase:firebase-auth:19.2.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/a83bb62cb43b672cf00b874e0ee6110c/firebase-auth-19.2.0/AndroidManifest.xml:25:13-85
-110            android:excludeFromRecents="true"
-110-->[com.google.firebase:firebase-auth:19.2.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/a83bb62cb43b672cf00b874e0ee6110c/firebase-auth-19.2.0/AndroidManifest.xml:26:13-46
-111            android:exported="true"
-111-->[com.google.firebase:firebase-auth:19.2.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/a83bb62cb43b672cf00b874e0ee6110c/firebase-auth-19.2.0/AndroidManifest.xml:27:13-36
-112            android:launchMode="singleTask"
-112-->[com.google.firebase:firebase-auth:19.2.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/a83bb62cb43b672cf00b874e0ee6110c/firebase-auth-19.2.0/AndroidManifest.xml:28:13-44
-113            android:permission="com.google.firebase.auth.api.gms.permission.LAUNCH_FEDERATED_SIGN_IN"
-113-->[com.google.firebase:firebase-auth:19.2.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/a83bb62cb43b672cf00b874e0ee6110c/firebase-auth-19.2.0/AndroidManifest.xml:29:13-102
-114            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-114-->[com.google.firebase:firebase-auth:19.2.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/a83bb62cb43b672cf00b874e0ee6110c/firebase-auth-19.2.0/AndroidManifest.xml:30:13-72
-115
-116        <provider
-116-->[com.google.firebase:firebase-common:19.3.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/379ba7a5e62cc8a0e82b1f7d0b21ad5a/jetified-firebase-common-19.3.0/AndroidManifest.xml:26:9-30:39
-117            android:name="com.google.firebase.provider.FirebaseInitProvider"
-117-->[com.google.firebase:firebase-common:19.3.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/379ba7a5e62cc8a0e82b1f7d0b21ad5a/jetified-firebase-common-19.3.0/AndroidManifest.xml:27:13-77
-118            android:authorities="com.cameraworldapp.earth_cam.firebaseinitprovider"
-118-->[com.google.firebase:firebase-common:19.3.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/379ba7a5e62cc8a0e82b1f7d0b21ad5a/jetified-firebase-common-19.3.0/AndroidManifest.xml:28:13-72
-119            android:exported="false"
-119-->[com.google.firebase:firebase-common:19.3.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/379ba7a5e62cc8a0e82b1f7d0b21ad5a/jetified-firebase-common-19.3.0/AndroidManifest.xml:29:13-37
-120            android:initOrder="100" />
-120-->[com.google.firebase:firebase-common:19.3.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/379ba7a5e62cc8a0e82b1f7d0b21ad5a/jetified-firebase-common-19.3.0/AndroidManifest.xml:30:13-36
-121
-122        <activity
-122-->[com.google.android.gms:play-services-base:17.1.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/6eb14f512292913515d869914807ad40/play-services-base-17.1.0/AndroidManifest.xml:23:9-26:75
-123            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-123-->[com.google.android.gms:play-services-base:17.1.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/6eb14f512292913515d869914807ad40/play-services-base-17.1.0/AndroidManifest.xml:24:13-79
-124            android:exported="false"
-124-->[com.google.android.gms:play-services-base:17.1.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/6eb14f512292913515d869914807ad40/play-services-base-17.1.0/AndroidManifest.xml:25:13-37
-125            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-125-->[com.google.android.gms:play-services-base:17.1.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/6eb14f512292913515d869914807ad40/play-services-base-17.1.0/AndroidManifest.xml:26:13-72
-126
-127        <meta-data
-127-->[com.google.android.gms:play-services-basement:17.0.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/7dd1c47d99317bde004103176f73c186/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
-128            android:name="com.google.android.gms.version"
-128-->[com.google.android.gms:play-services-basement:17.0.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/7dd1c47d99317bde004103176f73c186/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
-129            android:value="@integer/google_play_services_version" />
-129-->[com.google.android.gms:play-services-basement:17.0.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/7dd1c47d99317bde004103176f73c186/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
-130    </application>
-131
-132</manifest>
+15    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+15-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:9:5-79
+15-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:9:22-76
+16    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+16-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:10:5-81
+16-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:10:22-78
+17    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+17-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:11:5-85
+17-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:11:22-82
+18    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+18-->[com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.3] /Users/emran/.gradle/caches/transforms-2/files-2.1/ae09622756c12c04d7b9d5b3066f4628/core-10.0.3/AndroidManifest.xml:12:5-79
+18-->[com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.3] /Users/emran/.gradle/caches/transforms-2/files-2.1/ae09622756c12c04d7b9d5b3066f4628/core-10.0.3/AndroidManifest.xml:12:22-76
+19
+20    <application
+20-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:12:5-56:19
+21        android:name="io.flutter.app.FlutterApplication"
+21-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:13:9-57
+22        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+22-->[androidx.core:core:1.1.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/3aaf6e5219b7f981ec263df919098c6f/core-1.1.0/AndroidManifest.xml:24:18-86
+23        android:debuggable="true"
+24        android:icon="@mipmap/ic_launcher"
+24-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:15:9-43
+25        android:label="earth_cam" >
+25-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:14:9-34
+26        <meta-data
+26-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:17:9-18:70
+27            android:name="com.google.android.geo.API_KEY"
+27-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:17:20-65
+28            android:value="AIzaSyB_ABRvlOKF7_HYfUgZDF3EpfcrWRdN2-I" />
+28-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:18:13-68
+29
+30        <activity
+30-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:21:9-50:20
+31            android:name="com.cameraworldapp.earth_cam.MainActivity"
+31-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:22:13-41
+32            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+32-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:25:13-163
+33            android:hardwareAccelerated="true"
+33-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:26:13-47
+34            android:launchMode="singleTop"
+34-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:23:13-43
+35            android:theme="@style/LaunchTheme"
+35-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:24:13-47
+36            android:usesCleartextTraffic="true"
+36-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:28:13-48
+37            android:windowSoftInputMode="adjustResize" >
+37-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:27:13-55
+38
+39            <!--
+40                 Specifies an Android theme to apply to this Activity as soon as
+41                 the Android process has started. This theme is visible to the user
+42                 while the Flutter UI initializes. After that, this theme continues
+43                 to determine the Window background behind the Flutter UI.
+44            -->
+45            <meta-data
+45-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:33:13-36:17
+46                android:name="io.flutter.embedding.android.NormalTheme"
+46-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:34:15-70
+47                android:resource="@style/NormalTheme" />
+47-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:35:15-52
+48            <!--
+49                 Displays an Android View that continues showing the launch screen
+50                 Drawable until Flutter paints its first frame, then this splash
+51                 screen fades out. A splash screen is useful to avoid any visual
+52                 gap between the end of Android's launch screen and the painting of
+53                 Flutter's first frame.
+54            -->
+55            <meta-data
+55-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:42:13-45:17
+56                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+56-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:43:15-79
+57                android:resource="@drawable/launch_background" />
+57-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:44:15-61
+58
+59            <intent-filter>
+59-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:46:13-49:29
+60                <action android:name="android.intent.action.MAIN" />
+60-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:47:17-68
+60-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:47:25-66
+61
+62                <category android:name="android.intent.category.LAUNCHER" />
+62-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:48:17-76
+62-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:48:27-74
+63            </intent-filter>
+64        </activity>
+65        <!--
+66             Don't delete the meta-data below.
+67             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+68        -->
+69        <meta-data
+69-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:53:9-55:33
+70            android:name="flutterEmbedding"
+70-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:54:13-44
+71            android:value="2" />
+71-->/Users/emran/Documents/GitHub/earthcam/android/app/src/main/AndroidManifest.xml:55:13-30
+72
+73        <service
+73-->[:cloud_firestore] /Users/emran/Documents/GitHub/earthcam/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-12:19
+74            android:name="com.google.firebase.components.ComponentDiscoveryService"
+74-->[:cloud_firestore] /Users/emran/Documents/GitHub/earthcam/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:8:18-89
+75            android:directBootAware="true"
+75-->[com.google.firebase:firebase-common:19.3.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/379ba7a5e62cc8a0e82b1f7d0b21ad5a/jetified-firebase-common-19.3.0/AndroidManifest.xml:34:13-43
+76            android:exported="false" >
+76-->[com.google.firebase:firebase-auth:19.2.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/a83bb62cb43b672cf00b874e0ee6110c/firebase-auth-19.2.0/AndroidManifest.xml:35:13-37
+77            <meta-data
+77-->[:cloud_firestore] /Users/emran/Documents/GitHub/earthcam/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
+78                android:name="com.google.firebase.components:io.flutter.plugins.firebase.cloudfirestore.FlutterFirebaseAppRegistrar"
+78-->[:cloud_firestore] /Users/emran/Documents/GitHub/earthcam/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-133
+79                android:value="com.google.firebase.components.ComponentRegistrar" />
+79-->[:cloud_firestore] /Users/emran/Documents/GitHub/earthcam/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
+80            <meta-data
+80-->[:firebase_auth] /Users/emran/Documents/GitHub/earthcam/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
+81                android:name="com.google.firebase.components:io.flutter.plugins.firebaseauth.FlutterFirebaseAppRegistrar"
+81-->[:firebase_auth] /Users/emran/Documents/GitHub/earthcam/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-122
+82                android:value="com.google.firebase.components.ComponentRegistrar" />
+82-->[:firebase_auth] /Users/emran/Documents/GitHub/earthcam/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
+83            <meta-data
+83-->[:firebase_core] /Users/emran/Documents/GitHub/earthcam/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
+84                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseAppRegistrar"
+84-->[:firebase_core] /Users/emran/Documents/GitHub/earthcam/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-123
+85                android:value="com.google.firebase.components.ComponentRegistrar" />
+85-->[:firebase_core] /Users/emran/Documents/GitHub/earthcam/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
+86            <meta-data
+86-->[com.google.firebase:firebase-auth:19.2.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/a83bb62cb43b672cf00b874e0ee6110c/firebase-auth-19.2.0/AndroidManifest.xml:36:13-38:85
+87                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+87-->[com.google.firebase:firebase-auth:19.2.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/a83bb62cb43b672cf00b874e0ee6110c/firebase-auth-19.2.0/AndroidManifest.xml:37:17-109
+88                android:value="com.google.firebase.components.ComponentRegistrar" />
+88-->[com.google.firebase:firebase-auth:19.2.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/a83bb62cb43b672cf00b874e0ee6110c/firebase-auth-19.2.0/AndroidManifest.xml:38:17-82
+89            <meta-data
+89-->[com.google.firebase:firebase-firestore:21.3.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/6729850caee0ab4bdc2f622b9f8cce6f/jetified-firebase-firestore-21.3.0/AndroidManifest.xml:20:13-22:85
+90                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+90-->[com.google.firebase:firebase-firestore:21.3.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/6729850caee0ab4bdc2f622b9f8cce6f/jetified-firebase-firestore-21.3.0/AndroidManifest.xml:21:17-111
+91                android:value="com.google.firebase.components.ComponentRegistrar" />
+91-->[com.google.firebase:firebase-firestore:21.3.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/6729850caee0ab4bdc2f622b9f8cce6f/jetified-firebase-firestore-21.3.0/AndroidManifest.xml:22:17-82
+92        </service>
+93
+94        <provider
+94-->[:flutter_webview_plugin] /Users/emran/Documents/GitHub/earthcam/build/flutter_webview_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:9:9-18:20
+95            android:name="androidx.core.content.FileProvider"
+95-->[:flutter_webview_plugin] /Users/emran/Documents/GitHub/earthcam/build/flutter_webview_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:10:13-62
+96            android:authorities="com.cameraworldapp.earth_cam.fileprovider"
+96-->[:flutter_webview_plugin] /Users/emran/Documents/GitHub/earthcam/build/flutter_webview_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-64
+97            android:exported="false"
+97-->[:flutter_webview_plugin] /Users/emran/Documents/GitHub/earthcam/build/flutter_webview_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:12:13-37
+98            android:grantUriPermissions="true" >
+98-->[:flutter_webview_plugin] /Users/emran/Documents/GitHub/earthcam/build/flutter_webview_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-47
+99            <meta-data
+99-->[:flutter_webview_plugin] /Users/emran/Documents/GitHub/earthcam/build/flutter_webview_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-17:53
+100                android:name="android.support.FILE_PROVIDER_PATHS"
+100-->[:flutter_webview_plugin] /Users/emran/Documents/GitHub/earthcam/build/flutter_webview_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:16:17-67
+101                android:resource="@xml/filepaths" />
+101-->[:flutter_webview_plugin] /Users/emran/Documents/GitHub/earthcam/build/flutter_webview_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:17:17-50
+102        </provider>
+103
+104        <activity
+104-->[com.google.firebase:firebase-auth:19.2.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/a83bb62cb43b672cf00b874e0ee6110c/firebase-auth-19.2.0/AndroidManifest.xml:24:9-31:50
+105            android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
+105-->[com.google.firebase:firebase-auth:19.2.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/a83bb62cb43b672cf00b874e0ee6110c/firebase-auth-19.2.0/AndroidManifest.xml:25:13-85
+106            android:excludeFromRecents="true"
+106-->[com.google.firebase:firebase-auth:19.2.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/a83bb62cb43b672cf00b874e0ee6110c/firebase-auth-19.2.0/AndroidManifest.xml:26:13-46
+107            android:exported="true"
+107-->[com.google.firebase:firebase-auth:19.2.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/a83bb62cb43b672cf00b874e0ee6110c/firebase-auth-19.2.0/AndroidManifest.xml:27:13-36
+108            android:launchMode="singleTask"
+108-->[com.google.firebase:firebase-auth:19.2.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/a83bb62cb43b672cf00b874e0ee6110c/firebase-auth-19.2.0/AndroidManifest.xml:28:13-44
+109            android:permission="com.google.firebase.auth.api.gms.permission.LAUNCH_FEDERATED_SIGN_IN"
+109-->[com.google.firebase:firebase-auth:19.2.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/a83bb62cb43b672cf00b874e0ee6110c/firebase-auth-19.2.0/AndroidManifest.xml:29:13-102
+110            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+110-->[com.google.firebase:firebase-auth:19.2.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/a83bb62cb43b672cf00b874e0ee6110c/firebase-auth-19.2.0/AndroidManifest.xml:30:13-72
+111
+112        <provider
+112-->[com.google.firebase:firebase-common:19.3.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/379ba7a5e62cc8a0e82b1f7d0b21ad5a/jetified-firebase-common-19.3.0/AndroidManifest.xml:26:9-30:39
+113            android:name="com.google.firebase.provider.FirebaseInitProvider"
+113-->[com.google.firebase:firebase-common:19.3.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/379ba7a5e62cc8a0e82b1f7d0b21ad5a/jetified-firebase-common-19.3.0/AndroidManifest.xml:27:13-77
+114            android:authorities="com.cameraworldapp.earth_cam.firebaseinitprovider"
+114-->[com.google.firebase:firebase-common:19.3.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/379ba7a5e62cc8a0e82b1f7d0b21ad5a/jetified-firebase-common-19.3.0/AndroidManifest.xml:28:13-72
+115            android:exported="false"
+115-->[com.google.firebase:firebase-common:19.3.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/379ba7a5e62cc8a0e82b1f7d0b21ad5a/jetified-firebase-common-19.3.0/AndroidManifest.xml:29:13-37
+116            android:initOrder="100" />
+116-->[com.google.firebase:firebase-common:19.3.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/379ba7a5e62cc8a0e82b1f7d0b21ad5a/jetified-firebase-common-19.3.0/AndroidManifest.xml:30:13-36
+117
+118        <activity
+118-->[com.google.android.gms:play-services-base:17.1.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/6eb14f512292913515d869914807ad40/play-services-base-17.1.0/AndroidManifest.xml:23:9-26:75
+119            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+119-->[com.google.android.gms:play-services-base:17.1.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/6eb14f512292913515d869914807ad40/play-services-base-17.1.0/AndroidManifest.xml:24:13-79
+120            android:exported="false"
+120-->[com.google.android.gms:play-services-base:17.1.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/6eb14f512292913515d869914807ad40/play-services-base-17.1.0/AndroidManifest.xml:25:13-37
+121            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+121-->[com.google.android.gms:play-services-base:17.1.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/6eb14f512292913515d869914807ad40/play-services-base-17.1.0/AndroidManifest.xml:26:13-72
+122
+123        <meta-data
+123-->[com.google.android.gms:play-services-basement:17.0.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/7dd1c47d99317bde004103176f73c186/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+124            android:name="com.google.android.gms.version"
+124-->[com.google.android.gms:play-services-basement:17.0.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/7dd1c47d99317bde004103176f73c186/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+125            android:value="@integer/google_play_services_version" />
+125-->[com.google.android.gms:play-services-basement:17.0.0] /Users/emran/.gradle/caches/transforms-2/files-2.1/7dd1c47d99317bde004103176f73c186/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+126    </application>
+127
+128</manifest>

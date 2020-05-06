@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+//import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class Cams {
   int id;
@@ -15,7 +15,6 @@ class Cams {
   String imageUrl;
   Map<String, dynamic> position;
   GeoPoint geoPoint;
-  LatLng latLng;
 
   Cams({
     this.id,
@@ -31,7 +30,6 @@ class Cams {
     this.camType,
     this.updatedAt,
     this.geoPoint,
-    this.latLng,
   });
 
   Map<String, dynamic> toMap() {

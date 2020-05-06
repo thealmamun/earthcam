@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:earth_cam/model/cams.dart';
-import 'package:earth_cam/pages/launch_video.dart';
 import 'package:earth_cam/pages/search_cams.dart';
+import 'package:earth_cam/pages/server_video_player.dart';
 import 'package:earth_cam/pages/yt_video_player.dart';
 import 'package:earth_cam/services/local_db.dart';
 import 'package:earth_cam/utils/constants.dart';
@@ -38,7 +38,7 @@ class _LiveVideosState extends State<LiveVideos> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => LaunchVideo(
+                  builder: (context) => ServerVideoPlayer(
                         url: snapshot.data['streamUrl'],
                       )));
         }
@@ -79,16 +79,16 @@ class _LiveVideosState extends State<LiveVideos> {
         backgroundColor: AppColor.kAppBarBackgroundColor,
         actions: [
 
-          GestureDetector(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.do_not_disturb_off,
-                  color: AppColor.kThemeColor,
-                  size: 25,
-                ),
-              ),
-              onTap: null),
+//          GestureDetector(
+//              child: Padding(
+//                padding: const EdgeInsets.all(8.0),
+//                child: Icon(
+//                  Icons.do_not_disturb_off,
+//                  color: AppColor.kThemeColor,
+//                  size: 25,
+//                ),
+//              ),
+//              onTap: null),
         ],
         leading: GestureDetector(
           child: Padding(

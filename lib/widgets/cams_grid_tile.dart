@@ -1,6 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:earth_cam/utils/constants.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:neumorphic/neumorphic.dart';
@@ -88,13 +88,22 @@ class _CamsGridTileState extends State<CamsGridTile> {
             children: <Widget>[
               Positioned.fill(
                 child: Container(
-                  child: CachedNetworkImage(
-                    fit: BoxFit.fill,
+                  child: FancyShimmerImage(
+                    boxFit: BoxFit.fill,
                     imageUrl: widget.imageUrl,
-                    placeholder: (context, url) =>
-                        Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    errorWidget: Icon(Icons.error),
                   ),
+//                  child: CachedNetworkImage(
+//                    fit: BoxFit.fill,
+//                    imageUrl: widget.imageUrl,
+//                    placeholder: (context, url) =>
+//                        Center(child: Shimmer.fromColors(
+//                          child: Container(),
+//                          baseColor: Colors.grey[300],
+//                          highlightColor: Colors.grey[100],
+//                        )),
+//                    errorWidget: (context, url, error) => Icon(Icons.error),
+//                  ),
                 ),
               ),
               Positioned.fill(

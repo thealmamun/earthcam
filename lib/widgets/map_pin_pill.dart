@@ -1,5 +1,5 @@
 import 'package:earth_cam/model/cams.dart';
-import 'package:earth_cam/pages/launch_video.dart';
+import 'package:earth_cam/pages/server_video_player.dart';
 import 'package:earth_cam/pages/yt_video_player.dart';
 import 'package:earth_cam/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -47,77 +47,69 @@ class MapPinPillComponentState extends State<MapPinPillComponent> {
                 width: 70,
                 height: 70,
                 margin: EdgeInsets.only(left: 10),
-                child: ClipOval(
-                    child: Image.network(widget.currentlySelectedPin.imageUrl,
-                        fit: BoxFit.cover)),
+                child: Image.network(widget.currentlySelectedPin.imageUrl,
+                    fit: BoxFit.cover),
               ),
               Expanded(
                 child: Container(
-                  child: InkWell(
-                    onTap: () {
-                      setState(() {
-                        widget.pinPillPosition = -200;
-                      });
-                    },
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  widget.currentlySelectedPin.address,
-                                  textAlign: TextAlign.start,
-                                  style: TextStyle(color: Colors.white70),
-                                ),
-                              ),
-                            ),
-                            Padding(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    widget.pinPillPosition = -200;
-                                  });
-                                },
-                                child: Icon(Icons.cancel,color: Colors.white70,),
+                              child: Text(
+                                widget.currentlySelectedPin.camTitle,
+                                textAlign: TextAlign.start,
+                                style: TextStyle(color: Colors.white70),
                               ),
                             ),
-                          ],
-                        ),
-                        Expanded(
-                          child: FlatButton.icon(
-                              onPressed: () {
-                                print(widget.currentlySelectedPin.streamUrl);
-                                if (widget.currentlySelectedPin.category ==
-                                    'Youtube') {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => YtVideoPlayerPage(
-                                                url: widget.currentlySelectedPin
-                                                    .streamUrl,
-                                              )));
-                                } else {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => LaunchVideo(
-                                                url: widget.currentlySelectedPin
-                                                    .streamUrl,
-                                              )));
-                                }
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  widget.pinPillPosition = -200;
+                                });
                               },
-                              icon: Icon(Icons.play_arrow,color: Colors.white70,),
-                              label: Text('Play',style: TextStyle(color: Colors.white70,),)),
-                        )
-                      ],
-                    ),
+                              child: Icon(Icons.cancel,color: Colors.white70,),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Expanded(
+                        child: FlatButton.icon(
+                            onPressed: () {
+                              print(widget.currentlySelectedPin.streamUrl);
+                              if (widget.currentlySelectedPin.category ==
+                                  'Youtube') {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => YtVideoPlayerPage(
+                                              url: widget.currentlySelectedPin
+                                                  .streamUrl,
+                                            )));
+                              } else {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ServerVideoPlayer(
+                                              url: widget.currentlySelectedPin
+                                                  .streamUrl,
+                                            )));
+                              }
+                            },
+                            icon: Icon(Icons.play_arrow,color: Colors.white70,),
+                            label: Text('Play',style: TextStyle(color: Colors.white70,),)),
+                      )
+                    ],
                   ),
                 ),
               ),

@@ -1,7 +1,8 @@
 import 'package:earth_cam/pages/category_list.dart';
 import 'package:earth_cam/pages/favorites.dart';
 import 'package:earth_cam/pages/live_videos.dart';
-import 'package:earth_cam/pages/map_view.dart';
+//import 'package:earth_cam/pages/map_view.dart';
+import 'package:earth_cam/pages/map_view_new.dart';
 import 'package:earth_cam/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -25,7 +26,7 @@ class _Home2State extends State<Home2>{
   }
 
   List<Widget> _buildScreens() {
-    return [LiveVideos(), MapView(), CategoryList(), Favorites()];
+    return [LiveVideos(), MapViewNew(), CategoryList(), Favorites()];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {

@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:earth_cam/model/cams.dart';
-import 'package:earth_cam/pages/launch_video.dart';
+import 'package:earth_cam/pages/server_video_player.dart';
 import 'package:earth_cam/pages/yt_video_player.dart';
 import 'package:earth_cam/services/local_db.dart';
 import 'package:earth_cam/utils/constants.dart';
@@ -50,7 +50,7 @@ class _CategoryCamsState extends State<CategoryCams> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => LaunchVideo(
+                  builder: (context) => ServerVideoPlayer(
                         url: snapshot.data['streamUrl'],
                       )));
         }

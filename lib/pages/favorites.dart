@@ -1,6 +1,6 @@
 import 'package:earth_cam/model/cams.dart';
-import 'package:earth_cam/pages/launch_video.dart';
 import 'package:earth_cam/pages/search_cams.dart';
+import 'package:earth_cam/pages/server_video_player.dart';
 import 'package:earth_cam/pages/yt_video_player.dart';
 import 'package:earth_cam/services/local_db.dart';
 import 'package:earth_cam/utils/constants.dart';
@@ -64,7 +64,7 @@ class _FavoritesState extends State<Favorites> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => LaunchVideo(
+                                  builder: (context) => ServerVideoPlayer(
                                         url: e.streamUrl,
                                       )));
                         }
