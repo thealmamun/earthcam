@@ -34,7 +34,7 @@ class _MapViewNewState extends State<MapViewNew> {
     geoPoint: GeoPoint(0.0, 0.0),
     imageUrl: '',
     streamUrl: '',
-    category: '',
+    country: '',
   );
   List<Marker> markers = [];
 
@@ -43,7 +43,9 @@ class _MapViewNewState extends State<MapViewNew> {
     // TODO: implement initState
     super.initState();
 //    _buildMarkersOnMap();
-    getCurrentLocation();
+    Future.delayed(const Duration(milliseconds: 500), () {
+      getCurrentLocation();
+    });
   }
 
   getCurrentLocation() async {
@@ -65,13 +67,16 @@ class _MapViewNewState extends State<MapViewNew> {
         geoPoint: GeoPoint(0.0, 0.0),
         imageUrl: '',
         streamUrl: '',
-        category: '',
+        country: '',
       );
       pinPillPosition = -200;
     });
   }
 
   _buildMarkersOnMap() {
+//    Future.delayed(const Duration(milliseconds: 500), () {
+//
+//    });
     mapData.forEach((element) {
       for (var i = 0; i < element.length; i++) {
         var marker = Marker(
@@ -84,7 +89,7 @@ class _MapViewNewState extends State<MapViewNew> {
             camTitle: element[i].camTitle,
             address: element[i].address,
             streamUrl: element[i].streamUrl,
-            category: element[i].category,
+            country: element[i].country,
           ),
         );
         markers.add(marker);
@@ -95,14 +100,14 @@ class _MapViewNewState extends State<MapViewNew> {
   }
 
   Container _buildCustomMarker(
-      {String imageUrl, camTitle, address, streamUrl, category}) {
+      {String imageUrl, camTitle, address, streamUrl, country}) {
     return Container(
       child: marker(
           imageUrl: imageUrl,
           camTitle: camTitle,
           address: address,
           streamUrl: streamUrl,
-          category: category),
+          country: country),
     );
   }
 
@@ -215,7 +220,7 @@ class _MapViewNewState extends State<MapViewNew> {
   }
 
   GestureDetector marker(
-      {String imageUrl, camTitle, address, streamUrl, category}) {
+      {String imageUrl, camTitle, address, streamUrl, country}) {
     return GestureDetector(
       onTap: () {
         print(address);
@@ -225,7 +230,7 @@ class _MapViewNewState extends State<MapViewNew> {
             camTitle: camTitle,
             imageUrl: imageUrl,
             streamUrl: streamUrl,
-            category: category,
+            country: country,
           );
           pinPillPosition = 0;
 //                _buildMarkersOnMap();
@@ -275,7 +280,7 @@ class _MapViewNewState extends State<MapViewNew> {
               'id': 'mapbox.mapbox-streets-v8'
             },
           ),
-          MarkerLayerOptions(markers: _buildMarkersOnMap()),
+          MarkerLayerOptions(markers: _buildMarkersOnMap(),),
 //          MarkerLayerOptions(markers: _buildMarkersOnMap()),
         ]);
   }
@@ -296,44 +301,35 @@ class _MapViewNewState extends State<MapViewNew> {
         backgroundColor: AppColor.kAppBarBackgroundColor,
         actions: [
           GestureDetector(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.do_not_disturb_off,
-                  color: AppColor.kThemeColor,
-                  size: 25,
-                ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(
+                FontAwesomeIcons.searchLocation,
+                size: 25,
               ),
-              onTap: null),
-        ],
-        leading: GestureDetector(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Icon(
-              FontAwesomeIcons.searchLocation,
-              size: 25,
             ),
-          ),
-          onTap: () {
-            Navigator.push(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (context, animation, secondaryAnimation) {
-                  return SearchCams();
-                },
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) {
-                  return FadeTransition(
-                    opacity: animation,
-                    child: child,
-                  );
-                },
-              ),
-            );
+            onTap: () {
+              Navigator.push(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) {
+                    return SearchCams();
+                  },
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    return FadeTransition(
+                      opacity: animation,
+                      child: child,
+                    );
+                  },
+                ),
+              );
 //              Navigator.push(context,
 //                  MaterialPageRoute(builder: (context) => SearchCams()));
-          },
-        ),
+            },
+          ),
+        ],
+        leading: Icon(Icons.camera,color: AppColor.kThemeColor,size: 30,),
       ),
       body: Stack(
         children: <Widget>[

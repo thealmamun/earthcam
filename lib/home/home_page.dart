@@ -1,4 +1,5 @@
 import 'package:earth_cam/pages/category_list.dart';
+import 'package:earth_cam/pages/country_list.dart';
 import 'package:earth_cam/pages/favorites.dart';
 import 'package:earth_cam/pages/live_videos.dart';
 //import 'package:earth_cam/pages/map_view.dart';
@@ -21,7 +22,7 @@ class _HomePageState extends State<HomePage> {
       iconData: FontAwesomeIcons.globe,
       size: 30,
       color: Colors.white,
-      page: CategoryList(),
+      page: CountryList(),
     ),
     MyRoute(
       iconData: Icons.videocam,

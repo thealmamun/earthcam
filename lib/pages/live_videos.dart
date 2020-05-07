@@ -78,7 +78,32 @@ class _LiveVideosState extends State<LiveVideos> {
         ),
         backgroundColor: AppColor.kAppBarBackgroundColor,
         actions: [
-
+          GestureDetector(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(
+                FontAwesomeIcons.searchLocation,
+                size: 25,
+              ),
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) {
+                    return SearchCams();
+                  },
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    return FadeTransition(
+                      opacity: animation,
+                      child: child,
+                    );
+                  },
+                ),
+              );
+            },
+          ),
 //          GestureDetector(
 //              child: Padding(
 //                padding: const EdgeInsets.all(8.0),
@@ -90,32 +115,7 @@ class _LiveVideosState extends State<LiveVideos> {
 //              ),
 //              onTap: null),
         ],
-        leading: GestureDetector(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Icon(
-              FontAwesomeIcons.searchLocation,
-              size: 25,
-            ),
-          ),
-          onTap: () {
-            Navigator.push(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (context, animation, secondaryAnimation) {
-                  return SearchCams();
-                },
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) {
-                  return FadeTransition(
-                    opacity: animation,
-                    child: child,
-                  );
-                },
-              ),
-            );
-          },
-        ),
+
 //        leading: IconButton(
 //          icon: Icon(Icons.camera),
 //          onPressed: () => scaffoldKey.currentState.openDrawer(),

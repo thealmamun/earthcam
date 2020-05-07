@@ -87,7 +87,7 @@ class MapPinPillComponentState extends State<MapPinPillComponent> {
                         child: FlatButton.icon(
                             onPressed: () {
                               print(widget.currentlySelectedPin.streamUrl);
-                              if (widget.currentlySelectedPin.category ==
+                              if (widget.currentlySelectedPin.camType ==
                                   'Youtube') {
                                 Navigator.push(
                                     context,

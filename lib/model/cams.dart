@@ -7,7 +7,7 @@ class Cams {
   String camTitle;
   String address;
   String streamUrl;
-  String category;
+  String country;
   String camType;
   String createdAt;
   String updatedAt;
@@ -25,7 +25,7 @@ class Cams {
     this.imageUrl,
     this.createdAt,
     this.position,
-    this.category,
+    this.country,
     this.streamUrl,
     this.camType,
     this.updatedAt,

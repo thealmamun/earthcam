@@ -86,6 +86,7 @@ class _FavoritesState extends State<Favorites> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 10,
         iconTheme: IconThemeData(color: AppColor.kThemeColor),
         centerTitle: true,
@@ -124,16 +125,6 @@ class _FavoritesState extends State<Favorites> {
 //                  MaterialPageRoute(builder: (context) => SearchCams()));
             },
           ),
-          GestureDetector(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.do_not_disturb_off,
-                  color: AppColor.kThemeColor,
-                  size: 25,
-                ),
-              ),
-              onTap: null),
         ],
       ),
       body: Container(
