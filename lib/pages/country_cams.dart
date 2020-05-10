@@ -1,16 +1,14 @@
 import 'dart:ui';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:earth_cam/model/cams.dart';
-import 'package:earth_cam/pages/search_cams.dart';
-import 'package:earth_cam/pages/server_video_player.dart';
-import 'package:earth_cam/pages/yt_video_player.dart';
+import 'package:earth_cam/pages/general_video_player.dart';
+import 'package:earth_cam/pages/youtube_video_player.dart';
 import 'package:earth_cam/services/local_db.dart';
+import 'package:earth_cam/utils/app_configure.dart';
 import 'package:earth_cam/utils/constants.dart';
 import 'package:earth_cam/widgets/cams_grid_tile.dart';
 import 'package:earth_cam/widgets/no_data_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CountryCams extends StatefulWidget {
@@ -47,6 +45,7 @@ class _CountryCamsState extends State<CountryCams> {
               MaterialPageRoute(
                   builder: (context) => YtVideoPlayerPage(
                         url: snapshot.data['streamUrl'],
+                        title: snapshot.data['camTitle'],
                       )));
         } else {
           Navigator.push(
@@ -54,6 +53,7 @@ class _CountryCamsState extends State<CountryCams> {
               MaterialPageRoute(
                   builder: (context) => ServerVideoPlayer(
                         url: snapshot.data['streamUrl'],
+                    title: snapshot.data['camTitle'],
                       )));
         }
       },
@@ -84,41 +84,19 @@ class _CountryCamsState extends State<CountryCams> {
           automaticallyImplyLeading: false,
           iconTheme: IconThemeData(color: AppColor.kThemeColor),
           centerTitle: true,
-          title: Text(
-            widget.selectedCountry,
-            style: GoogleFonts.righteous(
-                fontSize: 30, color: AppColor.kThemeColor),
+          title: SizedBox(
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                widget.selectedCountry + ' Cams',
+                style: GoogleFonts.righteous(
+                    fontSize: 20, color: AppColor.kThemeColor),
+              ),
+            ),
           ),
           backgroundColor: Color(0xff28292b),
           actions: [
-            GestureDetector(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  FontAwesomeIcons.searchLocation,
-                  size: 25,
-                ),
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimation) {
-                      return SearchCams();
-                    },
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      return FadeTransition(
-                        opacity: animation,
-                        child: child,
-                      );
-                    },
-                  ),
-                );
-//              Navigator.push(context,
-//                  MaterialPageRoute(builder: (context) => SearchCams()));
-              },
-            ),
+            AppConfig.appBarSearchButton(context),
           ],
           leading: InkWell(
             onTap: (){
@@ -127,7 +105,7 @@ class _CountryCamsState extends State<CountryCams> {
             child: Center(
               child: Text(
                 widget.selectedCountryFlag,
-                style: TextStyle(fontSize: 30),
+                style: TextStyle(fontSize: 20),
               ),
             ),
           )),

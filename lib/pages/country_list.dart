@@ -1,16 +1,12 @@
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:earth_cam/pages/category_cams.dart';
 import 'package:earth_cam/pages/country_cams.dart';
-import 'package:earth_cam/pages/search_cams.dart';
+import 'package:earth_cam/utils/app_configure.dart';
 import 'package:earth_cam/utils/constants.dart';
-import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:neumorphic/neumorphic.dart';
-import 'package:shimmer/shimmer.dart';
 
 class CountryList extends StatefulWidget {
   @override
@@ -19,7 +15,6 @@ class CountryList extends StatefulWidget {
 
 class _CountryListState extends State<CountryList> {
   Stream countryList;
-  bool _enabled = true;
 
   Widget _countryList(DocumentSnapshot doc) {
     return InkWell(
@@ -141,12 +136,6 @@ class _CountryListState extends State<CountryList> {
   void initState() {
     // TODO: implement initState
     super.initState();
-//    countryList = Firestore.instance.collection('countries').snapshots();
-//    Future.delayed(const Duration(milliseconds: 500), () {
-//      setState(() {
-//        _enabled = false;
-//      });
-//    });
   }
 
   @override
@@ -154,55 +143,18 @@ class _CountryListState extends State<CountryList> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        elevation: 10,
         iconTheme: IconThemeData(color: AppColor.kThemeColor),
         centerTitle: true,
         title: Text(
-          'Camera World',
-          style:
-              GoogleFonts.righteous(fontSize: 30, color: AppColor.kThemeColor),
+          AppConfig.appName,
+          style: AppConfig.appNameStyle,
         ),
-        backgroundColor: Color(0xff28292b),
+        backgroundColor: AppColor.kAppBarBackgroundColor,
         actions: [
-          GestureDetector(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Icon(
-                FontAwesomeIcons.searchLocation,
-                size: 25,
-              ),
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                PageRouteBuilder(
-                  pageBuilder: (context, animation, secondaryAnimation) {
-                    return SearchCams();
-                  },
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(
-                      opacity: animation,
-                      child: child,
-                    );
-                  },
-                ),
-              );
-//              Navigator.push(context,
-//                  MaterialPageRoute(builder: (context) => SearchCams()));
-            },
-          ),
-//          GestureDetector(
-//              child: Padding(
-//                padding: const EdgeInsets.all(8.0),
-//                child: Icon(
-//                  Icons.do_not_disturb_off,
-//                  color: AppColor.kThemeColor,
-//                  size: 25,
-//                ),
-//              ),
-//              onTap: null),
+          AppConfig.appBarSearchButton(context),
         ],
-        leading: Icon(Icons.camera,color: AppColor.kThemeColor,size: 30,),
+        leading: AppConfig.appLeadingIcon,
       ),
       body: Center(
         child: Container(

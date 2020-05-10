@@ -14,10 +14,11 @@
         android:label="earth_cam"
         android:icon="@mipmap/ic_launcher">
 
+<!--        <meta-data android:name="com.google.android.geo.API_KEY"-->
+<!--            android:value="AIzaSyB_ABRvlOKF7_HYfUgZDF3EpfcrWRdN2-I"/>-->
+
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyB_ABRvlOKF7_HYfUgZDF3EpfcrWRdN2-I"/>
-
-
+            android:value="AIzaSyB_MhV9ApdIZxuyYL1zZA57ngJC-wPi5r0"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -46,6 +47,10 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="FLUTTER_NOTIFICATION_CLICK" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.

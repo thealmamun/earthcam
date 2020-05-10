@@ -1,15 +1,15 @@
 import 'dart:ui';
 
 import 'package:earth_cam/model/cams.dart';
-import 'package:earth_cam/pages/launch_video.dart';
-import 'package:earth_cam/pages/yt_video_player.dart';
+import 'package:earth_cam/pages/general_video_player.dart';
+import 'package:earth_cam/pages/youtube_video_player.dart';
 import 'package:earth_cam/services/database.dart';
 import 'package:earth_cam/services/local_db.dart';
+import 'package:earth_cam/utils/app_configure.dart';
 import 'package:earth_cam/utils/constants.dart';
 import 'package:earth_cam/widgets/cams_grid_tile.dart';
 import 'package:earth_cam/widgets/no_data_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SearchCams extends StatefulWidget {
   @override
@@ -17,7 +17,6 @@ class SearchCams extends StatefulWidget {
 }
 
 class _SearchCamsState extends State<SearchCams> {
-
   var queryResultSet = [];
   var tempSearchStore = [];
 
@@ -48,18 +47,24 @@ class _SearchCamsState extends State<SearchCams> {
         print('tapped');
         if (data['camType'] == 'Youtube') {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => YtVideoPlayerPage(
-                        url: data['streamUrl'],
-                      )));
+            context,
+            MaterialPageRoute(
+              builder: (context) => YtVideoPlayerPage(
+                url: data['streamUrl'],
+                title: data['camTitle'],
+              ),
+            ),
+          );
         } else {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => LaunchVideo(
-                        url: data['streamUrl'],
-                      )));
+            context,
+            MaterialPageRoute(
+              builder: (context) => ServerVideoPlayer(
+                url: data['streamUrl'],
+                title: data['camTitle'],
+              ),
+            ),
+          );
         }
       },
       onPressedFavourite: () {
@@ -82,9 +87,6 @@ class _SearchCamsState extends State<SearchCams> {
         tempSearchStore = [];
       });
     }
-
-//    var capitalizedValue =
-//        value.substring(0, 1).toUpperCase() + value.substring(1);
 
     if (queryResultSet.length == 0 && value.length == 1) {
       searchByName(value).then((docs) {
@@ -127,25 +129,16 @@ class _SearchCamsState extends State<SearchCams> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 10,
         iconTheme: IconThemeData(color: AppColor.kThemeColor),
         centerTitle: true,
         title: Text(
-          'Search',
-          style:
-              GoogleFonts.righteous(fontSize: 30, color: AppColor.kThemeColor),
+          'Search..',
+          style: AppConfig.appNameStyle,
         ),
-        backgroundColor: Color(0xff28292b),
+        backgroundColor: AppColor.kAppBarBackgroundColor,
         actions: [
-          GestureDetector(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.do_not_disturb_off,
-                  color: AppColor.kThemeColor,
-                  size: 25,
-                ),
-              ),
-              onTap: null),
+
         ],
       ),
       body: Center(

@@ -1,6 +1,6 @@
 import 'package:earth_cam/model/cams.dart';
-import 'package:earth_cam/pages/server_video_player.dart';
-import 'package:earth_cam/pages/yt_video_player.dart';
+import 'package:earth_cam/pages/general_video_player.dart';
+import 'package:earth_cam/pages/youtube_video_player.dart';
 import 'package:earth_cam/utils/constants.dart';
 import 'package:flutter/material.dart';
 

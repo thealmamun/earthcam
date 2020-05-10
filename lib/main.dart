@@ -1,4 +1,4 @@
-import 'package:earth_cam/splash/splash_screen.dart';
+import 'package:earth_cam/pages/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {

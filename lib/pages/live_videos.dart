@@ -1,14 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:earth_cam/model/cams.dart';
-import 'package:earth_cam/pages/search_cams.dart';
-import 'package:earth_cam/pages/server_video_player.dart';
-import 'package:earth_cam/pages/yt_video_player.dart';
+import 'package:earth_cam/pages/general_video_player.dart';
+import 'package:earth_cam/pages/youtube_video_player.dart';
 import 'package:earth_cam/services/local_db.dart';
+import 'package:earth_cam/utils/app_configure.dart';
 import 'package:earth_cam/utils/constants.dart';
 import 'package:earth_cam/widgets/cams_grid_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class LiveVideos extends StatefulWidget {
   @override
@@ -33,6 +31,7 @@ class _LiveVideosState extends State<LiveVideos> {
               MaterialPageRoute(
                   builder: (context) => YtVideoPlayerPage(
                         url: snapshot.data['streamUrl'],
+                        title: snapshot.data['camTitle'],
                       )));
         } else {
           Navigator.push(
@@ -40,6 +39,7 @@ class _LiveVideosState extends State<LiveVideos> {
               MaterialPageRoute(
                   builder: (context) => ServerVideoPlayer(
                         url: snapshot.data['streamUrl'],
+                      title: snapshot.data['camTitle'],
                       )));
         }
       },
@@ -72,62 +72,21 @@ class _LiveVideosState extends State<LiveVideos> {
         iconTheme: IconThemeData(color: AppColor.kThemeColor),
         centerTitle: true,
         title: Text(
-          'Camera World',
-          style:
-              GoogleFonts.righteous(fontSize: 30, color: AppColor.kThemeColor),
+          'Live Cams',
+          style: AppConfig.appNameStyle,
         ),
         backgroundColor: AppColor.kAppBarBackgroundColor,
         actions: [
-          GestureDetector(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Icon(
-                FontAwesomeIcons.searchLocation,
-                size: 25,
-              ),
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                PageRouteBuilder(
-                  pageBuilder: (context, animation, secondaryAnimation) {
-                    return SearchCams();
-                  },
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(
-                      opacity: animation,
-                      child: child,
-                    );
-                  },
-                ),
-              );
-            },
-          ),
-//          GestureDetector(
-//              child: Padding(
-//                padding: const EdgeInsets.all(8.0),
-//                child: Icon(
-//                  Icons.do_not_disturb_off,
-//                  color: AppColor.kThemeColor,
-//                  size: 25,
-//                ),
-//              ),
-//              onTap: null),
+          AppConfig.appBarSearchButton(context),
         ],
-
-//        leading: IconButton(
-//          icon: Icon(Icons.camera),
-//          onPressed: () => scaffoldKey.currentState.openDrawer(),
-//          tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-//        ),
+        leading: AppConfig.appLeadingIcon,
       ),
       body: Center(
         child: Container(
           color: AppColor.kBackgroundColor,
           child: StreamBuilder<QuerySnapshot>(
                   stream: Firestore.instance
-                      .collection('maps')
+                      .collection('cams')
                       .orderBy('updatedAt', descending: true)
                       .snapshots(),
                   builder: (context, snapshot) {

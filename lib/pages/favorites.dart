@@ -1,14 +1,12 @@
 import 'package:earth_cam/model/cams.dart';
-import 'package:earth_cam/pages/search_cams.dart';
-import 'package:earth_cam/pages/server_video_player.dart';
-import 'package:earth_cam/pages/yt_video_player.dart';
+import 'package:earth_cam/pages/general_video_player.dart';
+import 'package:earth_cam/pages/youtube_video_player.dart';
 import 'package:earth_cam/services/local_db.dart';
+import 'package:earth_cam/utils/app_configure.dart';
 import 'package:earth_cam/utils/constants.dart';
 import 'package:earth_cam/widgets/cams_grid_tile.dart';
 import 'package:earth_cam/widgets/no_data_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Favorites extends StatefulWidget {
   @override
@@ -59,6 +57,7 @@ class _FavoritesState extends State<Favorites> {
                               MaterialPageRoute(
                                   builder: (context) => YtVideoPlayerPage(
                                         url: e.streamUrl,
+                                        title: e.camTitle,
                                       )));
                         } else {
                           Navigator.push(
@@ -66,6 +65,7 @@ class _FavoritesState extends State<Favorites> {
                               MaterialPageRoute(
                                   builder: (context) => ServerVideoPlayer(
                                         url: e.streamUrl,
+                                      title: e.camTitle,
                                       )));
                         }
                       },
@@ -92,91 +92,32 @@ class _FavoritesState extends State<Favorites> {
         centerTitle: true,
         title: Text(
           'Favourites',
-          style:
-              GoogleFonts.righteous(fontSize: 30, color: AppColor.kThemeColor),
+          style: AppConfig.appNameStyle,
         ),
         backgroundColor: AppColor.kAppBarBackgroundColor,
         actions: [
-          GestureDetector(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Icon(
-                FontAwesomeIcons.searchLocation,
-                size: 25,
-              ),
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                PageRouteBuilder(
-                  pageBuilder: (context, animation, secondaryAnimation) {
-                    return SearchCams();
-                  },
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(
-                      opacity: animation,
-                      child: child,
-                    );
-                  },
-                ),
-              );
-//              Navigator.push(context,
-//                  MaterialPageRoute(builder: (context) => SearchCams()));
-            },
-          ),
+          AppConfig.appBarSearchButton(context),
         ],
+        leading: AppConfig.appLeadingIcon,
       ),
       body: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          alignment: Alignment.center,
-          color: AppColor.kBackgroundColor,
-          child: FutureBuilder(
-            future: dbHelper.getCams(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                if(snapshot.data.length == 0) {
-                  return NoDataWidget(text:'No Favourite Cams');
-                }
-                return _mapList(snapshot.data, context);
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        alignment: Alignment.center,
+        color: AppColor.kBackgroundColor,
+        child: FutureBuilder(
+          future: dbHelper.getCams(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              if (snapshot.data.length == 0) {
+                return NoDataWidget(text: 'No Favourite Cams');
               }
-              return CircularProgressIndicator();
-            },
-          )),
-      drawer: Drawer(
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              child: Text('Drawer Header'),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-            ),
-            ListTile(
-              title: Text('Item 1'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              title: Text('Item 2'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-          ],
+              return _mapList(snapshot.data, context);
+            }
+            return CircularProgressIndicator();
+          },
         ),
       ),
     );
   }
-
 }
-
-
-
-
