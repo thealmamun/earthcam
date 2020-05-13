@@ -87,7 +87,7 @@ class _SplashScreenState extends State<SplashScreen>
                   ),
                   DelayedAnimation(
                     child: Text(
-                      "Hi There",
+                      "Welcome to",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 35.0,
@@ -97,7 +97,7 @@ class _SplashScreenState extends State<SplashScreen>
                   ),
                   DelayedAnimation(
                     child: Text(
-                      "I'm "+ AppConfig.appName,
+                      AppConfig.appName,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 35.0,
@@ -167,9 +167,9 @@ class _SplashScreenState extends State<SplashScreen>
           child: GestureDetector(
             onTap: () {
               // ignore: unnecessary_statements
-              signInAnonymously;
+//              signInAnonymously;
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => HomePage()));
+                  .pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
             },
             child: Text(
               'Live Cams',
