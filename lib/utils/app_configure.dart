@@ -17,6 +17,8 @@ class AppConfig {
   static const mapBoxAccessToken =
       'pk.eyJ1IjoibXJuOTIiLCJhIjoiY2s5ZWsxaG9sMDJoYjNoczByODVoZ2E4MSJ9.D7V4rRBacLMvv7t3oYQEeQ';
 
+  static const adUnitID = "ca-app-pub-3940256099942544/8135179316";
+
   static TextStyle appNameStyle = GoogleFonts.righteous(
     fontSize: 30,
     color: AppColor.kThemeColor,

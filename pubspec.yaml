@@ -67,6 +67,7 @@ dependencies:
   auto_animated: ^2.0.2
   firebase_messaging: ^6.0.13
   flutter_launcher_icons: ^0.7.5
+  flutter_native_admob: ^2.1.0
 
 flutter_icons:
   android: true

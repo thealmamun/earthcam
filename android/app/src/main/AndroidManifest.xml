@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="earth_cam"
+        android:label="Earth Cam"
         android:icon="@mipmap/ic_launcher">
 
 <!--        <meta-data android:name="com.google.android.geo.API_KEY"-->
@@ -19,6 +19,9 @@
 
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyB_MhV9ApdIZxuyYL1zZA57ngJC-wPi5r0"/>
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-6558139581290888~8308848255"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
