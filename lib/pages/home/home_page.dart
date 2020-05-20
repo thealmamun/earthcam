@@ -119,20 +119,20 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          new FlatButton(
-                            onPressed: () => Navigator.of(context).pop(false),
+                          FlatButton(
+                            onPressed: () => SystemNavigator.pop(),
                             child: new Text(
-                              'No',
+                              'Yes',
                               style: GoogleFonts.righteous(
                                 fontSize: 15,
                                 color: AppColor.kThemeColor,
                               ),
                             ),
                           ),
-                          new FlatButton(
-                            onPressed: () => SystemNavigator.pop(),
+                          FlatButton(
+                            onPressed: () => Navigator.of(context).pop(false),
                             child: new Text(
-                              'Yes',
+                              'No',
                               style: GoogleFonts.righteous(
                                 fontSize: 15,
                                 color: AppColor.kThemeColor,
