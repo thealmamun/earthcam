@@ -1,12 +1,16 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 🌎 Project imports:
 import 'package:earth_cam/model/cams.dart';
 import 'package:earth_cam/pages/general_video_player.dart';
 import 'package:earth_cam/pages/youtube_video_player.dart';
+import 'package:earth_cam/services/google_admob.dart';
 import 'package:earth_cam/services/local_db.dart';
 import 'package:earth_cam/utils/app_configure.dart';
 import 'package:earth_cam/utils/constants.dart';
 import 'package:earth_cam/widgets/cams_grid_tile.dart';
 import 'package:earth_cam/widgets/no_data_widget.dart';
-import 'package:flutter/material.dart';
 
 class Favorites extends StatefulWidget {
   @override
@@ -21,7 +25,6 @@ class _FavoritesState extends State<Favorites> {
 
 //  @override
 //  void initState() {
-//    // TODO: implement initState
 //    super.initState();
 ////    dbHelper = DBHelper();
 ////    DBHelper().getCams();
@@ -58,6 +61,7 @@ class _FavoritesState extends State<Favorites> {
                                   builder: (context) => YtVideoPlayerPage(
                                         url: e.streamUrl,
                                         title: e.camTitle,
+                                        imageUrl: e.imageUrl,
                                       )));
                         } else {
                           Navigator.push(
@@ -66,6 +70,7 @@ class _FavoritesState extends State<Favorites> {
                                   builder: (context) => ServerVideoPlayer(
                                         url: e.streamUrl,
                                       title: e.camTitle,
+                                    imageUrl: e.imageUrl,
                                       )));
                         }
                       },
@@ -80,6 +85,11 @@ class _FavoritesState extends State<Favorites> {
         ),
       ],
     );
+  }
+  @override
+  void initState() {
+    super.initState();
+    GoogleAdMob().showInterstitialAds();
   }
 
   @override

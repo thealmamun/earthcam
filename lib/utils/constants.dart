@@ -1,4 +1,6 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
 class AppColor{
   static const kThemeColor = Color(0xff64cf94);
   static const kTextColor = Colors.white70;

@@ -1,12 +1,18 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+// 🌎 Project imports:
 import 'package:earth_cam/model/cams.dart';
 import 'package:earth_cam/pages/general_video_player.dart';
 import 'package:earth_cam/pages/youtube_video_player.dart';
+import 'package:earth_cam/services/google_admob.dart';
 import 'package:earth_cam/services/local_db.dart';
 import 'package:earth_cam/utils/app_configure.dart';
 import 'package:earth_cam/utils/constants.dart';
 import 'package:earth_cam/widgets/cams_grid_tile.dart';
-import 'package:flutter/material.dart';
 
 class LiveVideos extends StatefulWidget {
   @override
@@ -32,6 +38,7 @@ class _LiveVideosState extends State<LiveVideos> {
                   builder: (context) => YtVideoPlayerPage(
                         url: snapshot.data['streamUrl'],
                         title: snapshot.data['camTitle'],
+                        imageUrl: snapshot.data['imageUrl'],
                       )));
         } else {
           Navigator.push(
@@ -39,7 +46,8 @@ class _LiveVideosState extends State<LiveVideos> {
               MaterialPageRoute(
                   builder: (context) => ServerVideoPlayer(
                         url: snapshot.data['streamUrl'],
-                      title: snapshot.data['camTitle'],
+                        title: snapshot.data['camTitle'],
+                        imageUrl: snapshot.data['imageUrl'],
                       )));
         }
       },
@@ -58,8 +66,8 @@ class _LiveVideosState extends State<LiveVideos> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    GoogleAdMob().showInterstitialAds();
     dbHelper = DBHelper();
   }
 
@@ -83,37 +91,36 @@ class _LiveVideosState extends State<LiveVideos> {
       ),
       body: Center(
         child: Container(
-          color: AppColor.kBackgroundColor,
-          child: StreamBuilder<QuerySnapshot>(
-                  stream: Firestore.instance
-                      .collection('cams')
-                      .orderBy('updatedAt', descending: true)
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return Center(
-                        child: Container(
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: GridView.count(
-                                  crossAxisCount: 2,
-                                  childAspectRatio: 1.0,
-                                  mainAxisSpacing: 4.0,
-                                  crossAxisSpacing: 4.0,
-                                  children: snapshot.data.documents
-                                      .map((doc) => _mapList(doc))
-                                      .toList(),
-                                ),
+            color: AppColor.kBackgroundColor,
+            child: StreamBuilder<QuerySnapshot>(
+                stream: Firestore.instance
+                    .collection('cams')
+                    .orderBy('updatedAt', descending: true)
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Center(
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: GridView.count(
+                                crossAxisCount: 2,
+                                childAspectRatio: 1.0,
+                                mainAxisSpacing: 4.0,
+                                crossAxisSpacing: 4.0,
+                                children: snapshot.data.documents
+                                    .map((doc) => _mapList(doc))
+                                    .toList(),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      );
-                    } else
-                      return Center(child: CircularProgressIndicator());
-                  })
-        ),
+                      ),
+                    );
+                  } else
+                    return Center(child: CircularProgressIndicator());
+                })),
       ),
 //      drawer: Drawer(
 //        child: ListView(

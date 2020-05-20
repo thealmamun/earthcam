@@ -1,13 +1,18 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:persistent_bottom_nav_bar/models/persisten-bottom-nav-item.widget.dart';
+import 'package:persistent_bottom_nav_bar/models/persistent-nav-bar-scaffold.widget.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+
+// 🌎 Project imports:
 import 'package:earth_cam/pages/country_list.dart';
 import 'package:earth_cam/pages/favorites.dart';
 import 'package:earth_cam/pages/live_videos.dart';
 import 'package:earth_cam/pages/map_view_new.dart';
 import 'package:earth_cam/utils/constants.dart';
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:persistent_bottom_nav_bar/models/persisten-bottom-nav-item.widget.dart';
-import 'package:persistent_bottom_nav_bar/models/persistent-nav-bar-scaffold.widget.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class Home2 extends StatefulWidget {
   @override

@@ -1,15 +1,20 @@
+// 🎯 Dart imports:
 import 'dart:ui';
 
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 🌎 Project imports:
 import 'package:earth_cam/model/cams.dart';
 import 'package:earth_cam/pages/general_video_player.dart';
 import 'package:earth_cam/pages/youtube_video_player.dart';
 import 'package:earth_cam/services/database.dart';
+import 'package:earth_cam/services/google_admob.dart';
 import 'package:earth_cam/services/local_db.dart';
 import 'package:earth_cam/utils/app_configure.dart';
 import 'package:earth_cam/utils/constants.dart';
 import 'package:earth_cam/widgets/cams_grid_tile.dart';
 import 'package:earth_cam/widgets/no_data_widget.dart';
-import 'package:flutter/material.dart';
 
 class SearchCams extends StatefulWidget {
   @override
@@ -33,8 +38,8 @@ class _SearchCamsState extends State<SearchCams> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    GoogleAdMob().showInterstitialAds();
     dbHelper = DBHelper();
   }
 
@@ -52,6 +57,7 @@ class _SearchCamsState extends State<SearchCams> {
               builder: (context) => YtVideoPlayerPage(
                 url: data['streamUrl'],
                 title: data['camTitle'],
+                imageUrl: data['imageUrl'],
               ),
             ),
           );
@@ -62,6 +68,7 @@ class _SearchCamsState extends State<SearchCams> {
               builder: (context) => ServerVideoPlayer(
                 url: data['streamUrl'],
                 title: data['camTitle'],
+                imageUrl: data['imageUrl'],
               ),
             ),
           );

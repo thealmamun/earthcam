@@ -1,16 +1,27 @@
-import 'package:earth_cam/utils/app_configure.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:connectivity_widget/connectivity_widget.dart';
+import 'package:facebook_audience_network/facebook_audience_network.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
+// 🌎 Project imports:
+import 'package:earth_cam/services/google_admob.dart';
+import 'package:earth_cam/utils/app_configure.dart';
+import 'package:earth_cam/widgets/youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:earth_cam/utils/constants.dart';
 
 class YtVideoPlayerPage extends StatefulWidget {
-  YtVideoPlayerPage({this.url, this.title});
+  YtVideoPlayerPage({this.url, this.title, this.imageUrl});
 
   final String url;
   final String title;
+  final String imageUrl;
 
   @override
   _YtVideoPlayerPageState createState() => _YtVideoPlayerPageState();
@@ -18,11 +29,17 @@ class YtVideoPlayerPage extends StatefulWidget {
 
 class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
   final _nativeAdController = NativeAdmobController();
-
+  InAppWebViewController webView;
   YoutubePlayerController _controller;
+//  bool _isPlayerReady = false;
+//  PlayerState _playerState;
+  bool hidePlayer = false;
+//  final Completer<web.WebViewController> _controllerr = Completer<web.WebViewController>();
 
   @override
   void initState() {
+    super.initState();
+    GoogleAdMob().showInterstitialAds();
     _controller = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(widget.url),
       flags: YoutubePlayerFlags(
@@ -30,24 +47,82 @@ class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
         loop: true,
         isLive: true,
         enableCaption: false,
-        hideControls: false,
+//        hideThumbnail: true,
+//        hideControls: true,
+        disableDragSeek: true,
       ),
     );
+//      ..addListener(listener);
+//    _playerState = PlayerState.unknown;
+    hidePlayer = false;
+    FacebookAudienceNetwork.init(
+      testingId: "35e92a63-8102-46a4-b0f5-4fd269e6a13c",
+    );
+  }
 
-    super.initState();
+//  void listener() {
+//    if (_isPlayerReady && mounted && !_controller.value.isFullScreen) {
+//      setState(() {
+//        _playerState = _controller.value.playerState;
+//      });
+//    }
+//  }
+
+  Widget placeHolderImage(){
+    return Stack(
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: 200,
+          child: FancyShimmerImage(
+            boxFit: BoxFit.cover,
+            imageUrl: widget.imageUrl,
+            errorWidget: Icon(Icons.error),
+          ),
+        ),
+        Positioned.fill(child: Center(child: CircularProgressIndicator())),
+      ],
+    );
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _controller.dispose();
 //    _subscription.cancel();
     _nativeAdController.dispose();
   }
 
+  onlineCallBack() {
+    setState(() {
+      _controller = YoutubePlayerController(
+        initialVideoId: YoutubePlayer.convertUrlToId(widget.url),
+        flags: YoutubePlayerFlags(
+          autoPlay: true,
+          loop: true,
+          isLive: true,
+          enableCaption: false,
+//        hideThumbnail: true,
+//        hideControls: true,
+          disableDragSeek: true,
+        ),
+      );
+      hidePlayer = false;
+    });
+  }
+
+  offlineCallBack() {
+    setState(() {
+      _controller.pause();
+      hidePlayer = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    ConnectivityUtils.initialize(
+        serverToPing: "https://www.google.com",
+        callback: (response) => response.contains("google"));
     return Scaffold(
       appBar: AppBar(
         elevation: 10,
@@ -64,37 +139,90 @@ class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
           ),
         ),
         backgroundColor: AppColor.kAppBarBackgroundColor,
-        actions: [],
+        actions: [
+//          IconButton(
+//            icon: Icon(
+//              _controller.value.isFullScreen
+//                  ? Icons.fullscreen_exit
+//                  : Icons.fullscreen,
+//              color: AppColor.kThemeColor,
+//            ),
+//            onPressed: () {
+//              _controller.toggleFullScreenMode();
+//              setState(() {
+//
+//              });
+//            } ,
+//          ),
+        ],
       ),
       backgroundColor: AppColor.kBackgroundColor,
-      body: ListView(
-        children: <Widget>[
-          Stack(
-            children: [
-              YoutubePlayer(
-                controller: _controller,
-                showVideoProgressIndicator: true,
-                progressIndicatorColor: Colors.blueAccent,
-                onReady: () {
-                  print('Player is ready.');
-                },
-              ),
-            ],
-          ),
-          Container(
-            height: MediaQuery.of(context).size.height * 0.3,
-            width: MediaQuery.of(context).size.width,
-            color: AppColor.kAppBarBackgroundColor,
-            padding: EdgeInsets.all(10),
-            margin: EdgeInsets.only(bottom: 20.0),
-            child: NativeAdmob(
-              // Your ad unit id
-              adUnitID: AppConfig.adUnitID,
-              controller: _nativeAdController,
-              type: NativeAdmobType.full,
+      body: ConnectivityWidget(
+        onlineCallback: onlineCallBack,
+        offlineCallback: offlineCallBack,
+        offlineBanner: Container(
+          padding: EdgeInsets.all(8),
+          width: double.infinity,
+          color: Colors.red,
+          child: Text(
+            "No Connection. Please Check your Internet Connection.",
+            style: GoogleFonts.roboto(
+              fontSize: 14,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
             ),
+            textAlign: TextAlign.center,
           ),
-        ],
+        ),
+        showOfflineBanner: true,
+        builder: (context, isOnline) => ListView(
+          children: <Widget>[
+            Column(
+              children: [
+                hidePlayer == false
+                    ? YoutubePlayer(
+                        controller: _controller,
+                        showVideoProgressIndicator: false,
+                        thumbnailUrl: widget.imageUrl,
+                        onReady: () {
+//                    _controller.addListener(listener);
+                        },
+                      )
+                    : placeHolderImage()
+//                IFramePlayerPage(
+//                  url: widget.url,
+//                ),
+              ],
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height * 0.2,
+              width: MediaQuery.of(context).size.width,
+              padding: EdgeInsets.all(10),
+              margin: EdgeInsets.only(bottom: 20.0),
+              child: NativeAdmob(
+                // Your ad unit id
+                adUnitID: AppConfig.nativeAddId,
+                controller: _nativeAdController,
+                type: NativeAdmobType.full,
+              ),
+            ),
+            FacebookNativeAd(
+              placementId: AppConfig.facebookNativeAdId,
+              adType: NativeAdType.NATIVE_AD,
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height * 0.2,
+              backgroundColor: Colors.blue,
+              titleColor: Colors.white,
+              descriptionColor: Colors.white,
+              buttonColor: Colors.deepPurple,
+              buttonTitleColor: Colors.white,
+              buttonBorderColor: Colors.white,
+              listener: (result, value) {
+                print("Native Ad: $result --> $value");
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

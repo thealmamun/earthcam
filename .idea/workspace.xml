@@ -11,11 +11,63 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6fa396a8-1ebb-48be-9b75-2797648a9b5c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/pages/iframe_player.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/services/connectivity_service.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/services/google_admob.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/chewie_player_custom/chewie.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/chewie_player_custom/src/chewie_player.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/chewie_player_custom/src/chewie_progress_colors.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/chewie_player_custom/src/cupertino_controls.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/chewie_player_custom/src/cupertino_progress_bar.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/chewie_player_custom/src/material_controls.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/chewie_player_custom/src/material_progress_bar.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/chewie_player_custom/src/player_with_controls.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/chewie_player_custom/src/utils.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/network_sensitive.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/google-services.json" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/google-services.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/GoogleService-Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/model/cams.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/cams.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/country_cams.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/country_cams.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/country_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/country_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/favorites.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/favorites.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/general_video_player.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/general_video_player.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/home/custom_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/home/custom_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/home/home2.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/home/home2.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/home/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/home/home_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/live_videos.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/live_videos.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/map_view_new.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/map_view_new.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/search_cams.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/search_cams.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/splash/splash_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/splash/splash_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/youtube_video_player.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/youtube_video_player.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages_o/category_cams.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages_o/category_cams.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages_o/category_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages_o/category_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages_o/launch_video.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages_o/launch_video.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages_o/live_videos-o.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages_o/live_videos-o.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages_o/map_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages_o/map_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/services/database.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/database.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/services/firebase_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/firebase_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/services/local_db.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/local_db.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/utils/app_configure.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/app_configure.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils/constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/constants.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/cams_grid_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/cams_grid_tile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/map_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/map_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/map_pin_pill.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/map_pin_pill.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/marker_generator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/marker_generator.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/navBarWidget/curve_nav_bar_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/navBarWidget/curve_nav_bar_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/navBarWidget/curve_nav_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/navBarWidget/curve_nav_button.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/navBarWidget/curved_nav_custom_painter.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/navBarWidget/curved_nav_custom_painter.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/no_data_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/no_data_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +78,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="9b97771d" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_R" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -45,22 +97,23 @@
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/android/app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/widgets/chewie_player_custom" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/widgets/chewie_player_custom" />
+      <recent name="$PROJECT_DIR$/android/app" />
+      <recent name="$PROJECT_DIR$/lib/pages" />
+      <recent name="$PROJECT_DIR$/assets/images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/lib/page" />
       <recent name="$PROJECT_DIR$/lib/home" />
       <recent name="$PROJECT_DIR$/lib/splash" />
       <recent name="$PROJECT_DIR$/assets/flare" />
       <recent name="$PROJECT_DIR$/lib/widgets/navBarWidget" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/android/app" />
-      <recent name="$PROJECT_DIR$/lib/pages" />
-      <recent name="$PROJECT_DIR$/assets/images" />
     </key>
   </component>
   <component name="RunDashboard">

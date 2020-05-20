@@ -1,5 +1,12 @@
-import 'package:earth_cam/pages/splash/splash_screen.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:provider/provider.dart';
+
+// 🌎 Project imports:
+import 'package:earth_cam/pages/splash/splash_screen.dart';
+import 'package:earth_cam/services/connectivity_service.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,10 +18,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Earth Cam',
-      home: SplashScreen(),
+    return StreamProvider<ConnectivityStatus>(
+      builder: (context) => ConnectivityService().connectionStatusController,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Earth Cam',
+        home: SplashScreen(),
+      ),
     );
   }
 }

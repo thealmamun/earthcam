@@ -1,15 +1,22 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+// 📦 Package imports:
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:wakelock/wakelock.dart';
+
+// 🌎 Project imports:
 import 'package:earth_cam/pages/country_list.dart';
 import 'package:earth_cam/pages/favorites.dart';
 import 'package:earth_cam/pages/live_videos.dart';
 import 'package:earth_cam/pages/map_view_new.dart';
+import 'package:earth_cam/services/google_admob.dart';
 import 'package:earth_cam/utils/app_configure.dart';
 import 'package:earth_cam/utils/constants.dart';
 import 'package:earth_cam/widgets/navBarWidget/curve_nav_bar_widget.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -147,8 +154,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    GoogleAdMob().showBannerAds();
     _fcm.configure(
       onMessage: (Map<String, dynamic> message) async {
         print("onMessage: $message");
@@ -174,7 +181,15 @@ class _HomePageState extends State<HomePage> {
         print("onResume: $message");
       },
     );
+    Wakelock.enable();
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    GoogleAdMob().dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(

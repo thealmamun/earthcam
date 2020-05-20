@@ -1,14 +1,20 @@
+// 🎯 Dart imports:
 import 'dart:ui';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:earth_cam/pages_o/category_cams.dart';
-import 'package:earth_cam/pages/search_cams.dart';
-import 'package:earth_cam/utils/constants.dart';
-import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:neumorphic/neumorphic.dart';
+
+// 🌎 Project imports:
+import 'package:earth_cam/pages_o/category_cams.dart';
+import 'package:earth_cam/pages/search_cams.dart';
+import 'package:earth_cam/utils/constants.dart';
 
 class CategoryList extends StatefulWidget {
   @override
@@ -181,7 +187,6 @@ class _CategoryListState extends State<CategoryList> with TickerProviderStateMix
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     categoryList = Firestore.instance.collection('categories').snapshots();
   }

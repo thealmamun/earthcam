@@ -1,21 +1,27 @@
+// 🎯 Dart imports:
 import 'dart:ui';
 
+// 🐦 Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong/latlong.dart';
+import 'package:location/location.dart';
+import 'package:shimmer/shimmer.dart';
+
+// 🌎 Project imports:
 import 'package:earth_cam/model/cams.dart';
 import 'package:earth_cam/pages/general_video_player.dart';
 import 'package:earth_cam/pages/youtube_video_player.dart';
 import 'package:earth_cam/services/database.dart';
+import 'package:earth_cam/services/google_admob.dart';
 import 'package:earth_cam/utils/app_configure.dart';
 import 'package:earth_cam/utils/constants.dart';
-import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong/latlong.dart';
-
-import 'package:location/location.dart';
-import 'package:shimmer/shimmer.dart';
 
 class MapViewNew extends StatefulWidget {
   @override
@@ -38,8 +44,8 @@ class _MapViewNewState extends State<MapViewNew> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    GoogleAdMob().showInterstitialAds();
 //    _buildMarkersOnMap();
     Future.delayed(const Duration(milliseconds: 500), () {
       getCurrentLocation();
@@ -96,8 +102,8 @@ class _MapViewNewState extends State<MapViewNew> with TickerProviderStateMixin {
     mapData.forEach((element) {
       for (var i = 0; i < element.length; i++) {
         var marker = Marker(
-          height: 50,
-          width: 50,
+          height: 40,
+          width: 40,
           point: LatLng(
               element[i].geoPoint.latitude, element[i].geoPoint.longitude),
           builder: (context) => GestureDetector(
@@ -266,6 +272,7 @@ class _MapViewNewState extends State<MapViewNew> with TickerProviderStateMixin {
                                                     YtVideoPlayerPage(
                                                   url: element[i].streamUrl,
                                                       title: element[i].camTitle,
+                                                      imageUrl: element[i].imageUrl,
                                                 ),
                                               ),
                                             );

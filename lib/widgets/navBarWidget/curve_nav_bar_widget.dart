@@ -1,7 +1,12 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:meta/meta.dart';
+
+// 🌎 Project imports:
 import 'package:earth_cam/widgets/navBarWidget/curve_nav_button.dart';
 import 'package:earth_cam/widgets/navBarWidget/curved_nav_custom_painter.dart';
-import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 class CurvedNavigationBarWidget extends StatefulWidget {
   final List<Widget> items;

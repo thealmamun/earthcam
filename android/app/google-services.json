@@ -1,86 +1,35 @@
 {
   "project_info": {
-    "project_number": "403004211284",
-    "firebase_url": "https://earth-cam-75d5a.firebaseio.com",
-    "project_id": "earth-cam-75d5a",
-    "storage_bucket": "earth-cam-75d5a.appspot.com"
+    "project_number": "170366713502",
+    "firebase_url": "https://earthcam-2e0d0.firebaseio.com",
+    "project_id": "earthcam-2e0d0",
+    "storage_bucket": "earthcam-2e0d0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:403004211284:android:382438ca6448606b34edc1",
+        "mobilesdk_app_id": "1:170366713502:android:e9057f5b7dd1034abf858f",
         "android_client_info": {
           "package_name": "com.cameraworldapp.earth_cam"
         }
       },
       "oauth_client": [
         {
-          "client_id": "403004211284-6keps9r1hdhpf6eo5ltpi65gqtuhr1rm.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.cameraworldapp.earth_cam",
-            "certificate_hash": "156435a4a978f9f5fab50c0908c11deda28abb44"
-          }
-        },
-        {
-          "client_id": "403004211284-1isfchbiq77rcbfk2g6fv0qa2i1ofoh7.apps.googleusercontent.com",
+          "client_id": "170366713502-6k3ik405016sokeo192r04g4vpk7kbrc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB_ABRvlOKF7_HYfUgZDF3EpfcrWRdN2-I"
+          "current_key": "AIzaSyCqQOtFVA_J2tRkbrI4G6dHw_rZm-XXN0s"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "403004211284-1isfchbiq77rcbfk2g6fv0qa2i1ofoh7.apps.googleusercontent.com",
+              "client_id": "170366713502-6k3ik405016sokeo192r04g4vpk7kbrc.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "403004211284-ai2e33sjosoqv6cr1p9ej81q1r0jqjd4.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.cameraworldapp.earthCamAdmin"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:403004211284:android:f48bf2618bd6e67b34edc1",
-        "android_client_info": {
-          "package_name": "com.cameraworldapp.earth_cam_admin"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "403004211284-1isfchbiq77rcbfk2g6fv0qa2i1ofoh7.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyB_ABRvlOKF7_HYfUgZDF3EpfcrWRdN2-I"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "403004211284-1isfchbiq77rcbfk2g6fv0qa2i1ofoh7.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "403004211284-ai2e33sjosoqv6cr1p9ej81q1r0jqjd4.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.cameraworldapp.earthCamAdmin"
-              }
             }
           ]
         }

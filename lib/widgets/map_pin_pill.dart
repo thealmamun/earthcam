@@ -1,8 +1,11 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 🌎 Project imports:
 import 'package:earth_cam/model/cams.dart';
 import 'package:earth_cam/pages/general_video_player.dart';
 import 'package:earth_cam/pages/youtube_video_player.dart';
 import 'package:earth_cam/utils/constants.dart';
-import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class MapPinPillComponent extends StatefulWidget {
@@ -93,16 +96,16 @@ class MapPinPillComponentState extends State<MapPinPillComponent> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => YtVideoPlayerPage(
-                                              url: widget.currentlySelectedPin
-                                                  .streamUrl,
+                                              url: widget.currentlySelectedPin.streamUrl,
+                                              imageUrl: widget.currentlySelectedPin.imageUrl,
                                             )));
                               } else {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => ServerVideoPlayer(
-                                              url: widget.currentlySelectedPin
-                                                  .streamUrl,
+                                              url: widget.currentlySelectedPin.streamUrl,
+                                              imageUrl: widget.currentlySelectedPin.imageUrl,
                                             )));
                               }
                             },

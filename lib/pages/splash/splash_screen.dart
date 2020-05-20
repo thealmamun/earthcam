@@ -1,10 +1,17 @@
+// 🎯 Dart imports:
 import 'dart:async';
-import 'package:avatar_glow/avatar_glow.dart';
-import 'package:earth_cam/pages/home/home_page.dart';
-import 'package:earth_cam/utils/app_configure.dart';
+
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
+// 📦 Package imports:
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+
+// 🌎 Project imports:
+import 'package:earth_cam/pages/home/home_page.dart';
+import 'package:earth_cam/utils/app_configure.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -23,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
 //    signInAnonymously();
-    timer = Timer(Duration(seconds: 10), () {
+    timer = Timer(Duration(seconds: 3), () {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => HomePage()));
     });

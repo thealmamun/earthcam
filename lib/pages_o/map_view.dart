@@ -47,7 +47,6 @@
 //  String _mapStyle;
 //  @override
 //  void initState() {
-//    // TODO: implement initState
 //    super.initState();
 //    setSourceAndDestinationIcons();
 ////    _pageController = PageController(initialPage: 1, viewportFraction: 0.8,keepPage: false)
