@@ -18,13 +18,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<ConnectivityStatus>(
-      builder: (context) => ConnectivityService().connectionStatusController,
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Earth Cam',
-        home: SplashScreen(),
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Earth Cam',
+      home: SplashScreen(),
     );
   }
 }
