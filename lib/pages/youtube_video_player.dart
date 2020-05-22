@@ -9,6 +9,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // 🌎 Project imports:
 import 'package:earth_cam/services/google_admob.dart';
@@ -39,7 +40,7 @@ class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
   @override
   void initState() {
     super.initState();
-    GoogleAdMob().showInterstitialAds();
+//    GoogleAdMob().showInterstitialAds();
     _controller = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(widget.url),
       flags: YoutubePlayerFlags(
@@ -58,15 +59,36 @@ class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
     FacebookAudienceNetwork.init(
       testingId: "35e92a63-8102-46a4-b0f5-4fd269e6a13c",
     );
+    _showAds();
+//    GoogleAdMob.hideBannerAd();
+//    GoogleAdMob.showAnotherBannerAd();
   }
 
-//  void listener() {
-//    if (_isPlayerReady && mounted && !_controller.value.isFullScreen) {
-//      setState(() {
-//        _playerState = _controller.value.playerState;
-//      });
-//    }
-//  }
+  _showAds() async{
+    SharedPreferences sharedPreferences;
+    sharedPreferences = await SharedPreferences.getInstance();
+    int displayTimes = sharedPreferences.getInt('counter') ?? 0;
+
+    print('DisplayTimes: $displayTimes');
+    if(displayTimes == 0){
+      GoogleAdMob.showInterstitialAds();
+      displayTimes = 1;
+    }
+    else if (displayTimes == 2) {
+      // Shown 3 times, reset counter
+      GoogleAdMob.showInterstitialAds();
+      displayTimes = 0;
+
+      // Show interstitial
+//      GoogleAdMob().showInterstitialAds();
+    }
+    else {
+      // Less than 3 times, increase counter
+      displayTimes++;
+    }
+    sharedPreferences.setInt('counter', displayTimes);
+  }
+
 
   Widget placeHolderImage(){
     return Stack(
@@ -90,6 +112,8 @@ class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
     super.dispose();
     _controller.dispose();
 //    _subscription.cancel();
+//    GoogleAdMob().removeAds();
+//    GoogleAdMob.hideAnotherBannerAd();
     _nativeAdController.dispose();
   }
 
@@ -140,20 +164,6 @@ class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
         ),
         backgroundColor: AppColor.kAppBarBackgroundColor,
         actions: [
-//          IconButton(
-//            icon: Icon(
-//              _controller.value.isFullScreen
-//                  ? Icons.fullscreen_exit
-//                  : Icons.fullscreen,
-//              color: AppColor.kThemeColor,
-//            ),
-//            onPressed: () {
-//              _controller.toggleFullScreenMode();
-//              setState(() {
-//
-//              });
-//            } ,
-//          ),
         ],
       ),
       backgroundColor: AppColor.kBackgroundColor,
@@ -161,6 +171,7 @@ class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
         onlineCallback: onlineCallBack,
         offlineCallback: offlineCallBack,
         offlineBanner: Container(
+          margin: EdgeInsets.only(bottom: 60),
           padding: EdgeInsets.all(8),
           width: double.infinity,
           color: Colors.red,
@@ -195,7 +206,7 @@ class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
               ],
             ),
             Container(
-              height: MediaQuery.of(context).size.height * 0.2,
+              height: MediaQuery.of(context).size.height * 0.45,
               width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.all(10),
               margin: EdgeInsets.only(bottom: 20.0),

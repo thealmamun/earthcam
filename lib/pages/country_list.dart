@@ -142,7 +142,14 @@ class _CountryListState extends State<CountryList> {
   @override
   void initState() {
     super.initState();
-    GoogleAdMob().showInterstitialAds();
+    GoogleAdMob.showInterstitialAds();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print('dispose');
   }
 
   @override

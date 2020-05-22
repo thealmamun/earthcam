@@ -79,6 +79,8 @@ dependencies:
   webview_media: '>=0.1.2 <1.0.0'
   wakelock: ^0.1.4+1
   flutter_inappwebview: ^3.1.0
+  shared_preferences: ^0.5.7+2
+  admob_flutter: ^0.3.4
 
 flutter_icons:
   android: true

@@ -62,16 +62,20 @@ class _FavoritesState extends State<Favorites> {
                                         url: e.streamUrl,
                                         title: e.camTitle,
                                         imageUrl: e.imageUrl,
-                                      )));
+                                      ))).then((value) {
+                            GoogleAdMob.showBannerAd();
+                          });
                         } else {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => ServerVideoPlayer(
                                         url: e.streamUrl,
-                                      title: e.camTitle,
-                                    imageUrl: e.imageUrl,
-                                      )));
+                                        title: e.camTitle,
+                                        imageUrl: e.imageUrl,
+                                      ))).then((value) {
+                            GoogleAdMob.showBannerAd();
+                          });
                         }
                       },
                       onPressedFavourite: () {
@@ -86,10 +90,11 @@ class _FavoritesState extends State<Favorites> {
       ],
     );
   }
+
   @override
   void initState() {
     super.initState();
-    GoogleAdMob().showInterstitialAds();
+    GoogleAdMob.showInterstitialAds();
   }
 
   @override

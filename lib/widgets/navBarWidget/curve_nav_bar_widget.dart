@@ -94,6 +94,7 @@ class CurvedNavigationBarWidgetState extends State<CurvedNavigationBarWidget>
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
+      margin: const EdgeInsets.only(bottom: 50),
       color: widget.backgroundColor,
       height: widget.height,
       child: Stack(

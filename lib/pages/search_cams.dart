@@ -39,7 +39,7 @@ class _SearchCamsState extends State<SearchCams> {
   @override
   void initState() {
     super.initState();
-    GoogleAdMob().showInterstitialAds();
+    GoogleAdMob.showInterstitialAds();
     dbHelper = DBHelper();
   }
 
@@ -52,26 +52,26 @@ class _SearchCamsState extends State<SearchCams> {
         print('tapped');
         if (data['camType'] == 'Youtube') {
           Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => YtVideoPlayerPage(
-                url: data['streamUrl'],
-                title: data['camTitle'],
-                imageUrl: data['imageUrl'],
-              ),
-            ),
-          );
+              context,
+              MaterialPageRoute(
+                  builder: (context) => YtVideoPlayerPage(
+                        url: data['streamUrl'],
+                        title: data['camTitle'],
+                        imageUrl: data['imageUrl'],
+                      ))).then((value) {
+            GoogleAdMob.showBannerAd();
+          });
         } else {
           Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ServerVideoPlayer(
-                url: data['streamUrl'],
-                title: data['camTitle'],
-                imageUrl: data['imageUrl'],
-              ),
-            ),
-          );
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ServerVideoPlayer(
+                        url: data['streamUrl'],
+                        title: data['camTitle'],
+                        imageUrl: data['imageUrl'],
+                      ))).then((value) {
+            GoogleAdMob.showBannerAd();
+          });
         }
       },
       onPressedFavourite: () {
@@ -144,9 +144,7 @@ class _SearchCamsState extends State<SearchCams> {
           style: AppConfig.appNameStyle,
         ),
         backgroundColor: AppColor.kAppBarBackgroundColor,
-        actions: [
-
-        ],
+        actions: [],
       ),
       body: Center(
         child: Container(

@@ -3,17 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // 📦 Package imports:
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wakelock/wakelock.dart';
 
 // 🌎 Project imports:
+import 'package:earth_cam/services/google_admob.dart';
 import 'package:earth_cam/pages/country_list.dart';
 import 'package:earth_cam/pages/favorites.dart';
 import 'package:earth_cam/pages/live_videos.dart';
 import 'package:earth_cam/pages/map_view_new.dart';
-import 'package:earth_cam/services/google_admob.dart';
 import 'package:earth_cam/utils/app_configure.dart';
 import 'package:earth_cam/utils/constants.dart';
 import 'package:earth_cam/widgets/navBarWidget/curve_nav_bar_widget.dart';
@@ -27,7 +28,6 @@ class _HomePageState extends State<HomePage> {
   final FirebaseMessaging _fcm = FirebaseMessaging();
   int _pageIndex = 0;
   GlobalKey _bottomNavigationKey = GlobalKey();
-
 
   List pages = [
     MyRoute(
@@ -149,13 +149,15 @@ class _HomePageState extends State<HomePage> {
           );
         });
     // then
+
     return true; // return true if the route to be popped
   }
 
   @override
   void initState() {
     super.initState();
-    GoogleAdMob().showBannerAds();
+    GoogleAdMob.showBannerAd();
+    GoogleAdMob.showInterstitialAds();
     _fcm.configure(
       onMessage: (Map<String, dynamic> message) async {
         print("onMessage: $message");
@@ -185,16 +187,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-    GoogleAdMob().dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: _willPopCallback,
       child: Scaffold(
+        backgroundColor: Color(0xff28292b),
         bottomNavigationBar: CurvedNavigationBarWidget(
           key: _bottomNavigationKey,
           index: 0,

@@ -9,6 +9,7 @@ import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video_player/video_player.dart';
 
 // 🌎 Project imports:
@@ -40,9 +41,8 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
   @override
   void initState() {
     super.initState();
-    GoogleAdMob().showInterstitialAds();
+//    GoogleAdMob().showInterstitialAds();
     _videoPlayerController2 = VideoPlayerController.network(widget.url);
-
     _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController2,
       showControlsOnInitialize: false,
@@ -59,6 +59,32 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
 //    FacebookAudienceNetwork.init(
 //      testingId: "35e92a63-8102-46a4-b0f5-4fd269e6a13c",
 //    );
+    _showAds();
+//    GoogleAdMob.hideBannerAd();
+//    GoogleAdMob.showAnotherBannerAd();
+  }
+
+  _showAds() async{
+    SharedPreferences sharedPreferences;
+    sharedPreferences = await SharedPreferences.getInstance();
+    int displayTimes = sharedPreferences.getInt('counter') ?? 0;
+
+    print('DisplayTimes: $displayTimes');
+    if(displayTimes == 0){
+      GoogleAdMob.showInterstitialAds();
+      displayTimes = 1;
+    }
+    else if (displayTimes == 2) {
+      // Shown 3 times, reset counter
+      GoogleAdMob.showInterstitialAds();
+      displayTimes = 0;
+
+    }
+    else {
+      // Less than 3 times, increase counter
+      displayTimes++;
+    }
+    sharedPreferences.setInt('counter', displayTimes);
   }
 
   Widget placeHolderImage(){
@@ -82,6 +108,7 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
     _chewieController.dispose();
     _videoPlayerController2.dispose();
     _nativeAdController.dispose();
+//    GoogleAdMob.hideAnotherBannerAd();
     super.dispose();
   }
 
@@ -139,6 +166,7 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
         onlineCallback: onlineCallBack,
         offlineCallback: offlineCallBack,
         offlineBanner: Container(
+          margin: EdgeInsets.only(bottom: 60),
           padding: EdgeInsets.all(8),
           width: double.infinity,
           color: Colors.red,
@@ -173,7 +201,7 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
               ],
             ),
             Container(
-              height: MediaQuery.of(context).size.height * 0.3,
+              height: MediaQuery.of(context).size.height * 0.45,
               width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.all(10),
               margin: EdgeInsets.only(bottom: 20.0),

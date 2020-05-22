@@ -10,47 +10,77 @@ import 'package:earth_cam/utils/app_configure.dart';
 //    testDevices: testDevice != null ? <String>[testDevice] : null,
 //    nonPersonalizedAds: true,
 //    keywords: <String>['result', 'exam', 'scholarship', 'student visa','addmission','student jobs','jobs']);
+class GoogleAdMob {
+  static BannerAd _bannerAd;
+  static BannerAd _AnotherBannerAd;
+  static InterstitialAd _interstitialAd;
 
-
-class GoogleAdMob{
-
-  BannerAd _bannerAd;
-  InterstitialAd _interstitialAd;
-
-  @override
-  void dispose() {
-    _bannerAd.dispose();
-    _interstitialAd.dispose();
-//    super.dispose();
+  static void initialize() {
+    FirebaseAdMob.instance.initialize(appId: AppConfig.addId);
   }
 
-  BannerAd createBannerAd() {
+
+  static BannerAd _createBannerAd() {
     return BannerAd(
-        adUnitId: AppConfig.bannerAdId,
-        size: AdSize.banner,
-        listener: (MobileAdEvent event) {
-          print('BannerAd $event');
-        });
+      adUnitId: AppConfig.bannerAdId,
+//      adUnitId: BannerAd.testAdUnitId,
+      size: AdSize.fullBanner,
+      listener: (MobileAdEvent event) {
+        print("BannerAd event is $event");
+      },
+    );
   }
 
-  InterstitialAd createInterstitialAd() {
-    return InterstitialAd(
-        adUnitId: AppConfig.interstitialAdId,
-        listener: (MobileAdEvent event) {
-          print('InterstitialAd $event');
-        });
-  }
-
-  showInterstitialAds(){
-    _interstitialAd = createInterstitialAd()
+  static void showBannerAd() {
+    if (_bannerAd == null) _bannerAd = _createBannerAd();
+    _bannerAd
       ..load()
-      ..show();
+      ..show(anchorOffset: 0.0, anchorType: AnchorType.bottom);
   }
 
-  showBannerAds(){
-    _bannerAd = createBannerAd()
+  static void showInterstitialAds() {
+    var interstitialAd = InterstitialAd(
+      adUnitId: AppConfig.interstitialAdId,
+//      adUnitId: InterstitialAd.testAdUnitId,
+      listener: (MobileAdEvent event) {
+        print("InterstitialAd event is $event");
+      },
+    );
+    interstitialAd
       ..load()
-      ..show(anchorOffset: 50);
+      ..show(anchorOffset: 0.0, anchorType: AnchorType.bottom);
   }
 
+  static void hideBannerAd()  async{
+    await _bannerAd.dispose();
+    _bannerAd = null;
+  }
+
+  static BannerAd _createAnotherBannerAd() {
+    return BannerAd(
+      adUnitId: AppConfig.bannerAdId,
+//      adUnitId: BannerAd.testAdUnitId,
+      size: AdSize.fullBanner,
+      listener: (MobileAdEvent event) {
+        print("BannerAd event is $event");
+      },
+    );
+  }
+
+  static void showAnotherBannerAd() {
+    if (_AnotherBannerAd == null) _AnotherBannerAd = _createAnotherBannerAd();
+    _AnotherBannerAd
+      ..load()
+      ..show(anchorOffset: 0.0, anchorType: AnchorType.bottom);
+  }
+
+  static void hideAnotherBannerAd()  async{
+    await _AnotherBannerAd.dispose();
+    _AnotherBannerAd = null;
+  }
+
+  static void hideInterstitialAds() async {
+    await _interstitialAd.dispose();
+    _interstitialAd = null;
+  }
 }

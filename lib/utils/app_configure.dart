@@ -21,6 +21,8 @@ class AppConfig {
   static const mapBoxAccessToken =
       'pk.eyJ1IjoiZWFydGhjYW1lcmEiLCJhIjoiY2thOTkwaWRlMDh6ejJybjUwdWNvZTM2OCJ9.4tYB7cnFLfA-lP2sYYw6-A';
 
+  static const addId = "ca-app-pub-3560277835764465~1612694609";
+
   static const nativeAddId = "ca-app-pub-3560277835764465/5221315861";
 
   static const interstitialAdId = "ca-app-pub-3560277835764465/3325780261";

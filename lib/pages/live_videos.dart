@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 // 🌎 Project imports:
@@ -39,7 +40,9 @@ class _LiveVideosState extends State<LiveVideos> {
                         url: snapshot.data['streamUrl'],
                         title: snapshot.data['camTitle'],
                         imageUrl: snapshot.data['imageUrl'],
-                      )));
+                      ))).then((value) {
+            GoogleAdMob.showBannerAd();
+          });
         } else {
           Navigator.push(
               context,
@@ -48,7 +51,9 @@ class _LiveVideosState extends State<LiveVideos> {
                         url: snapshot.data['streamUrl'],
                         title: snapshot.data['camTitle'],
                         imageUrl: snapshot.data['imageUrl'],
-                      )));
+                      ))).then((value) {
+            GoogleAdMob.showBannerAd();
+          });
         }
       },
       onPressedFavourite: () {
@@ -67,8 +72,13 @@ class _LiveVideosState extends State<LiveVideos> {
   @override
   void initState() {
     super.initState();
-    GoogleAdMob().showInterstitialAds();
     dbHelper = DBHelper();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override

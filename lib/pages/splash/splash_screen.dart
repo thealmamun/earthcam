@@ -29,7 +29,6 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   void initState() {
-//    signInAnonymously();
     timer = Timer(Duration(seconds: 10), () {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => HomePage()));

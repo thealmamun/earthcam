@@ -1,12 +1,11 @@
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
-// 📦 Package imports:
-import 'package:provider/provider.dart';
-
 // 🌎 Project imports:
 import 'package:earth_cam/pages/splash/splash_screen.dart';
-import 'package:earth_cam/services/connectivity_service.dart';
+
+// 📦 Package imports:
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

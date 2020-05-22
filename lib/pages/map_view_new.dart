@@ -45,7 +45,7 @@ class _MapViewNewState extends State<MapViewNew> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    GoogleAdMob().showInterstitialAds();
+    GoogleAdMob.showInterstitialAds();
 //    _buildMarkersOnMap();
     Future.delayed(const Duration(milliseconds: 500), () {
       getCurrentLocation();
@@ -266,27 +266,32 @@ class _MapViewNewState extends State<MapViewNew> with TickerProviderStateMixin {
                                           print(element[i].streamUrl);
                                           if (element[i].camType == 'Youtube') {
                                             Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    YtVideoPlayerPage(
-                                                  url: element[i].streamUrl,
-                                                      title: element[i].camTitle,
-                                                      imageUrl: element[i].imageUrl,
-                                                ),
-                                              ),
-                                            );
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        YtVideoPlayerPage(
+                                                          url: element[i]
+                                                              .streamUrl,
+                                                          title: element[i]
+                                                              .camTitle,
+                                                          imageUrl: element[i]
+                                                              .imageUrl,
+                                                        ))).then((value) {
+                                              GoogleAdMob.showBannerAd();
+                                            });
                                           } else {
                                             Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    ServerVideoPlayer(
-                                                  url: element[i].streamUrl,
-                                                      title: element[i].camTitle,
-                                                ),
-                                              ),
-                                            );
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ServerVideoPlayer(
+                                                          url: element[i]
+                                                              .streamUrl,
+                                                          title: element[i]
+                                                              .camTitle,
+                                                        ))).then((value) {
+                                              GoogleAdMob.showBannerAd();
+                                            });
                                           }
                                         },
                                         icon: Icon(

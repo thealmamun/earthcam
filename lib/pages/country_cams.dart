@@ -55,16 +55,20 @@ class _CountryCamsState extends State<CountryCams> {
                         url: snapshot.data['streamUrl'],
                         title: snapshot.data['camTitle'],
                         imageUrl: snapshot.data['imageUrl'],
-                      )));
+                      ))).then((value) {
+            GoogleAdMob.showBannerAd();
+          });
         } else {
           Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => ServerVideoPlayer(
                         url: snapshot.data['streamUrl'],
-                    title: snapshot.data['camTitle'],
-                    imageUrl: snapshot.data['imageUrl'],
-                      )));
+                        title: snapshot.data['camTitle'],
+                        imageUrl: snapshot.data['imageUrl'],
+                      ))).then((value) {
+            GoogleAdMob.showBannerAd();
+          });
         }
       },
       onPressedFavourite: () {
@@ -83,7 +87,7 @@ class _CountryCamsState extends State<CountryCams> {
   @override
   void initState() {
     super.initState();
-    GoogleAdMob().showInterstitialAds();
+    GoogleAdMob.showInterstitialAds();
     dbHelper = DBHelper();
   }
 
@@ -109,7 +113,7 @@ class _CountryCamsState extends State<CountryCams> {
             AppConfig.appBarSearchButton(context),
           ],
           leading: InkWell(
-            onTap: (){
+            onTap: () {
               Navigator.pop(context);
             },
             child: Center(
