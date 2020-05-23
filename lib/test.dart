@@ -7,6 +7,7 @@ import 'package:video_player/video_player.dart';
 
 // 🌎 Project imports:
 import 'package:earth_cam/widgets/chewie_player_custom/src/chewie_player.dart';
+import 'package:wakelock/wakelock.dart';
 
 void main() => runApp(MyApp());
 
@@ -42,11 +43,19 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   VideoPlayerController _videoPlayerController2;
   ChewieController _chewieController;
+//  String url = 'http://videostream.shockmedia.com.ar:1935/lacostadigital/lacostadigital/chunklist_w772978448.m3u8';
+  String url = 'https://livecdn-de-earthtv-com.global.ssl.fastly.net/edge0/cdnedge/H1d0HWSABMI/chunklist.m3u8?token=EAIYzgM4-YGAJECgOEgF.CgtpYml6YXN0eWxlcxABMgtIMWQwSFZlQUJNQToLSDFkMEhXU0FCTUk.THXPBT6WKd8oEH8mSXtQjbCn4xwuNlWdYrWgUjBz87TjDqup5WqzfS8ou8G5zVQucwb-HERihVelH68Nw7nglw&domain=worldcams.tv';
 
   void _incrementCounter() {
     setState(() {
       _counter++;
-      _videoPlayerController2 = VideoPlayerController.network('https://itpolly.iptv.digijadoo.net/live/btv_world/chunks.m3u8');
+      _videoPlayerController2 = VideoPlayerController.network(url);
+
+      _videoPlayerController2.addListener(() {
+        if (_videoPlayerController2.value.hasError) {
+          this._incrementCounter();
+        }
+      });
       _chewieController = ChewieController(
         videoPlayerController: _videoPlayerController2,
         showControlsOnInitialize: false,
@@ -64,7 +73,13 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _videoPlayerController2 = VideoPlayerController.network('https://itpolly.iptv.digijadoo.net/live/btv_world/chunks.m3u8');
+    _videoPlayerController2 = VideoPlayerController.network(url);
+
+    _videoPlayerController2.addListener(() {
+      if (_videoPlayerController2.value.hasError) {
+        this._incrementCounter();
+      }
+    });
     _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController2,
       showControlsOnInitialize: false,
@@ -74,7 +89,16 @@ class _MyHomePageState extends State<MyHomePage> {
       isLive: true,
       fullScreenByDefault: false,
       autoInitialize: true,
+        errorBuilder: (context, errorMessage) {
+          return Center(
+            child: Text(
+              errorMessage,
+              style: TextStyle(color: Colors.white),
+            ),
+          );
+        }
     );
+    Wakelock.enable();
   }
 
   @override

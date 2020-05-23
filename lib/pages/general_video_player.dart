@@ -43,6 +43,11 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
     super.initState();
 //    GoogleAdMob().showInterstitialAds();
     _videoPlayerController2 = VideoPlayerController.network(widget.url);
+    _videoPlayerController2.addListener(() {
+      if (_videoPlayerController2.value.hasError) {
+        this.onlineCallBack();
+      }
+    });
     _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController2,
       showControlsOnInitialize: false,
@@ -115,21 +120,23 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
   }
 
   onlineCallBack() {
-    setState(() {
-      _videoPlayerController2 = VideoPlayerController.network(widget.url);
-
-      _chewieController = ChewieController(
-        videoPlayerController: _videoPlayerController2,
-        showControlsOnInitialize: false,
-        aspectRatio: 16 / 9,
-        autoPlay: true,
-        looping: true,
-        isLive: true,
-        fullScreenByDefault: false,
-        autoInitialize: true,
-//        placeholder: placeHolderImage(),
-      );
+    _videoPlayerController2 = VideoPlayerController.network(widget.url);
+    _videoPlayerController2.addListener(() {
+      if (_videoPlayerController2.value.hasError) {
+        this.onlineCallBack();
+      }
     });
+    _chewieController = ChewieController(
+      videoPlayerController: _videoPlayerController2,
+      showControlsOnInitialize: false,
+      aspectRatio: 16 / 9,
+      autoPlay: true,
+      looping: true,
+      isLive: true,
+      fullScreenByDefault: false,
+      autoInitialize: true,
+//        placeholder: placeHolderImage(),
+    );
     hidePlayer = false;
   }
 
