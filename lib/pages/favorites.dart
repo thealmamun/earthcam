@@ -94,7 +94,7 @@ class _FavoritesState extends State<Favorites> {
   @override
   void initState() {
     super.initState();
-    GoogleAdMob.showInterstitialAds();
+//    GoogleAdMob.showInterstitialAds();
   }
 
   @override

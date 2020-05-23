@@ -87,7 +87,7 @@ class _CountryCamsState extends State<CountryCams> {
   @override
   void initState() {
     super.initState();
-    GoogleAdMob.showInterstitialAds();
+//    GoogleAdMob.showInterstitialAds();
     dbHelper = DBHelper();
   }
 

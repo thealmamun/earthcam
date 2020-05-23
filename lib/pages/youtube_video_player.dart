@@ -72,11 +72,10 @@ class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
     print('DisplayTimes: $displayTimes');
     if(displayTimes == 0){
       GoogleAdMob.showInterstitialAds();
-      displayTimes = 1;
     }
-    else if (displayTimes == 2) {
+    if (displayTimes == 3) {
       // Shown 3 times, reset counter
-      GoogleAdMob.showInterstitialAds();
+//      GoogleAdMob.showInterstitialAds();
       displayTimes = 0;
 
       // Show interstitial

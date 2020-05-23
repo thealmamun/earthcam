@@ -39,7 +39,7 @@ class _SearchCamsState extends State<SearchCams> {
   @override
   void initState() {
     super.initState();
-    GoogleAdMob.showInterstitialAds();
+//    GoogleAdMob.showInterstitialAds();
     dbHelper = DBHelper();
   }
 

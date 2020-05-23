@@ -45,7 +45,7 @@ class _MapViewNewState extends State<MapViewNew> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    GoogleAdMob.showInterstitialAds();
+//    GoogleAdMob.showInterstitialAds();
 //    _buildMarkersOnMap();
     Future.delayed(const Duration(milliseconds: 500), () {
       getCurrentLocation();
@@ -378,6 +378,10 @@ class _MapViewNewState extends State<MapViewNew> with TickerProviderStateMixin {
       ),
       mapController: _mapController,
       layers: [
+//        TileLayerOptions(
+//            urlTemplate: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.jpg",
+////            subdomains: ['a', 'b', 'c']
+//        ),
         TileLayerOptions(
           backgroundColor: AppColor.kBackgroundColor,
           urlTemplate: AppConfig.mapBoxUrlLink,

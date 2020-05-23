@@ -72,13 +72,14 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
     print('DisplayTimes: $displayTimes');
     if(displayTimes == 0){
       GoogleAdMob.showInterstitialAds();
-      displayTimes = 1;
     }
-    else if (displayTimes == 2) {
+    if (displayTimes == 3) {
       // Shown 3 times, reset counter
-      GoogleAdMob.showInterstitialAds();
+//      GoogleAdMob.showInterstitialAds();
       displayTimes = 0;
 
+      // Show interstitial
+//      GoogleAdMob().showInterstitialAds();
     }
     else {
       // Less than 3 times, increase counter
@@ -87,7 +88,7 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
     sharedPreferences.setInt('counter', displayTimes);
   }
 
-  Widget placeHolderImage(){
+  Widget placeHolderImage() {
     return Stack(
       children: [
         Container(
@@ -103,6 +104,7 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
       ],
     );
   }
+
   @override
   void dispose() {
     _chewieController.dispose();
