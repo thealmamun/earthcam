@@ -33,7 +33,6 @@ class ServerVideoPlayer extends StatefulWidget {
 
 class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
   VideoPlayerController _videoPlayerController2;
-  VideoPlayerController _customController;
   ChewieController _chewieController;
   final _nativeAdController = NativeAdmobController();
   bool hidePlayer = false;
@@ -41,7 +40,6 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
   @override
   void initState() {
     super.initState();
-//    GoogleAdMob().showInterstitialAds();
     _videoPlayerController2 = VideoPlayerController.network(widget.url);
     _videoPlayerController2.addListener(() {
       if (_videoPlayerController2.value.hasError) {
@@ -57,37 +55,26 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
       isLive: true,
       fullScreenByDefault: false,
       autoInitialize: true,
-//      placeholder: placeHolderImage(),
     );
     hidePlayer = false;
-//    _customController = VideoPlayerController.network(widget.url);
-//    FacebookAudienceNetwork.init(
-//      testingId: "35e92a63-8102-46a4-b0f5-4fd269e6a13c",
-//    );
+    FacebookAudienceNetwork.init(
+      testingId: "35e92a63-8102-46a4-b0f5-4fd269e6a13c",
+    );
     _showAds();
-//    GoogleAdMob.hideBannerAd();
-//    GoogleAdMob.showAnotherBannerAd();
   }
 
-  _showAds() async{
+  _showAds() async {
     SharedPreferences sharedPreferences;
     sharedPreferences = await SharedPreferences.getInstance();
     int displayTimes = sharedPreferences.getInt('counter') ?? 0;
 
     print('DisplayTimes: $displayTimes');
-    if(displayTimes == 0){
+    if (displayTimes == 0) {
       GoogleAdMob.showInterstitialAds();
     }
     if (displayTimes == 3) {
-      // Shown 3 times, reset counter
-//      GoogleAdMob.showInterstitialAds();
       displayTimes = 0;
-
-      // Show interstitial
-//      GoogleAdMob().showInterstitialAds();
-    }
-    else {
-      // Less than 3 times, increase counter
+    } else {
       displayTimes++;
     }
     sharedPreferences.setInt('counter', displayTimes);
@@ -115,29 +102,29 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
     _chewieController.dispose();
     _videoPlayerController2.dispose();
     _nativeAdController.dispose();
-//    GoogleAdMob.hideAnotherBannerAd();
     super.dispose();
   }
 
   onlineCallBack() {
-    _videoPlayerController2 = VideoPlayerController.network(widget.url);
-    _videoPlayerController2.addListener(() {
-      if (_videoPlayerController2.value.hasError) {
-        this.onlineCallBack();
-      }
+    setState(() {
+      _videoPlayerController2 = VideoPlayerController.network(widget.url);
+      _videoPlayerController2.addListener(() {
+        if (_videoPlayerController2.value.hasError) {
+          this.onlineCallBack();
+        }
+      });
+      _chewieController = ChewieController(
+        videoPlayerController: _videoPlayerController2,
+        showControlsOnInitialize: false,
+        aspectRatio: 16 / 9,
+        autoPlay: true,
+        looping: true,
+        isLive: true,
+        fullScreenByDefault: false,
+        autoInitialize: true,
+      );
+      hidePlayer = false;
     });
-    _chewieController = ChewieController(
-      videoPlayerController: _videoPlayerController2,
-      showControlsOnInitialize: false,
-      aspectRatio: 16 / 9,
-      autoPlay: true,
-      looping: true,
-      isLive: true,
-      fullScreenByDefault: false,
-      autoInitialize: true,
-//        placeholder: placeHolderImage(),
-    );
-    hidePlayer = false;
   }
 
   offlineCallBack() {
@@ -199,14 +186,6 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
                         controller: _chewieController,
                       )
                     : placeHolderImage()
-//                CustomVideoPlayer(
-//                  _customController,
-//                  autoInitialize: true,
-//                  autoPlay: true,
-//                  showControls: true,
-//                  looping: true,
-//                  //TODO:: PLACE HOLDER IMAGE URL
-//                ),
               ],
             ),
             Container(
@@ -221,21 +200,21 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
                 type: NativeAdmobType.full,
               ),
             ),
-            FacebookNativeAd(
-              placementId: AppConfig.facebookNativeAdId,
-              adType: NativeAdType.NATIVE_AD,
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.2,
-              backgroundColor: Colors.blue,
-              titleColor: Colors.white,
-              descriptionColor: Colors.white,
-              buttonColor: Colors.deepPurple,
-              buttonTitleColor: Colors.white,
-              buttonBorderColor: Colors.white,
-              listener: (result, value) {
-                print("Native Ad: $result --> $value");
-              },
-            ),
+//            FacebookNativeAd(
+//              placementId: AppConfig.facebookNativeAdId,
+//              adType: NativeAdType.NATIVE_AD,
+//              width: double.infinity,
+//              height: MediaQuery.of(context).size.height * 0.2,
+//              backgroundColor: Colors.blue,
+//              titleColor: Colors.white,
+//              descriptionColor: Colors.white,
+//              buttonColor: Colors.deepPurple,
+//              buttonTitleColor: Colors.white,
+//              buttonBorderColor: Colors.white,
+//              listener: (result, value) {
+//                print("Native Ad: $result --> $value");
+//              },
+//            ),
           ],
         ),
       ),

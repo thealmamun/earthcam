@@ -30,17 +30,12 @@ class YtVideoPlayerPage extends StatefulWidget {
 
 class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
   final _nativeAdController = NativeAdmobController();
-  InAppWebViewController webView;
   YoutubePlayerController _controller;
-//  bool _isPlayerReady = false;
-//  PlayerState _playerState;
   bool hidePlayer = false;
-//  final Completer<web.WebViewController> _controllerr = Completer<web.WebViewController>();
 
   @override
   void initState() {
     super.initState();
-//    GoogleAdMob().showInterstitialAds();
     _controller = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(widget.url),
       flags: YoutubePlayerFlags(
@@ -48,20 +43,18 @@ class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
         loop: true,
         isLive: true,
         enableCaption: false,
-//        hideThumbnail: true,
-//        hideControls: true,
         disableDragSeek: true,
       ),
-    );
-//      ..addListener(listener);
-//    _playerState = PlayerState.unknown;
+    )..addListener(() {
+      if(_controller.value.hasError){
+        this.onlineCallBack();
+      }
+    });
     hidePlayer = false;
     FacebookAudienceNetwork.init(
       testingId: "35e92a63-8102-46a4-b0f5-4fd269e6a13c",
     );
     _showAds();
-//    GoogleAdMob.hideBannerAd();
-//    GoogleAdMob.showAnotherBannerAd();
   }
 
   _showAds() async{
@@ -74,15 +67,9 @@ class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
       GoogleAdMob.showInterstitialAds();
     }
     if (displayTimes == 3) {
-      // Shown 3 times, reset counter
-//      GoogleAdMob.showInterstitialAds();
       displayTimes = 0;
-
-      // Show interstitial
-//      GoogleAdMob().showInterstitialAds();
     }
     else {
-      // Less than 3 times, increase counter
       displayTimes++;
     }
     sharedPreferences.setInt('counter', displayTimes);
@@ -110,9 +97,6 @@ class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
   void dispose() {
     super.dispose();
     _controller.dispose();
-//    _subscription.cancel();
-//    GoogleAdMob().removeAds();
-//    GoogleAdMob.hideAnotherBannerAd();
     _nativeAdController.dispose();
   }
 
@@ -125,11 +109,13 @@ class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
           loop: true,
           isLive: true,
           enableCaption: false,
-//        hideThumbnail: true,
-//        hideControls: true,
           disableDragSeek: true,
         ),
-      );
+      )..addListener(() {
+        if(_controller.value.hasError){
+          this.onlineCallBack();
+        }
+      });
       hidePlayer = false;
     });
   }
@@ -199,9 +185,6 @@ class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
                         },
                       )
                     : placeHolderImage()
-//                IFramePlayerPage(
-//                  url: widget.url,
-//                ),
               ],
             ),
             Container(
@@ -216,21 +199,21 @@ class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
                 type: NativeAdmobType.full,
               ),
             ),
-            FacebookNativeAd(
-              placementId: AppConfig.facebookNativeAdId,
-              adType: NativeAdType.NATIVE_AD,
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.2,
-              backgroundColor: Colors.blue,
-              titleColor: Colors.white,
-              descriptionColor: Colors.white,
-              buttonColor: Colors.deepPurple,
-              buttonTitleColor: Colors.white,
-              buttonBorderColor: Colors.white,
-              listener: (result, value) {
-                print("Native Ad: $result --> $value");
-              },
-            ),
+//            FacebookNativeAd(
+//              placementId: AppConfig.facebookNativeAdId,
+//              adType: NativeAdType.NATIVE_AD,
+//              width: double.infinity,
+//              height: MediaQuery.of(context).size.height * 0.2,
+//              backgroundColor: Colors.blue,
+//              titleColor: Colors.white,
+//              descriptionColor: Colors.white,
+//              buttonColor: Colors.deepPurple,
+//              buttonTitleColor: Colors.white,
+//              buttonBorderColor: Colors.white,
+//              listener: (result, value) {
+//                print("Native Ad: $result --> $value");
+//              },
+//            ),
           ],
         ),
       ),
