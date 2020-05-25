@@ -85,8 +85,8 @@ dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path_android: "assets/images/appLogo.png"
-  image_path_ios: "assets/images/appLogo.png"
+  image_path_android: "assets/images/logo.png"
+  image_path_ios: "assets/images/logo.png"
 
 dev_dependencies:
   flutter_test:

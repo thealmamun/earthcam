@@ -13,8 +13,6 @@ import 'package:earth_cam/utils/app_configure.dart';
 
 class GoogleAdMob {
   static BannerAd _bannerAd;
-  static BannerAd _AnotherBannerAd;
-  static InterstitialAd _interstitialAd;
 
   static void initialize() {
     FirebaseAdMob.instance.initialize(appId: AppConfig.addId);

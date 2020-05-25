@@ -77,18 +77,11 @@ class _SplashScreenState extends State<SplashScreen>
                     repeat: true,
                     repeatPauseDuration: Duration(seconds: 2),
                     startDelay: Duration(seconds: 1),
-                    child: Material(
-                        elevation: 8.0,
-                        shape: CircleBorder(),
-                        child: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          child: Image.asset(
-                            AppConfig.appLogo,
-                            height: 83,
-                            width: 83,
-                          ),
-                          radius: 55.0,
-                        )),
+                    child: Image.asset(
+                      AppConfig.appLogo,
+                      height: 100,
+                      width: 100,
+                    ),
                   ),
                   DelayedAnimation(
                     child: Text(

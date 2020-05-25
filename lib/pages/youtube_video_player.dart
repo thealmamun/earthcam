@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:connectivity_widget/connectivity_widget.dart';
 import 'package:facebook_audience_network/facebook_audience_network.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:google_fonts/google_fonts.dart';

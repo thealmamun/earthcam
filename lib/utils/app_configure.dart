@@ -12,7 +12,7 @@ import 'constants.dart';
 class AppConfig {
   static const appName = 'EarthCam';
 
-  static const appLogo = 'assets/images/appLogo.png';
+  static const appLogo = 'assets/images/logo.png';
 
 
   static const mapBoxUrlLink =

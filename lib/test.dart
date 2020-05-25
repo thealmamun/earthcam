@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:connectivity_widget/connectivity_widget.dart';
 import 'package:video_player/video_player.dart';
+import 'package:wakelock/wakelock.dart';
 
 // 🌎 Project imports:
 import 'package:earth_cam/widgets/chewie_player_custom/src/chewie_player.dart';
-import 'package:wakelock/wakelock.dart';
 
 void main() => runApp(MyApp());
 
