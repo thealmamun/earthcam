@@ -2,6 +2,7 @@
 import 'dart:ui';
 
 // 🐦 Flutter imports:
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 
 // 🌎 Project imports:
@@ -58,9 +59,7 @@ class _SearchCamsState extends State<SearchCams> {
                         url: data['streamUrl'],
                         title: data['camTitle'],
                         imageUrl: data['imageUrl'],
-                      ))).then((value) {
-            GoogleAdMob.showBannerAd();
-          });
+                      )));
         } else {
           Navigator.push(
               context,
@@ -69,9 +68,7 @@ class _SearchCamsState extends State<SearchCams> {
                         url: data['streamUrl'],
                         title: data['camTitle'],
                         imageUrl: data['imageUrl'],
-                      ))).then((value) {
-            GoogleAdMob.showBannerAd();
-          });
+                      )));
         }
       },
       onPressedFavourite: () {
@@ -134,6 +131,7 @@ class _SearchCamsState extends State<SearchCams> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         elevation: 10,
@@ -214,6 +212,12 @@ class _SearchCamsState extends State<SearchCams> {
                         'No results found,                    Try a different search!',
                   ),
           ]),
+        ),
+      ),
+      bottomNavigationBar: AdmobBanner(
+        adUnitId: AppConfig.bannerAdId,
+        adSize: AdmobBannerSize.ADAPTIVE_BANNER(
+          width: size.width.toInt(),
         ),
       ),
     );

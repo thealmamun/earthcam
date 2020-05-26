@@ -62,9 +62,7 @@ class _FavoritesState extends State<Favorites> {
                                         url: e.streamUrl,
                                         title: e.camTitle,
                                         imageUrl: e.imageUrl,
-                                      ))).then((value) {
-                            GoogleAdMob.showBannerAd();
-                          });
+                                      )));
                         } else {
                           Navigator.push(
                               context,
@@ -73,9 +71,7 @@ class _FavoritesState extends State<Favorites> {
                                         url: e.streamUrl,
                                         title: e.camTitle,
                                         imageUrl: e.imageUrl,
-                                      ))).then((value) {
-                            GoogleAdMob.showBannerAd();
-                          });
+                                      )));
                         }
                       },
                       onPressedFavourite: () {

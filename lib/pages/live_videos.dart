@@ -39,9 +39,7 @@ class _LiveVideosState extends State<LiveVideos> {
                         url: snapshot.data['streamUrl'],
                         title: snapshot.data['camTitle'],
                         imageUrl: snapshot.data['imageUrl'],
-                      ))).then((value) {
-            GoogleAdMob.showBannerAd();
-          });
+                      )));
         } else {
           Navigator.push(
               context,
@@ -50,9 +48,7 @@ class _LiveVideosState extends State<LiveVideos> {
                         url: snapshot.data['streamUrl'],
                         title: snapshot.data['camTitle'],
                         imageUrl: snapshot.data['imageUrl'],
-                      ))).then((value) {
-            GoogleAdMob.showBannerAd();
-          });
+                      )));
         }
       },
       onPressedFavourite: () {

@@ -19,22 +19,22 @@ class GoogleAdMob {
   }
 
 
-  static BannerAd _createBannerAd() {
-    return BannerAd(
-      adUnitId: AppConfig.bannerAdId,
-      size: AdSize.fullBanner,
-      listener: (MobileAdEvent event) {
-        print("BannerAd event is $event");
-      },
-    );
-  }
-
-  static void showBannerAd() {
-    if (_bannerAd == null) _bannerAd = _createBannerAd();
-    _bannerAd
-      ..load()
-      ..show(anchorOffset: 0.0, anchorType: AnchorType.bottom);
-  }
+//  static BannerAd _createBannerAd() {
+//    return BannerAd(
+//      adUnitId: AppConfig.bannerAdId,
+//      size: AdSize.smartBanner,
+//      listener: (MobileAdEvent event) {
+//        print("BannerAd event is $event");
+//      },
+//    );
+//  }
+//
+//  static void showBannerAd() {
+//    if (_bannerAd == null) _bannerAd = _createBannerAd();
+//    _bannerAd
+//      ..load()
+//      ..show(anchorOffset: 0.0, anchorType: AnchorType.bottom);
+//  }
 
   static void showInterstitialAds() {
     var interstitialAd = InterstitialAd(

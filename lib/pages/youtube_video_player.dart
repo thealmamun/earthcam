@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -131,6 +132,7 @@ class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
     ConnectivityUtils.initialize(
         serverToPing: "https://www.google.com",
         callback: (response) => response.contains("google"));
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         elevation: 10,
@@ -172,27 +174,28 @@ class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
         showOfflineBanner: true,
         builder: (context, isOnline) => ListView(
           children: <Widget>[
-            Column(
+            Stack(
               children: [
-                hidePlayer == false
-                    ? YoutubePlayer(
-                        controller: _controller,
-                        showVideoProgressIndicator: false,
-                        thumbnailUrl: widget.imageUrl,
-                        onReady: () {
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: hidePlayer == false
+                      ? YoutubePlayer(
+                          controller: _controller,
+                          showVideoProgressIndicator: false,
+                          thumbnailUrl: widget.imageUrl,
+                          onReady: () {
 //                    _controller.addListener(listener);
-                        },
-                      )
-                    : placeHolderImage()
+                          },
+                        )
+                      : placeHolderImage(),
+                )
               ],
             ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.05,),
             Container(
-              height: MediaQuery.of(context).size.height * 0.45,
+              height: MediaQuery.of(context).size.height * 0.35,
               width: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.all(10),
-              margin: EdgeInsets.only(bottom: 20.0),
               child: NativeAdmob(
-                // Your ad unit id
                 adUnitID: AppConfig.nativeAddId,
                 controller: _nativeAdController,
                 type: NativeAdmobType.full,
@@ -214,6 +217,12 @@ class _YtVideoPlayerPageState extends State<YtVideoPlayerPage> {
 //              },
 //            ),
           ],
+        ),
+      ),
+      bottomNavigationBar: AdmobBanner(
+        adUnitId: AppConfig.bannerAdId,
+        adSize: AdmobBannerSize.ADAPTIVE_BANNER(
+          width: size.width.toInt(),
         ),
       ),
     );

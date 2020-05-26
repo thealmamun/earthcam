@@ -90,7 +90,7 @@ class _MapViewNewState extends State<MapViewNew> with TickerProviderStateMixin {
     _locationData = await location.getLocation();
     setState(() {
       _animatedMapMove(
-          LatLng(_locationData.latitude, _locationData.longitude), 20.0);
+          LatLng(_locationData.latitude, _locationData.longitude), 15.0);
     });
   }
 
@@ -102,17 +102,17 @@ class _MapViewNewState extends State<MapViewNew> with TickerProviderStateMixin {
     mapData.forEach((element) {
       for (var i = 0; i < element.length; i++) {
         var marker = Marker(
-          height: 40,
-          width: 40,
+          height: 30,
+          width: 30,
           point: LatLng(
               element[i].geoPoint.latitude, element[i].geoPoint.longitude),
           builder: (context) => GestureDetector(
             onTap: () {
-              print(element[i].address);
-              _animatedMapMove(
-                  LatLng(element[i].geoPoint.latitude,
-                      element[i].geoPoint.longitude),
-                  20.0);
+//              print(element[i].address);
+//              _animatedMapMove(
+//                  LatLng(element[i].geoPoint.latitude,
+//                      element[i].geoPoint.longitude),
+//                  10.0);
 //              Future.delayed(Duration(seconds: 1), () {
 //
 //              });
@@ -276,9 +276,7 @@ class _MapViewNewState extends State<MapViewNew> with TickerProviderStateMixin {
                                                               .camTitle,
                                                           imageUrl: element[i]
                                                               .imageUrl,
-                                                        ))).then((value) {
-                                              GoogleAdMob.showBannerAd();
-                                            });
+                                                        )));
                                           } else {
                                             Navigator.push(
                                                 context,
@@ -289,9 +287,7 @@ class _MapViewNewState extends State<MapViewNew> with TickerProviderStateMixin {
                                                               .streamUrl,
                                                           title: element[i]
                                                               .camTitle,
-                                                        ))).then((value) {
-                                              GoogleAdMob.showBannerAd();
-                                            });
+                                                        )));
                                           }
                                         },
                                         icon: Icon(
@@ -371,9 +367,9 @@ class _MapViewNewState extends State<MapViewNew> with TickerProviderStateMixin {
   FlutterMap _buildMap() {
     return FlutterMap(
       options: new MapOptions(
-        maxZoom: 15.0,
-        minZoom: 3.5,
-        center: _center,
+        maxZoom: 13.0,
+        minZoom: 3.0,
+//        center: _center,
         interactive: true,
       ),
       mapController: _mapController,

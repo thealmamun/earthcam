@@ -2,6 +2,7 @@
 import 'dart:ui';
 
 // 🐦 Flutter imports:
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -55,9 +56,7 @@ class _CountryCamsState extends State<CountryCams> {
                         url: snapshot.data['streamUrl'],
                         title: snapshot.data['camTitle'],
                         imageUrl: snapshot.data['imageUrl'],
-                      ))).then((value) {
-            GoogleAdMob.showBannerAd();
-          });
+                      )));
         } else {
           Navigator.push(
               context,
@@ -66,9 +65,7 @@ class _CountryCamsState extends State<CountryCams> {
                         url: snapshot.data['streamUrl'],
                         title: snapshot.data['camTitle'],
                         imageUrl: snapshot.data['imageUrl'],
-                      ))).then((value) {
-            GoogleAdMob.showBannerAd();
-          });
+                      )));
         }
       },
       onPressedFavourite: () {
@@ -93,6 +90,7 @@ class _CountryCamsState extends State<CountryCams> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -169,6 +167,12 @@ class _CountryCamsState extends State<CountryCams> {
               ),
             ],
           ),
+        ),
+      ),
+      bottomNavigationBar: AdmobBanner(
+        adUnitId: AppConfig.bannerAdId,
+        adSize: AdmobBannerSize.ADAPTIVE_BANNER(
+          width: size.width.toInt(),
         ),
       ),
     );

@@ -80,7 +80,8 @@ dependencies:
   wakelock: ^0.1.4+1
   flutter_inappwebview: ^3.1.0
   shared_preferences: ^0.5.7+2
-  admob_flutter: ^0.3.4
+  admob_flutter: ^1.0.0-beta.3
+  device_preview: ^0.4.5
 
 flutter_icons:
   android: true

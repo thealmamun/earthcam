@@ -1,4 +1,6 @@
 // 🐦 Flutter imports:
+import 'package:admob_flutter/admob_flutter.dart';
+import 'package:earth_cam/utils/app_configure.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -155,6 +157,13 @@ class CurvedNavigationBarWidgetState extends State<CurvedNavigationBarWidget>
                         child: item,
                       );
                     }).toList())),
+          ),
+          Positioned(
+              left: 0,
+              right: 0,
+              top: 40,
+              child: AdmobBanner(adUnitId: AppConfig.bannerAdId,
+                  adSize: AdmobBannerSize.ADAPTIVE_BANNER(width: size.width.toInt()))
           ),
         ],
       ),

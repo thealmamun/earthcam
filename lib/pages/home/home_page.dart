@@ -155,7 +155,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    GoogleAdMob.showBannerAd();
+//    GoogleAdMob.showBannerAd();
     _fcm.configure(
       onMessage: (Map<String, dynamic> message) async {
         print("onMessage: $message");
