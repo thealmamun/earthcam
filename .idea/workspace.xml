@@ -13,9 +13,8 @@
     <list default="true" id="6fa396a8-1ebb-48be-9b75-2797648a9b5c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/general_video_player.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/general_video_player.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/map_view_new.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/map_view_new.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/youtube_video_player.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/youtube_video_player.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +25,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_R" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="9b97771d" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
