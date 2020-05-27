@@ -90,7 +90,7 @@ class _MapViewNewState extends State<MapViewNew> with TickerProviderStateMixin {
     _locationData = await location.getLocation();
     setState(() {
       _animatedMapMove(
-          LatLng(_locationData.latitude, _locationData.longitude), 15.0);
+          LatLng(_locationData.latitude, _locationData.longitude), 10.0);
     });
   }
 

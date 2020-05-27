@@ -193,9 +193,9 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
                 ),
               ],
             ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.05,),
+            SizedBox(height: 5.0),
             Container(
-              height: MediaQuery.of(context).size.height * 0.35,
+              height: MediaQuery.of(context).size.height * 0.27,
               width: MediaQuery.of(context).size.width,
               child: NativeAdmob(
                 adUnitID: AppConfig.nativeAddId,
