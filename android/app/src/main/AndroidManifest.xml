@@ -16,7 +16,7 @@
         android:networkSecurityConfig="@xml/network_security_config">
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3560277835764465~1612694609"/>
+            android:value="ca-app-pub-8059669329564617~8195985061"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

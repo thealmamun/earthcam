@@ -21,13 +21,13 @@ class AppConfig {
   static const mapBoxAccessToken =
       'pk.eyJ1IjoiZWFydGhjYW1lcmEiLCJhIjoiY2thOTkwaWRlMDh6ejJybjUwdWNvZTM2OCJ9.4tYB7cnFLfA-lP2sYYw6-A';
 
-  static const addId = "ca-app-pub-3560277835764465~1612694609";
+  static const addId = "ca-app-pub-8059669329564617~8195985061";
 
-  static const nativeAddId = "ca-app-pub-3560277835764465/5221315861";
+  static const nativeAddId = "ca-app-pub-8059669329564617/1137899926";
 
-  static const interstitialAdId = "ca-app-pub-3560277835764465/3325780261";
+  static const interstitialAdId = "ca-app-pub-8059669329564617/1947391046";
 
-  static const bannerAdId = "ca-app-pub-3560277835764465/6315384614";
+  static const bannerAdId = "ca-app-pub-8059669329564617/5077144930";
 
   static const facebookNativeAdId = "PASTE_FACEBOOK_NATIVE_AD_CODE_HERE";
 
