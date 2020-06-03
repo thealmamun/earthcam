@@ -12,6 +12,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6fa396a8-1ebb-48be-9b75-2797648a9b5c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/widgets/fijk_player_custom/core/fijklog.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/fijk_player_custom/core/fijkoption.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/fijk_player_custom/core/fijkplayer.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/fijk_player_custom/core/fijkplugin.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/fijk_player_custom/core/fijkvalue.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/fijk_player_custom/core/fijkview.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/fijk_player_custom/core/fijkvol.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/fijk_player_custom/fijkplayer.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/fijk_player_custom/ui/panel.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/fijk_player_custom/ui/panel2.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/fijk_player_custom/ui/slider.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/fijk_player_custom/ui/volume.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
@@ -19,6 +31,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/general_video_player.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/general_video_player.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils/constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/constants.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
@@ -31,7 +45,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_R" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="9b97771d" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -50,23 +64,24 @@
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/widgets/chewie_player_custom" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/widgets" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/lib/widgets/chewie_player_custom" />
-      <recent name="$PROJECT_DIR$/android/app" />
-      <recent name="$PROJECT_DIR$/lib/pages" />
-      <recent name="$PROJECT_DIR$/assets/images" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/lib/page" />
       <recent name="$PROJECT_DIR$/lib/home" />
       <recent name="$PROJECT_DIR$/lib/splash" />
       <recent name="$PROJECT_DIR$/assets/flare" />
       <recent name="$PROJECT_DIR$/lib/widgets/navBarWidget" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/widgets" />
+      <recent name="$PROJECT_DIR$/lib/widgets/chewie_player_custom" />
+      <recent name="$PROJECT_DIR$/android/app" />
+      <recent name="$PROJECT_DIR$/lib/pages" />
+      <recent name="$PROJECT_DIR$/assets/images" />
     </key>
   </component>
   <component name="RunDashboard">

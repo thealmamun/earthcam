@@ -1,6 +1,5 @@
 // 🐦 Flutter imports:
 import 'package:admob_flutter/admob_flutter.dart';
-import 'package:earth_cam/widgets/fijk_player_custom/fijkplayer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -34,31 +33,35 @@ class ServerVideoPlayer extends StatefulWidget {
 }
 
 class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
-  final FijkPlayer player = FijkPlayer();
-
+  VideoPlayerController _videoPlayerController2;
+  ChewieController _chewieController;
   final _nativeAdController = NativeAdmobController();
   bool hidePlayer = false;
 
   @override
   void initState() {
     super.initState();
-    startPlay();
+    _videoPlayerController2 = VideoPlayerController.network(widget.url);
+    _videoPlayerController2.addListener(() {
+      if (_videoPlayerController2.value.hasError) {
+        this.onlineCallBack();
+      }
+    });
+    _chewieController = ChewieController(
+      videoPlayerController: _videoPlayerController2,
+      showControlsOnInitialize: false,
+      aspectRatio: 16 / 9,
+      autoPlay: true,
+      looping: true,
+      isLive: true,
+      fullScreenByDefault: false,
+      autoInitialize: true,
+    );
     hidePlayer = false;
     FacebookAudienceNetwork.init(
       testingId: "35e92a63-8102-46a4-b0f5-4fd269e6a13c",
     );
     _showAds();
-  }
-
-  void startPlay() async {
-//    await player.setOption(FijkOption.hostCategory, "request-screen-on", 1);
-    await player.setOption(FijkOption.hostCategory, "request-audio-focus", 1);
-    await player.setOption(FijkOption.hostCategory, "enable-snapshot", 1);
-    await player.setOption(
-        FijkOption.playerCategory, "mediacodec-all-videos", 1);
-    await player.setDataSource(widget.url, autoPlay: true).catchError((e) {
-      print("setDataSource error: $e");
-    });
   }
 
   _showAds() async {
@@ -97,24 +100,37 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
 
   @override
   void dispose() {
-    player.release();
+    _chewieController.dispose();
+    _videoPlayerController2.dispose();
     _nativeAdController.dispose();
     super.dispose();
   }
 
   onlineCallBack() {
     setState(() {
-      print('oncall');
-      player.reset();
-      player.prepareAsync();
-      this.startPlay();
+      _videoPlayerController2 = VideoPlayerController.network(widget.url);
+      _videoPlayerController2.addListener(() {
+        if (_videoPlayerController2.value.hasError) {
+          this.onlineCallBack();
+        }
+      });
+      _chewieController = ChewieController(
+        videoPlayerController: _videoPlayerController2,
+        showControlsOnInitialize: false,
+        aspectRatio: 16 / 9,
+        autoPlay: true,
+        looping: true,
+        isLive: true,
+        fullScreenByDefault: false,
+        autoInitialize: true,
+      );
       hidePlayer = false;
     });
   }
 
   offlineCallBack() {
     setState(() {
-      player.pause();
+      _videoPlayerController2.pause();
       hidePlayer = true;
     });
   }
@@ -167,24 +183,14 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
           children: <Widget>[
             Stack(
               children: [
-                hidePlayer == false
-                    ? FijkView(
-                  color: AppColor.kBackgroundColor,
-                  player: player,
-                  fit: FijkFit.ar16_9,
-                  fsFit: FijkFit.ar16_9,
+                Container(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 0.3,
-                  panelBuilder: fijkPanel2Builder(
-                      snapShot: false,
-                      fill: false,
-                      onRestart: () {
-                        player.reset();
-                        player.prepareAsync();
-                        this.startPlay();
-                      }),
-                )
-                    : placeHolderImage()
+                  child: hidePlayer == false
+                      ? Chewie(
+                    controller: _chewieController,
+                  )
+                      : placeHolderImage(),
+                ),
               ],
             ),
             SizedBox(height: 5.0),

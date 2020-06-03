@@ -83,6 +83,7 @@ dependencies:
   admob_flutter: ^1.0.0-beta.3
   device_preview: ^0.4.5
   device_id: ^0.2.0
+  fijkplayer: ^0.8.4
 
 flutter_icons:
   android: true
