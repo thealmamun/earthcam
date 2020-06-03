@@ -12,7 +12,7 @@ import 'package:earth_cam/pages/splash/splash_screen.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 //  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  Admob.initialize();
+  Admob.initialize(testDeviceIds: ['16B75870A3767788A0F1BC83AACD1DDC']);
   runApp(MyApp());
 //  runApp(
 //      DevicePreview(

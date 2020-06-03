@@ -2,6 +2,7 @@
 admob_flutter=/users/emran/Development/flutter/.pub-cache/hosted/pub.dartlang.org/admob_flutter-1.0.0-beta.3/
 cloud_firestore=/users/emran/Development/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.13.5/
 cloud_firestore_web=/users/emran/Development/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-0.1.1+2/
+device_id=/users/emran/Development/flutter/.pub-cache/hosted/pub.dartlang.org/device_id-0.2.0/
 facebook_audience_network=/users/emran/Development/flutter/.pub-cache/hosted/pub.dartlang.org/facebook_audience_network-0.5.0/
 firebase_admob=/users/emran/Development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_admob-0.9.3+2/
 firebase_auth=/users/emran/Development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.16.0/
