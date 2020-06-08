@@ -1,12 +1,12 @@
 // 🐦 Flutter imports:
-import 'package:admob_flutter/admob_flutter.dart';
-import 'package:earth_cam/utils/app_configure.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:meta/meta.dart';
 
 // 🌎 Project imports:
+import 'package:earth_cam/utils/app_configure.dart';
 import 'package:earth_cam/widgets/navBarWidget/curve_nav_button.dart';
 import 'package:earth_cam/widgets/navBarWidget/curved_nav_custom_painter.dart';
 

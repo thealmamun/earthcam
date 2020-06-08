@@ -2,10 +2,10 @@
 import 'dart:ui';
 
 // 🐦 Flutter imports:
-import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -13,12 +13,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:earth_cam/model/cams.dart';
 import 'package:earth_cam/pages/general_video_player.dart';
 import 'package:earth_cam/pages/youtube_video_player.dart';
-import 'package:earth_cam/services/google_admob.dart';
 import 'package:earth_cam/services/local_db.dart';
 import 'package:earth_cam/utils/app_configure.dart';
 import 'package:earth_cam/utils/constants.dart';
 import 'package:earth_cam/widgets/cams_grid_tile.dart';
 import 'package:earth_cam/widgets/no_data_widget.dart';
+import 'live_videos.dart';
 
 class CountryCams extends StatefulWidget {
   CountryCams(
@@ -48,6 +48,12 @@ class _CountryCamsState extends State<CountryCams> {
       imageUrl: snapshot.data['imageUrl'],
       onPressed: () {
         print('tapped');
+        print('Countt in country :$count');
+        count = count + 1;
+        print('Countt: $count');
+        if (count == 4) {
+          count = 0;
+        }
         if (snapshot.data['camType'] == 'Youtube') {
           Navigator.push(
               context,
@@ -56,6 +62,7 @@ class _CountryCamsState extends State<CountryCams> {
                         url: snapshot.data['streamUrl'],
                         title: snapshot.data['camTitle'],
                         imageUrl: snapshot.data['imageUrl'],
+                        check: count,
                       )));
         } else {
           Navigator.push(
@@ -65,6 +72,7 @@ class _CountryCamsState extends State<CountryCams> {
                         url: snapshot.data['streamUrl'],
                         title: snapshot.data['camTitle'],
                         imageUrl: snapshot.data['imageUrl'],
+                        check: count,
                       )));
         }
       },

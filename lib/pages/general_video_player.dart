@@ -1,31 +1,28 @@
 // 🐦 Flutter imports:
-import 'package:admob_flutter/admob_flutter.dart';
-import 'package:earth_cam/widgets/fijk_player_custom/fijkplayer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:connectivity_widget/connectivity_widget.dart';
-import 'package:facebook_audience_network/facebook_audience_network.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:video_player/video_player.dart';
 
 // 🌎 Project imports:
-import 'package:earth_cam/widgets/chewie_player_custom/chewie.dart';
+import 'package:earth_cam/widgets/fijk_player_custom/fijkplayer.dart';
 import 'package:earth_cam/services/google_admob.dart';
 import 'package:earth_cam/utils/app_configure.dart';
 import 'package:earth_cam/utils/constants.dart';
 
 class ServerVideoPlayer extends StatefulWidget {
-  ServerVideoPlayer({this.url, this.title, this.imageUrl});
+  ServerVideoPlayer({this.url, this.title, this.imageUrl,this.check});
 
   final String url;
   final String title;
   final String imageUrl;
+  final int check;
 
   @override
   State<StatefulWidget> createState() {
@@ -44,10 +41,11 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
     super.initState();
     startPlay();
     hidePlayer = false;
-    FacebookAudienceNetwork.init(
-      testingId: "35e92a63-8102-46a4-b0f5-4fd269e6a13c",
-    );
-    _showAds();
+//    _showAds();
+//    print('Check: ${widget.check}');
+    if(widget.check == 1){
+      GoogleAdMob.showInterstitialAds();
+    }
   }
 
   void startPlay() async {
@@ -61,22 +59,22 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
     });
   }
 
-  _showAds() async {
-    SharedPreferences sharedPreferences;
-    sharedPreferences = await SharedPreferences.getInstance();
-    int displayTimes = sharedPreferences.getInt('counter') ?? 0;
-
-    print('DisplayTimes: $displayTimes');
-    if (displayTimes == 0) {
-      GoogleAdMob.showInterstitialAds();
-    }
-    if (displayTimes == 3) {
-      displayTimes = 0;
-    } else {
-      displayTimes++;
-    }
-    sharedPreferences.setInt('counter', displayTimes);
-  }
+//  _showAds() async {
+//    SharedPreferences sharedPreferences;
+//    sharedPreferences = await SharedPreferences.getInstance();
+//    int displayTimes = sharedPreferences.getInt('counter') ?? 0;
+//
+//    print('DisplayTimes: $displayTimes');
+//    if (displayTimes == 0) {
+//      GoogleAdMob.showInterstitialAds();
+//    }
+//    if (displayTimes == 3) {
+//      displayTimes = 0;
+//    } else {
+//      displayTimes++;
+//    }
+//    sharedPreferences.setInt('counter', displayTimes);
+//  }
 
   Widget placeHolderImage() {
     return Stack(
@@ -197,21 +195,6 @@ class _ServerVideoPlayerState extends State<ServerVideoPlayer> {
                 type: NativeAdmobType.full,
               ),
             ),
-//            FacebookNativeAd(
-//              placementId: AppConfig.facebookNativeAdId,
-//              adType: NativeAdType.NATIVE_AD,
-//              width: double.infinity,
-//              height: MediaQuery.of(context).size.height * 0.2,
-//              backgroundColor: Colors.blue,
-//              titleColor: Colors.white,
-//              descriptionColor: Colors.white,
-//              buttonColor: Colors.deepPurple,
-//              buttonTitleColor: Colors.white,
-//              buttonBorderColor: Colors.white,
-//              listener: (result, value) {
-//                print("Native Ad: $result --> $value");
-//              },
-//            ),
           ],
         ),
       ),

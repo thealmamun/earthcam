@@ -98,17 +98,6 @@ class _CamsGridTileState extends State<CamsGridTile> {
                     imageUrl: widget.imageUrl,
                     errorWidget: Icon(Icons.error),
                   ),
-//                  child: CachedNetworkImage(
-//                    fit: BoxFit.fill,
-//                    imageUrl: widget.imageUrl,
-//                    placeholder: (context, url) =>
-//                        Center(child: Shimmer.fromColors(
-//                          child: Container(),
-//                          baseColor: Colors.grey[300],
-//                          highlightColor: Colors.grey[100],
-//                        )),
-//                    errorWidget: (context, url, error) => Icon(Icons.error),
-//                  ),
                 ),
               ),
               Positioned.fill(

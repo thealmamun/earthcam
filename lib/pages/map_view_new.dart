@@ -15,11 +15,11 @@ import 'package:location/location.dart';
 import 'package:shimmer/shimmer.dart';
 
 // 🌎 Project imports:
+import 'package:earth_cam/pages/live_videos.dart';
 import 'package:earth_cam/model/cams.dart';
 import 'package:earth_cam/pages/general_video_player.dart';
 import 'package:earth_cam/pages/youtube_video_player.dart';
 import 'package:earth_cam/services/database.dart';
-import 'package:earth_cam/services/google_admob.dart';
 import 'package:earth_cam/utils/app_configure.dart';
 import 'package:earth_cam/utils/constants.dart';
 
@@ -29,7 +29,7 @@ class MapViewNew extends StatefulWidget {
 }
 
 class _MapViewNewState extends State<MapViewNew> with TickerProviderStateMixin {
-  LatLng _center = LatLng(23.75553435912065, 90.4116352647543);
+//  LatLng _center = LatLng(23.75553435912065, 90.4116352647543);
   MapController _mapController = MapController();
   double pinPillPosition = -200;
   Cams currentlySelectedPin = Cams(
@@ -264,6 +264,13 @@ class _MapViewNewState extends State<MapViewNew> with TickerProviderStateMixin {
                                         padding: EdgeInsets.all(5),
                                         onPressed: () {
                                           print(element[i].streamUrl);
+                                          print('tapped');
+                                          print('Countt in country :$count');
+                                          count = count + 1;
+                                          print('Countt: $count');
+                                          if (count == 4) {
+                                            count = 0;
+                                          }
                                           if (element[i].camType == 'Youtube') {
                                             Navigator.push(
                                                 context,
@@ -276,6 +283,7 @@ class _MapViewNewState extends State<MapViewNew> with TickerProviderStateMixin {
                                                               .camTitle,
                                                           imageUrl: element[i]
                                                               .imageUrl,
+                                                          check: count,
                                                         )));
                                           } else {
                                             Navigator.push(
@@ -287,6 +295,7 @@ class _MapViewNewState extends State<MapViewNew> with TickerProviderStateMixin {
                                                               .streamUrl,
                                                           title: element[i]
                                                               .camTitle,
+                                                          check: count,
                                                         )));
                                           }
                                         },

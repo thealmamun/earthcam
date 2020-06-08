@@ -2,15 +2,17 @@
 import 'dart:ui';
 
 // 🐦 Flutter imports:
-import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 
+// 📦 Package imports:
+import 'package:admob_flutter/admob_flutter.dart';
+
 // 🌎 Project imports:
+import 'package:earth_cam/pages/live_videos.dart';
 import 'package:earth_cam/model/cams.dart';
 import 'package:earth_cam/pages/general_video_player.dart';
 import 'package:earth_cam/pages/youtube_video_player.dart';
 import 'package:earth_cam/services/database.dart';
-import 'package:earth_cam/services/google_admob.dart';
 import 'package:earth_cam/services/local_db.dart';
 import 'package:earth_cam/utils/app_configure.dart';
 import 'package:earth_cam/utils/constants.dart';
@@ -51,6 +53,12 @@ class _SearchCamsState extends State<SearchCams> {
       imageUrl: data['imageUrl'],
       onPressed: () {
         print('tapped');
+        print('Countt in country :$count');
+        count = count + 1;
+        print('Countt: $count');
+        if (count == 4) {
+          count = 0;
+        }
         if (data['camType'] == 'Youtube') {
           Navigator.push(
               context,
@@ -59,6 +67,7 @@ class _SearchCamsState extends State<SearchCams> {
                         url: data['streamUrl'],
                         title: data['camTitle'],
                         imageUrl: data['imageUrl'],
+                        check: count,
                       )));
         } else {
           Navigator.push(
@@ -68,6 +77,7 @@ class _SearchCamsState extends State<SearchCams> {
                         url: data['streamUrl'],
                         title: data['camTitle'],
                         imageUrl: data['imageUrl'],
+                        check: count,
                       )));
         }
       },

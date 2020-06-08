@@ -8,11 +8,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:earth_cam/model/cams.dart';
 import 'package:earth_cam/pages/general_video_player.dart';
 import 'package:earth_cam/pages/youtube_video_player.dart';
-import 'package:earth_cam/services/google_admob.dart';
 import 'package:earth_cam/services/local_db.dart';
 import 'package:earth_cam/utils/app_configure.dart';
 import 'package:earth_cam/utils/constants.dart';
 import 'package:earth_cam/widgets/cams_grid_tile.dart';
+
+int count = 0;
 
 class LiveVideos extends StatefulWidget {
   @override
@@ -31,6 +32,11 @@ class _LiveVideosState extends State<LiveVideos> {
       imageUrl: snapshot.data['imageUrl'],
       onPressed: () {
         print('tapped');
+        count = count + 1;
+        print('Countt: $count');
+        if (count == 4) {
+          count = 0;
+        }
         if (snapshot.data['camType'] == 'Youtube') {
           Navigator.push(
               context,
@@ -39,6 +45,7 @@ class _LiveVideosState extends State<LiveVideos> {
                         url: snapshot.data['streamUrl'],
                         title: snapshot.data['camTitle'],
                         imageUrl: snapshot.data['imageUrl'],
+                        check: count,
                       )));
         } else {
           Navigator.push(
@@ -48,6 +55,7 @@ class _LiveVideosState extends State<LiveVideos> {
                         url: snapshot.data['streamUrl'],
                         title: snapshot.data['camTitle'],
                         imageUrl: snapshot.data['imageUrl'],
+                        check: count,
                       )));
         }
       },

@@ -1,11 +1,13 @@
 // 🐦 Flutter imports:
-import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+// 📦 Package imports:
+import 'package:admob_flutter/admob_flutter.dart';
+import 'package:wakelock/wakelock.dart';
 
 // 🌎 Project imports:
 import 'package:earth_cam/pages/splash/splash_screen.dart';
-import 'package:flutter/services.dart';
-import 'package:wakelock/wakelock.dart';
 
 // 📦 Package imports:
 

@@ -9,7 +9,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wakelock/wakelock.dart';
 
 // 🌎 Project imports:
-import 'package:earth_cam/services/google_admob.dart';
 import 'package:earth_cam/pages/country_list.dart';
 import 'package:earth_cam/pages/favorites.dart';
 import 'package:earth_cam/pages/live_videos.dart';

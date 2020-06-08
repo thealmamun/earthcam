@@ -23,6 +23,7 @@
 
 library fijkplayer;
 
+// 🎯 Dart imports:
 import 'dart:async';
 import 'dart:collection';
 import 'dart:core';
@@ -31,12 +32,15 @@ import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui';
 
+// 🐦 Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+
+// 🌎 Project imports:
 import 'package:earth_cam/utils/constants.dart';
 
 part 'core/fijklog.dart';

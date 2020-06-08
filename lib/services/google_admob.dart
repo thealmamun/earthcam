@@ -12,7 +12,7 @@ import 'package:earth_cam/utils/app_configure.dart';
 //    keywords: <String>['cams','live','earth']);
 
 class GoogleAdMob {
-  static BannerAd _bannerAd;
+//  static BannerAd _bannerAd;
 
   static void initialize() {
     FirebaseAdMob.instance.initialize(appId: AppConfig.addId);

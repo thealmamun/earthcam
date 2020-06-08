@@ -1,9 +1,9 @@
 // 🐦 Flutter imports:
-import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:connectivity_widget/connectivity_widget.dart';
 import 'package:facebook_audience_network/facebook_audience_network.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';

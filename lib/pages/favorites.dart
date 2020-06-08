@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 
 // 🌎 Project imports:
+import 'package:earth_cam/pages/live_videos.dart';
 import 'package:earth_cam/model/cams.dart';
 import 'package:earth_cam/pages/general_video_player.dart';
 import 'package:earth_cam/pages/youtube_video_player.dart';
-import 'package:earth_cam/services/google_admob.dart';
 import 'package:earth_cam/services/local_db.dart';
 import 'package:earth_cam/utils/app_configure.dart';
 import 'package:earth_cam/utils/constants.dart';
@@ -54,6 +54,12 @@ class _FavoritesState extends State<Favorites> {
                       imageUrl: e.imageUrl,
                       onPressed: () {
                         print('tapped');
+                        print('Countt in country :$count');
+                        count = count + 1;
+                        print('Countt: $count');
+                        if (count == 4) {
+                          count = 0;
+                        }
                         if (e.camType == 'Youtube') {
                           Navigator.push(
                               context,
@@ -62,6 +68,7 @@ class _FavoritesState extends State<Favorites> {
                                         url: e.streamUrl,
                                         title: e.camTitle,
                                         imageUrl: e.imageUrl,
+                                        check: count,
                                       )));
                         } else {
                           Navigator.push(
@@ -71,6 +78,7 @@ class _FavoritesState extends State<Favorites> {
                                         url: e.streamUrl,
                                         title: e.camTitle,
                                         imageUrl: e.imageUrl,
+                                        check: count,
                                       )));
                         }
                       },
