@@ -1,17 +1,13 @@
 // 🎯 Dart imports:
 import 'dart:async';
 
-// 🐦 Flutter imports:
+import 'package:avatar_glow/avatar_glow.dart';
+import 'package:earth_cam/pages/home/home_page.dart';
+import 'package:earth_cam/services/google_admob.dart';
+import 'package:earth_cam/utils/app_configure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
-// 📦 Package imports:
-import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-
-// 🌎 Project imports:
-import 'package:earth_cam/pages/home/home_page.dart';
-import 'package:earth_cam/utils/app_configure.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -25,11 +21,9 @@ class _SplashScreenState extends State<SplashScreen>
   AnimationController _controller;
   Timer timer;
 
-
-
   @override
   void initState() {
-    timer = Timer(Duration(seconds: 10), () {
+    timer = Timer(Duration(seconds: 3), () {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => HomePage()));
     });
@@ -42,10 +36,16 @@ class _SplashScreenState extends State<SplashScreen>
       lowerBound: 0.0,
       upperBound: 0.1,
     )..addListener(() {
-      setState(() {});
-    });
+        setState(() {});
+      });
 
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    GoogleAdMob.showInterstitialAds();
+    super.dispose();
   }
 
   @override
@@ -83,69 +83,54 @@ class _SplashScreenState extends State<SplashScreen>
                       width: 100,
                     ),
                   ),
-                  DelayedAnimation(
-                    child: Text(
-                      "Welcome to",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 35.0,
-                          color: color),
-                    ),
-                    delay: delayedAmount + 1000,
+                  Text(
+                    "Welcome to",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 35.0,
+                        color: color),
                   ),
-                  DelayedAnimation(
-                    child: Text(
-                      AppConfig.appName,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 35.0,
-                          color: color),
-                    ),
-                    delay: delayedAmount + 2000,
+                  Text(
+                    AppConfig.appName,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 35.0,
+                        color: color),
                   ),
                   SizedBox(
                     height: 30.0,
                   ),
-                  DelayedAnimation(
-                    child: Text(
-                      "Let's Discover The World!",
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          color: color,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    delay: delayedAmount + 3000,
+                  Text(
+                    "Let's Discover The World!",
+                    style: TextStyle(
+                        fontSize: 20.0,
+                        color: color,
+                        fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: 80.0,
                   ),
-                  DelayedAnimation(
-                    child: GestureDetector(
-                      onTapDown: _onTapDown,
-                      onTapUp: _onTapUp,
-                      child: Transform.scale(
-                        scale: _scale,
-                        child: _animatedButtonUI,
-                      ),
+                  GestureDetector(
+                    onTapDown: _onTapDown,
+                    onTapUp: _onTapUp,
+                    child: Transform.scale(
+                      scale: _scale,
+                      child: _animatedButtonUI,
                     ),
-                    delay: delayedAmount + 4000,
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  DelayedAnimation(
-                    child: GestureDetector(
-                      onTapDown: _onTapDown,
-                      onTapUp: _onTapUp,
-                      child: Transform.scale(
-                        scale: _scale,
-                        child: SpinKitThreeBounce(
-                          color: Colors.white,
-                          size: 20.0,
-                        ),
+                  GestureDetector(
+                    onTapDown: _onTapDown,
+                    onTapUp: _onTapUp,
+                    child: Transform.scale(
+                      scale: _scale,
+                      child: SpinKitThreeBounce(
+                        color: Colors.white,
+                        size: 20.0,
                       ),
                     ),
-                    delay: delayedAmount + 4000,
                   ),
                 ],
               ),
@@ -166,8 +151,8 @@ class _SplashScreenState extends State<SplashScreen>
             onTap: () {
               // ignore: unnecessary_statements
 //              signInAnonymously;
-              Navigator.of(context)
-                  .pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => HomePage()));
             },
             child: Text(
               'Live Cams',

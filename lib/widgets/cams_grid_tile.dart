@@ -1,14 +1,11 @@
 // 🐦 Flutter imports:
-import 'package:flutter/material.dart';
-
-// 📦 Package imports:
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:neumorphic/neumorphic.dart';
-
-// 🌎 Project imports:
 import 'package:earth_cam/utils/constants.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import 'neumorphic/neumorphic.dart';
 
 class CamsGridTile extends StatefulWidget {
   CamsGridTile(
@@ -17,7 +14,9 @@ class CamsGridTile extends StatefulWidget {
       this.imageUrl,
       this.onPressed,
       this.camTitle,
-      this.onPressedFavourite,this.onFavPress,this.flareWidget});
+      this.onPressedFavourite,
+      this.onFavPress,
+      this.flareWidget});
 
   final BuildContext context;
   final DocumentSnapshot snapshot;

@@ -1,8 +1,6 @@
 // 📦 Package imports:
-import 'package:firebase_admob/firebase_admob.dart';
-
-// 🌎 Project imports:
 import 'package:earth_cam/utils/app_configure.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 
 //const String testDevice = '43C11668467B0AE9AE0E76DD89D3FC79';
 //
@@ -17,7 +15,6 @@ class GoogleAdMob {
   static void initialize() {
     FirebaseAdMob.instance.initialize(appId: AppConfig.addId);
   }
-
 
 //  static BannerAd _createBannerAd() {
 //    return BannerAd(

@@ -562,13 +562,6 @@
             </list>
           </value>
         </entry>
-        <entry key="neumorphic">
-          <value>
-            <list>
-              <option value="$USER_HOME$/Development/flutter/.pub-cache/hosted/pub.dartlang.org/neumorphic-0.3.0/lib" />
-            </list>
-          </value>
-        </entry>
         <entry key="open_iconic_flutter">
           <value>
             <list>
@@ -817,7 +810,7 @@
         <entry key="test_api">
           <value>
             <list>
-              <option value="$USER_HOME$/Development/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.15/lib" />
+              <option value="$USER_HOME$/Development/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.16/lib" />
             </list>
           </value>
         </entry>
@@ -1006,7 +999,6 @@
       <root url="file://$USER_HOME$/Development/flutter/.pub-cache/hosted/pub.dartlang.org/meta-1.1.8/lib" />
       <root url="file://$USER_HOME$/Development/flutter/.pub-cache/hosted/pub.dartlang.org/mgrs_dart-1.0.1/lib" />
       <root url="file://$USER_HOME$/Development/flutter/.pub-cache/hosted/pub.dartlang.org/mime-0.9.6+3/lib" />
-      <root url="file://$USER_HOME$/Development/flutter/.pub-cache/hosted/pub.dartlang.org/neumorphic-0.3.0/lib" />
       <root url="file://$USER_HOME$/Development/flutter/.pub-cache/hosted/pub.dartlang.org/open_iconic_flutter-0.3.0/lib" />
       <root url="file://$USER_HOME$/Development/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.7.0/lib" />
       <root url="file://$USER_HOME$/Development/flutter/.pub-cache/hosted/pub.dartlang.org/path_drawing-0.4.1/lib" />
@@ -1041,7 +1033,7 @@
       <root url="file://$USER_HOME$/Development/flutter/.pub-cache/hosted/pub.dartlang.org/string_scanner-1.0.5/lib" />
       <root url="file://$USER_HOME$/Development/flutter/.pub-cache/hosted/pub.dartlang.org/synchronized-2.2.0/lib" />
       <root url="file://$USER_HOME$/Development/flutter/.pub-cache/hosted/pub.dartlang.org/term_glyph-1.1.0/lib" />
-      <root url="file://$USER_HOME$/Development/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.15/lib" />
+      <root url="file://$USER_HOME$/Development/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.16/lib" />
       <root url="file://$USER_HOME$/Development/flutter/.pub-cache/hosted/pub.dartlang.org/transparent_image-1.0.0/lib" />
       <root url="file://$USER_HOME$/Development/flutter/.pub-cache/hosted/pub.dartlang.org/tuple-1.0.3/lib" />
       <root url="file://$USER_HOME$/Development/flutter/.pub-cache/hosted/pub.dartlang.org/typed_data-1.1.6/lib" />

@@ -1,18 +1,13 @@
 // 🎯 Dart imports:
 import 'dart:ui';
 
-// 🐦 Flutter imports:
-import 'package:flutter/material.dart';
-
-// 📦 Package imports:
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:neumorphic/neumorphic.dart';
-
-// 🌎 Project imports:
 import 'package:earth_cam/pages/country_cams.dart';
 import 'package:earth_cam/utils/app_configure.dart';
 import 'package:earth_cam/utils/constants.dart';
+import 'package:earth_cam/widgets/neumorphic/neumorphic.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CountryList extends StatefulWidget {
   @override
@@ -24,7 +19,7 @@ class _CountryListState extends State<CountryList> {
 
   Widget _countryList(DocumentSnapshot doc) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         Navigator.push(
           context,
           PageRouteBuilder(
@@ -35,7 +30,8 @@ class _CountryListState extends State<CountryList> {
                 selectedCountryFlag: doc.data['countryFlag'],
               );
             },
-            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
               return FadeTransition(
                 opacity: animation,
                 child: child,

@@ -1,27 +1,23 @@
 // 🎯 Dart imports:
 import 'dart:ui';
 
-// 🐦 Flutter imports:
-import 'package:flutter/material.dart';
-
-// 📦 Package imports:
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:earth_cam/pages/search_cams.dart';
+import 'package:earth_cam/pages_o/category_cams.dart';
+import 'package:earth_cam/utils/constants.dart';
+import 'package:earth_cam/widgets/neumorphic/neumorphic.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
+import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:neumorphic/neumorphic.dart';
-
-// 🌎 Project imports:
-import 'package:earth_cam/pages_o/category_cams.dart';
-import 'package:earth_cam/pages/search_cams.dart';
-import 'package:earth_cam/utils/constants.dart';
 
 class CategoryList extends StatefulWidget {
   @override
   _CategoryListState createState() => _CategoryListState();
 }
 
-class _CategoryListState extends State<CategoryList> with TickerProviderStateMixin{
+class _CategoryListState extends State<CategoryList>
+    with TickerProviderStateMixin {
   Stream categoryList;
 
   Widget _categoryList(DocumentSnapshot doc) {
@@ -40,7 +36,8 @@ class _CategoryListState extends State<CategoryList> with TickerProviderStateMix
                   selectedCategoryIcon: doc.data['categoryIcon'],
                 );
               },
-              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
                 return FadeTransition(
                   opacity: animation,
                   child: child,
@@ -64,11 +61,11 @@ class _CategoryListState extends State<CategoryList> with TickerProviderStateMix
                   Positioned.fill(
                     child: Container(
                       color: Colors.black.withOpacity(0),
-                        child: FancyShimmerImage(
-                          boxFit: BoxFit.fill,
-                          imageUrl: doc.data['categoryImage'],
-                          errorWidget: Icon(Icons.error),
-                        ),
+                      child: FancyShimmerImage(
+                        boxFit: BoxFit.fill,
+                        imageUrl: doc.data['categoryImage'],
+                        errorWidget: Icon(Icons.error),
+                      ),
 //                      child: CachedNetworkImage(
 //                        fit: BoxFit.cover,
 //                        imageUrl: doc.data['categoryImage'],
@@ -230,7 +227,8 @@ class _CategoryListState extends State<CategoryList> with TickerProviderStateMix
                 pageBuilder: (context, animation, secondaryAnimation) {
                   return SearchCams();
                 },
-                transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
                   return FadeTransition(
                     opacity: animation,
                     child: child,
